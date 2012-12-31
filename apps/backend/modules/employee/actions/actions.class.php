@@ -13,13 +13,12 @@ class employeeActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
         $c = new Criteria();
-                $companyid=$request->getParameter('company_id');
-                $this->companyval=$companyid;
-   if (isset($companyid) && $companyid != '') {
+        $companyid=$request->getParameter('company_id');
+        $this->companyval=$companyid;
+        if (isset($companyid) && $companyid != '') {
             $c->addAnd(EmployeePeer::COMPANY_ID,  $companyid);
-
         }
-        $c->addAnd(EmployeePeer::STATUS_ID,3);
+        $c->addAnd(EmployeePeer::STATUS_ID,  3);
         $this->employees = EmployeePeer::doSelect($c);
     }
 
@@ -36,9 +35,9 @@ class employeeActions extends sfActions {
         $this->companys = CompanyPeer::doSelect($c);
 
         $pr = new Criteria();
-         $pr->add(ProductPeer::ID, 4);
+        $pr->add(ProductPeer::ID, $this->employee->getProductId());
         //$pr->add(ProductPeer::IS_IN_ZAPNA, 1);
-        $this->products = ProductPeer::doSelect($pr);
+        $this->products = ProductPeer::doSelectOne($pr);
     }
 
     protected function addFiltersCriteria($c) {
@@ -182,6 +181,7 @@ class employeeActions extends sfActions {
       $employee->setSimTypeId($request->getParameter('sim_type_id'));
       $employee->setProductPrice($request->getParameter('price'));
       $employee->setUniqueId($request->getParameter('uniqueid'));
+      $employee->setComments($request->getParameter('comments'));
     //  $employee->setStatusId(sfConfig::get('app_status_new'));   //// new status is 1 defined in backend/config/app.yml
       $employee->save();
         
@@ -200,14 +200,17 @@ class employeeActions extends sfActions {
         $uniqueIdObj->setAssignedAt(date("Y-m-d H:i:s"));
         $uniqueIdObj->setStatus(1);
         $uniqueIdObj->save();
-       $product= ProductPeer::retrieveByPK($request->getParameter('productid'));
-       $chrageamount=$product->getRegistrationFee()+$product->getRegistrationFee()*sfConfig::get('app_vat_percentage');
+        $product= ProductPeer::retrieveByPK($request->getParameter('productid'));
+      // $chrageamount=$product->getRegistrationFee()+$product->getRegistrationFee()*sfConfig::get('app_vat_percentage');
+        $chrageamount = $product->getInitialBalance();
        //$emplyeeProductFeeDescription="Registration Fee Including Vat";,$emplyeeProductFeeDescription
         if($chrageamount > 0){
-            CompanyEmployeActivation::charge($this->companys,$chrageamount);
+            $description = "RegFee-".$employee->getMobileNumber();
+            CompanyEmployeActivation::charge($this->companys,$chrageamount,$description);
         }
+        $withvat = $chrageamount + $chrageamount * sfConfig::get('app_vat_percentage');
         $transaction = new CompanyTransaction();
-        $transaction->setAmount(-$chrageamount);
+        $transaction->setAmount(-$withvat);
         $transaction->setCompanyId($request->getParameter('company_id'));
         $transaction->setExtraRefill(-$chrageamount);
         $transaction->setTransactionStatusId(3);
@@ -272,7 +275,7 @@ class employeeActions extends sfActions {
                         $OpeningBalance=40;
                         $employee->setRegistrationType($request->getParameter('registration_type'));
                         //$resenummerCharge=file_get_contents('https://mybilling.telinta.com/htdocs/zapna/zapna.pl?type=account&action=manual_charge&name=' . $voipnumbers . '&amount=40&customer='.$companyCVR);
-                        CompanyEmployeActivation::charge($this->companys, $OpeningBalance);
+                        CompanyEmployeActivation::charge($this->companys, $OpeningBalance,"Resenumber");
                         $transaction = new CompanyTransaction();
                         $transaction->setAmount(-40);
                         $transaction->setCompanyId($request->getParameter('company_id'));
@@ -422,7 +425,7 @@ class employeeActions extends sfActions {
         $employee->setIsAppRegistered($request->getParameter('is_app_registered'));
         $employee->setPassword($request->getParameter('password'));*/
         //$employee->setRegistrationType($rtype);
-        $employee->setProductId($request->getParameter('productid'));
+        //$employee->setProductId($request->getParameter('productid'));
         
       //  $employee->setProductPrice($request->getParameter('price'));
            $employee->setComments($request->getParameter('comments'));
@@ -457,19 +460,19 @@ class employeeActions extends sfActions {
             }
             return false;
         }
-        $cb = new Criteria();
-        $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
-        $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
-        $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-        if (!CompanyEmployeActivation::terminateAccount($telintaAccountcb)) {
-            $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
-            if (isset($companyid) && $companyid != "") {
-                $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
-            } else {
-                $this->redirect('employee/index?message=edit');
-            }
-            return false;
-        }
+//        $cb = new Criteria();
+//        $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
+//        $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
+//        $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
+//        if (!CompanyEmployeActivation::terminateAccount($telintaAccountcb)) {
+//            $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
+//            if (isset($companyid) && $companyid != "") {
+//                $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
+//            } else {
+//                $this->redirect('employee/index?message=edit');
+//            }
+//            return false;
+//        }
         
         $this->forward404Unless($employee = EmployeePeer::retrieveByPk($request->getParameter('id')), sprintf('Object employee does not exist (%s).', $request->getParameter('id')));
 
@@ -505,6 +508,7 @@ class employeeActions extends sfActions {
                 
         //$employee->delete();
         $employee->setStatusId('app_status_delete'); //// delete status is 6 defined in backend/config/app.yml
+        $employee->save();
         $this->getUser()->setFlash('message', 'Employee has been deleted Sucessfully');
         if(isset($companyid) && $companyid!=""){$this->redirect('employee/index?company_id='.$companyid.'&filter=filter');}
         else{$this->redirect('employee/index');}
@@ -521,13 +525,31 @@ class employeeActions extends sfActions {
         $fromdate=date("Y-m-d", $tomorrow1);
         $tomorrow = mktime(0,0,0,date("m"),date("d")+1,date("Y"));
         $todate=date("Y-m-d", $tomorrow);
-
+        
+        $this->fromdate = $fromdate;
+        $this->todate = $todate;
+        
         $mobilenumber = $this->employee->getCountryMobileNumber();
         $ct = new Criteria();
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a'.$mobilenumber);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
         $this->callHistory = CompanyEmployeActivation::getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
+        
+        $ers = new Criteria();
+        $ers->addAnd(RegistrationSubscriptionPeer::PARENT_TABLE, 'employee');
+        $ers->add(RegistrationSubscriptionPeer::PARENT_ID, $this->employee->getId());        
+        $ers->addAnd(RegistrationSubscriptionPeer::BILL_START, $fromdate);
+        $ers->addAnd(RegistrationSubscriptionPeer::BILL_END, $todate);
+        $regsubcount = RegistrationSubscriptionPeer::doCount($ers);
+        if ($regsubcount > 0) {
+            $empRegPrd = RegistrationSubscriptionPeer::doSelectOne($ers);
+            $subFee = $empRegPrd->getSubFee();
+            $prdPrice = $empRegPrd->getRegFee();
+            if ($prdPrice>0){
+                echo $prdPrice;
+            }
+        }
         
        /*$cb = new Criteria();
         $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb'.$mobilenumber);

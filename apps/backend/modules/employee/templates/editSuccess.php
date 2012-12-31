@@ -94,14 +94,14 @@
         </tr>-->
         <tr>
             <td style="padding: 5px;">Product:</td>
-            <td style="padding: 5px;"> <select name="productid" id="employee_product_id"   class="required" >
-<!--                    <option value="" selected="selected"></option>-->
-<?php foreach ($products as $product) { ?>
+           <td style="padding: 5px;"> 
+           <?php echo $products->getName(); ?>
+<!-- <select name="productid" id="employee_product_id"   class="required" ><?php foreach ($products as $product) { ?>
                     <option value="<?php echo $pid = $product->getId(); ?>"   <?php $varp = $employee->getProductId();
                     if (isset($varp) && $varp == $pid) { ?>  selected="selected" <?php } ?>><?php echo $product->getName() ?></option>
 <?php } ?>
 
-                </select></td>
+                </select>--></td>
         </tr>
 
  <tr>

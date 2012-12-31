@@ -91,7 +91,7 @@
 
 
 <div class="form-row">
-   <?php echo label_for('company[country_id]', __($labels['company{country_id}']), '') ?>
+   <?php echo label_for('company[country_id]', __($labels['company{country_id}']), 'class="required"') ?>
           <div class="content<?php if ($sf_request->hasError('company{country_id}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('company{country_id}')): ?>
                 <?php echo form_error('company{country_id}', array('class' => 'form-error-msg')) ?>
@@ -100,13 +100,13 @@
                       'related_class' => 'Country',
                       'control_name' => 'company[country_id]',
                       'peer_method'=>'getSortedCountries',
-                      //'include_blank' => true,
+                   //   'include_blank' => true,
                       'onchange'=> remote_function(array(
                                 'update'  => 'citySelectList',
                                 'url'     => 'company/countrycity',
                                         'with' => "'country_id=' + this.options[this.selectedIndex].value"
                                 ))
-                    ),182); echo $value ? $value : '&nbsp;' ?>
+                    ),155); echo $value ? $value : '&nbsp;' ?>
           </div>
 </div>
     
@@ -258,7 +258,7 @@
     </div>
 </div>
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[customer_type_id]', __($labels['company{customer_type_id}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{customer_type_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{customer_type_id}')): ?>
@@ -271,7 +271,7 @@
     'include_custom' => ' ',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <div class="form-row">
   <?php echo label_for('company[invoice_method_id]', __($labels['company{invoice_method_id}']), 'class="required" ') ?>
@@ -319,7 +319,7 @@
     </div>
 </div>
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[created_at]', __($labels['company{created_at}']), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('company{created_at}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{created_at}')): ?>
@@ -334,7 +334,7 @@
   'readonly' => 'true',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <div class="form-row">
   <?php echo label_for('company[file_path]', __($labels['company{file_path}']), '') ?>

@@ -1,9 +1,10 @@
 <?php use_helper('I18N') ?><div id="sf_admin_container">
 	<div id="sf_admin_content">
 	<!-- employee/list?filters[company_id]=1 -->
-	<a href="<?php echo url_for('employee/index').'?company_id='.$company->getId()."&filter=filter" ?>" class="external_link" target="_self"><?php echo  __('Employees') ?> (<?php echo count($company->getEmployees()) ?>)</a>
+	<a href="<?php echo url_for('employee/index').'?company_id='.$company->getId()."&filter=filter" ?>" class="external_link" target="_self"><?php echo  __('Employees') ?> (<?php echo $count ?>)</a>
 	<a href="<?php echo url_for('company/usage').'?company_id='.$company->getId(); ?>" class="external_link" target="_self"><?php echo  __('Usage') ?></a>
-        <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$company->getId().'&filter=filter' ?>" class="external_link" target="_self"><?php echo  __('Payment History') ?></a>
+        <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$company->getId().'&filter=filter' ?>" class="external_link" target="_self"><?php echo  __('Receipts') ?></a>
+        <a href="<?php echo url_for('company/invoices') . '?company_id=' . $company->getId()?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
 	<!--
 	<a onclick="companyShow();" style="cursor:pointer;">Company Info</a>
 	&nbsp; | &nbsp;
@@ -22,13 +23,21 @@
 				</div>
 
 	<div class="form-row">
-				  <label class="required"><?php echo  __('Balance view:') ?> </label>
+				  <label class="required"><?php echo  __('Airtime:') ?> <br /><small>(excluding vat)</small></label>
 				  <div class="content"><?php
-                                 echo $balance ." ". sfConfig::get('app_currency_code');
+                                 echo number_format($balance,2);echo sfConfig::get('app_currency_code');
                            ?>
 				   
 				  </div>
 				</div>
+                                <div class="form-row">
+				  <label class="required"><?php echo  __('Credit Limit:') ?><br /><small>(excluding vat)</small></label>
+				  <div class="content">
+				  	<?php echo number_format($company->getCreditLimit(),2); ?>
+                                      
+				  </div>
+				</div>
+                                
 				<div class="form-row">
 				  <label class="required"><?php echo  __('Vat Number:') ?></label>
 				  <div class="content">
@@ -105,12 +114,6 @@
 				  	<?php echo $company->getWebsite()?$company->getWebsite():'N/A' ?>
 				  </div>
 				</div>
-                                <div class="form-row">
-				  <label class="required"><?php echo  __('Credit Limit:') ?></label>
-				  <div class="content">
-				  	-<?php echo $company->getCreditLimit(); ?>
-				  </div>
-				</div>
 
 				<div class="form-row">
 				  <label class="required"><?php echo  __('Company Size') ?></label>
@@ -133,12 +136,12 @@
 				  </div>
 				</div>
 
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Customer Type:') ?></label>
 				  <div class="content">
 				  	<?php echo $company->getCustomerType();?>
 				  </div>
-				</div>
+				</div>-->
 				
 <!--				<div class="form-row">
 				  <label class="required">Account Manager:</label>

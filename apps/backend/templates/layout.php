@@ -74,7 +74,7 @@
             <div class="clr"></div>
   	</div>
         <div class="clr"></div>
-            <div style="width:75%;margin:0 auto;text-align: right;">
+            <div style="width:75%; margin:0 auto; text-align: right; padding-top: 20px;">
                <?php //echo link_to(image_tag('/images/german.png'), 'user/changeCulture?new=de'); ?>
                <?php //echo link_to(image_tag('/images/english.png'), 'user/changeCulture?new=en'); ?>
             </div>
@@ -101,18 +101,37 @@
                       }else{
                           echo link_to(__('Employee lists'), 'employee/index');
                       }
-                    ?>                    
+                    ?>  
+                    <?php 
+                      if($actionName=='invoices' && $modulName=="company"){
+                          echo link_to(__('Invoices'), 'company/invoices', array('class'=>'subSelect'));
+                      }else{
+                          echo link_to(__('Invoices'), 'company/invoices');
+                      }
+                    ?>  
                     <?php 
                       if($actionName=='paymenthistory' && $modulName=="company"){
-                         echo link_to(__('Payment History'), 'company/paymenthistory', array('class'=>'subSelect'));
+                         echo link_to(__('Receipts'), 'company/paymenthistory', array('class'=>'subSelect'));
                       }else{
-                         echo link_to(__('Payment History'), 'company/paymenthistory'); 
+                         echo link_to(__('Receipts'), 'company/paymenthistory');
                       }?>
                     <?php 
                       if($actionName=='refill'){
-                         echo link_to(__('Refill'), 'company/refill', array('class'=>'subSelect'));    
+                         echo link_to(__('Payment'), 'company/refill', array('class'=>'subSelect'));
                       }else{
-                          echo link_to(__('Refill'), 'company/refill');                          
+                          echo link_to(__('Payment'), 'company/refill');
+                      } ?>
+                    <?php
+                      /*if($actionName=='invoices'){
+                         echo link_to(__('Invoices'), 'company/invoices', array('class'=>'subSelect'));
+                      }else{
+                          echo link_to(__('Invoices'), 'company/invoices');
+                      }*/ ?>
+                    <?php 
+                      if($actionName=='charge'){
+                         echo link_to(__('Charge'), 'company/charge', array('class'=>'subSelect'));    
+                      }else{
+                          echo link_to(__('Charge'), 'company/charge');                          
                       } ?>
                 </div>
             </li>
@@ -503,9 +522,9 @@
 
 
     <script type="text/javascript">
-  jQuery('#sddm li a').click(function() {
-    $('li:last').addClass('current') ;
-   });
+//  jQuery('#sddm li a').click(function() {
+//    $('li:last').addClass('current') ;
+//   });
  
 jQuery(function(){
 
@@ -523,6 +542,7 @@ jQuery('#sf_admin_edit_form').validate({
         "company[email]": "required email",
         "company[invoice_method_id]": "required",
         "company[password]": "required",
+        "company[country_id]": "required",
         "company[status_id]": "required"
   }
 	});
@@ -591,10 +611,10 @@ jQuery(function(){
 
 
       if(jQuery( "#startdate" ).length > 0){
-         jQuery( "#startdate" ).datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' }); 
+         jQuery( "#startdate" ).datepicker({ dateFormat: 'yy-mm-dd' }); 
       }  
       if(jQuery( "#enddate" ).length > 0){
-         jQuery( "#enddate" ).datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd'});
+         jQuery( "#enddate" ).datepicker({ dateFormat: 'yy-mm-dd'});
       }
       if(jQuery( "#stdate" ).length > 0){
          jQuery( "#stdate" ).datepicker({maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });
