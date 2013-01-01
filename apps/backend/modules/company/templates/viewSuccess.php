@@ -25,7 +25,7 @@
 	<div class="form-row">
 				  <label class="required"><?php echo  __('Airtime:') ?> <br /><small>(excluding vat)</small></label>
 				  <div class="content"><?php
-                                 echo number_format($balance,2);echo sfConfig::get('app_currency_code');
+                                 echo sfConfig::get('app_currency_code');echo number_format($balance,2);
                            ?>
 				   
 				  </div>

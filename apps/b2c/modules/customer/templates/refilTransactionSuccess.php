@@ -17,14 +17,14 @@
             <table width="234" cellpadding="5" cellspacing="0"> 
 <tr>
                     <td width="118" height="30"><?php echo __('Refill amount');?></td>
-          <td width="94" align="right"><?php echo __(number_format($refillamount=$product->getRegistrationFee(),2));echo sfConfig::get('app_currency_code');?></td>
+          <td width="94" align="right"><?php echo sfConfig::get('app_currency_code');echo __(number_format($refillamount=$product->getRegistrationFee(),2));?></td>
               </tr>    
                     
                <tr>  
-                    <td height="30"><?php echo __('VAT');?></td><td align="right"><?php echo __(number_format($refillvat=$product->getRegistrationFee() * sfConfig::get('app_vat_percentage'),2));echo sfConfig::get('app_currency_code');?></td>
+                    <td height="30"><?php echo __('VAT');?></td><td align="right"><?php echo sfConfig::get('app_currency_code');echo __(number_format($refillvat=$product->getRegistrationFee() * sfConfig::get('app_vat_percentage'),2));?></td>
                </tr>
                <tr class="refilltotal">
-                    <td height="30"><?php echo __('Total');?></td><td align="right"><?php echo __(number_format($refillamount+$refillvat,2));echo sfConfig::get('app_currency_code');?></td>
+                    <td height="30"><?php echo __('Total');?></td><td align="right"><?php echo sfConfig::get('app_currency_code');echo __(number_format($refillamount+$refillvat,2));?></td>
                 </tr>
             </table>
             <br />

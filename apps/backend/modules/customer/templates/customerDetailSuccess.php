@@ -32,13 +32,13 @@ $pus=0;
                                   $pus=$products->getProductCountryUs();
                if($pus==1){
                             $Tes=ForumTel::getBalanceForumtel($customer->getId());
-                               echo  $amt=CurrencyConverter::convertUsdToSek($Tes);
-   echo sfConfig::get('app_currency_code');
+                               echo sfConfig::get('app_currency_code');echo  $amt=CurrencyConverter::convertUsdToSek($Tes);
+   
                             }else{
 
 
-        echo   number_format($customer_balance,2);
-          echo sfConfig::get('app_currency_code');
+        echo sfConfig::get('app_currency_code');echo   number_format($customer_balance,2);
+          
                             }
                           
                      ?> </td>

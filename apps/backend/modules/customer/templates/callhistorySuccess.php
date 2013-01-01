@@ -42,7 +42,7 @@ if($pus==1){
         <th  width="20%"  align="left"><?php echo __('To Number') ?></th>
         <th  width="20%"  align="left"><?php echo __('From Number') ?></th>
         <th width="10%"   align="left"><?php echo __('Duration') ?></th>
-        <th width="20%"   align="right"><?php echo __('Cost') ?> (<?php echo sfConfig::get('app_currency_code');?>)</th>
+        <th width="20%"   align="right"><?php echo __('Cost') ?> (<?php echo sfConfig::get('app_currency_symbol');?>)</th>
         <th width="10%"   align="left"><?php echo __('Type') ?></th>
     </tr>
         <?php
@@ -176,7 +176,7 @@ if($pus==1){
                             <tr>
                                 <td><?php echo date("d-m-Y H:i:s", strtotime($xdr->bill_time)); ?></td>
                                 <td><?php echo $xdr->CLD; ?></td>
-                                <td align="right"><?php echo  number_format($xdr->charged_amount,2); ?><?php echo sfConfig::get('app_currency_code');?></td>
+                                <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo  number_format($xdr->charged_amount,2); ?></td>
                             </tr>
                             <?php } }else {
 
@@ -221,7 +221,7 @@ if($pus==1){
                     <th  width="20%"  align="left"><?php echo __('Phone Number') ?></th>
                     <th width="10%"   align="left"><?php echo __('Duration') ?></th>
 <!--                    <th  width="10%"  align="left"><?php echo __('VAT') ?></th>-->
-                    <th width="20%"   align="right"><?php echo __('Cost') ?> <?php echo sfConfig::get('app_currency_code');?></th>
+                    <th width="20%"   align="right"><?php echo __('Cost') ?> <?php echo sfConfig::get('app_currency_symbol');?></th>
                    
                     <th  width="20%"   align="left">Call Type</th>
                   </tr>
@@ -276,8 +276,8 @@ echo  date('i:s',$callval);
 
 }       ?></td>
 <!--                                    <td><?php echo number_format($xdr->charged_amount / 4, 2); ?></td>-->
-                                    <td align="right"><?php echo number_format($xdr->charged_amount, 2);
-                                $amount_total+= number_format($xdr->charged_amount, 2); ?> <?php echo sfConfig::get('app_currency_code');?></td>
+                                    <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdr->charged_amount, 2);
+                                $amount_total+= number_format($xdr->charged_amount, 2); ?> </td>
                                    
                                     <td><?php
                                 $typecall = substr($xdr->account_id, 0, 1);
@@ -320,7 +320,7 @@ echo  date('i:s',$callval);
                         <!--
                         <td><?php echo format_number($amount_total - $amount_total * sfConfig::get('app_vat_percentage')) ?> <?php echo sfConfig::get('app_currency_code')?></td>
                                         	 -->
-                        <td><?php echo number_format($amount_total, 2) ?> <?php echo sfConfig::get('app_currency_code');?></td>
+                        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total, 2) ?> </td>
                     <td>&nbsp;</td>
                 </tr>
         <?php endif;

@@ -56,7 +56,7 @@
             <tr>
                 <td style="padding: 5px;">Payment Received:</td>
                 <td style="padding: 5px;">
-                    <input type="text" id="refill" name="refill" class="" /><?php echo sfConfig::get('app_currency_code');?>
+                    <b><?php echo sfConfig::get('app_currency_code');?></b>&nbsp;<input type="text" id="refill" name="refill" class="" />
                      <label id="validation_result" class="" ></label>
                 </td>
             </tr>

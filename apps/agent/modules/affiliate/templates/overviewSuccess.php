@@ -55,7 +55,7 @@
             ?>
                 <tr>
                     <td><strong><?php echo __('Your Balance is:') ?></strong></td>
-                    <td align="right"><?php echo BaseUtil::format_number($agent->getBalance()); ?><?php echo sfConfig::get('app_currency_code');?></td>
+                    <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo BaseUtil::format_number($agent->getBalance()); ?></td>
                 </tr>
             <?php } ?>
             <tr>
@@ -68,13 +68,13 @@
             <tr>
                 <td><?php echo __('Total') ?> <strong><?php echo __('revenue on registration') ?></strong></td>
                 <td align="right">
-                    <?php echo number_format($registration_revenue,2)?><?php echo sfConfig::get('app_currency_code');?>
+                    <?php echo sfConfig::get('app_currency_code');?><?php echo number_format($registration_revenue,2)?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo __('Total commission earned on registration:') ?></td>
                 <td align="right">
-<?php echo number_format($registration_commission,2);?><?php echo sfConfig::get('app_currency_code');?>
+<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($registration_commission,2);?>
                 </td>
             </tr>
 
@@ -84,13 +84,13 @@
             <tr>
                 <td><?php echo __('Total') ?> <strong><?php echo __('revenue on refill') ?></strong></td>
                 <td align="right">
-<?php echo number_format($refill_revenue,2)?><?php echo sfConfig::get('app_currency_code');?>
+<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($refill_revenue,2)?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo __('Total commission earned on refill:') ?></td>
                 <td align="right">
-<?php echo number_format($refill_com,2) ?><?php echo sfConfig::get('app_currency_code');?>
+<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($refill_com,2) ?>
                 </td>
             </tr>
 
@@ -100,13 +100,13 @@
             <tr>
                 <td><?php echo __('Total') ?> <strong><?php echo __('revenue earned') ?>  </strong><?php echo __('on refill from shop:') ?></td>
                 <td align="right">
-<?php echo number_format($ef_sum,2); ?><?php echo sfConfig::get('app_currency_code');?>
+<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($ef_sum,2); ?>
                 </td>
             </tr>
             <tr>
                 <td><?php echo __('Total') ?> <strong><?php echo __('commission earned') ?> </strong><?php echo __('on refill from shop:') ?></td>
                 <td align="right">
-                    <?php echo number_format($ef_com,2); ?><?php echo sfConfig::get('app_currency_code');?>
+                    <?php echo sfConfig::get('app_currency_code');?><?php echo number_format($ef_com,2); ?>
                 </td>
             </tr>
             <tr>

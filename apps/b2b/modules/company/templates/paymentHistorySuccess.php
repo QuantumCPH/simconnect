@@ -14,7 +14,7 @@
     <th><?php echo __('Date & Time') ?></th>
     <th><?php echo __('Company & Name') ?></th>
     <th><?php echo __('Description') ?></th>
-    <th><?php echo __('Amount') ?> (<?php echo sfConfig::get('app_currency_code');?>)</th>
+    <th><?php echo __('Amount') ?> (<?php echo sfConfig::get('app_currency_symbol');?>)</th>
     <th><?php echo __('Reciept') ?></th>
 </tr>
 <?php 
@@ -47,7 +47,7 @@ $incrment++;
 <?php else: ?>
 <tr><td>&nbsp;</td>
     <td colspan="2" align="right"><strong><?php echo __('Total:') ?>&nbsp;&nbsp;</strong></td>
-    <td align="" colspan="2" ><?php echo number_format($amount_total,2);  ?><?php echo sfConfig::get('app_currency_code');?></td>
+    <td align="" colspan="2" ><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total,2);  ?></td>
     
 </tr>	
 <?php endif; ?>

@@ -46,14 +46,14 @@
                         } 
                   }?></td>
                   <td align="right"><?php
-                    echo number_format($transaction->getAmount(),2); $amount_total += $transaction->getAmount();?>
+                    echo sfConfig::get('app_currency_code');echo number_format($transaction->getAmount(),2); $amount_total += $transaction->getAmount();?>
                             <?php 
 //                            if($lang=="pl"){
 //                               // echo ('plz');
 //                            }else if($lang=="en"){
 //                               // echo ('eur');
 //                            }else{
-                                echo sfConfig::get('app_currency_code');
+                                
 //                            } ?></td>
                   <td><a href="#" class="receipt" onclick="javascript: window.open('<?php echo url_for('payments/showReceipt?tid='.$transaction->getId(), true) ?>')">
                             <?php //echo $tdescription;
@@ -90,14 +90,14 @@
                 <?php else: ?>
                 <tr>
                 	<td colspan="3" align="right"><strong><?php echo __('Total') ?></strong></td>
-                        <td  align="left" style="text-align:right;"><?php echo number_format($amount_total,2) ?>
+                        <td  align="left" style="text-align:right;"><?php echo sfConfig::get('app_currency_code');echo number_format($amount_total,2) ?>
                             <?php 
 //                            if($lang=="pl"){
 //                                echo ('plz');
 //                            }else if($lang=="en"){
 //                                echo ('eur');
 //                            }else{
-                                echo sfConfig::get('app_currency_code');
+                                
 //                            } ?></td><td>&nbsp;</td>
                 </tr>	
                 <?php endif; ?>

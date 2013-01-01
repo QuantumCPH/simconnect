@@ -161,8 +161,8 @@
             }
         }
         $balnc=(float)$telintaGetBalance+(float)$telintaGetBalancecb+(float)$telintaGetBalanceres;
-        echo number_format($balnc,2);
-          echo sfConfig::get('app_currency_code');
+        echo sfConfig::get('app_currency_code');echo number_format($balnc,2);
+          
                                                 ?></td>
 
       <?php } ?>

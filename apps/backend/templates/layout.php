@@ -69,7 +69,7 @@
   	<div id="wrapper">
   	<div id="header">  
          <div class="logo">
-  		<?php echo image_tag('/images/logo1.jpg') ?>
+  		<?php echo image_tag('/images/logo.jpg') ?>
             </div>       
             <div class="clr"></div>
   	</div>

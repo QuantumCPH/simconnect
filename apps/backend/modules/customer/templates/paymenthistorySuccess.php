@@ -14,7 +14,7 @@
                        <th width="15%"  align="left"><?php echo __('Order Numer') ?></th>
                           <th width="25%"  align="left"><?php echo __('Date &amp; Time') ?></th>
                           <th width="50%"  align="left"><?php echo __('Description') ?></th>
-                          <th width="10%" align="right"><?php echo __('Amount') ?>(<?php echo sfConfig::get('app_currency_code');?>)</th>
+                          <th width="10%" align="right"><?php echo __('Amount') ?>(<?php echo sfConfig::get('app_currency_symbol');?>)</th>
                               </tr>
                 <?php 
                 $amount_total = 0;

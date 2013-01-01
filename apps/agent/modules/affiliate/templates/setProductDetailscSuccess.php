@@ -206,7 +206,7 @@
               	
               	echo $product_price;
               	?>" />
-              <label class="fr ac"><span class="vat_span"> <?php echo format_number($product_price) ?> </span><?php echo sfConfig::get('app_currency_code');?></label>
+              <label class="fr ac"><span class="vat_span"><?php echo sfConfig::get('app_currency_code');?><?php echo format_number($product_price) ?> </span></label>
               <br />
               <input type="hidden" id="extra_refill" value="<?php $extra_refill = $order->getExtraRefill(); echo $extra_refill; ?>" />
 

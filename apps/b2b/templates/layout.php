@@ -158,10 +158,18 @@
                 <?php endif; ?>
                 <script type="text/javascript">
                  jQuery(function(){
-                   jQuery("#startdate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });
-                   jQuery("#enddate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd'});
-                   jQuery("#trigger_startdate").hide();
-                   jQuery("#trigger_enddate").hide();
+                  if(jQuery("#startdate").length > 0){
+                    jQuery("#startdate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });  
+                  }      
+                  if(jQuery("#enddate").length > 0){
+                    jQuery("#enddate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });  
+                  }
+                  if(jQuery("#trigger_startdate").length > 0){
+                    jQuery("#trigger_startdate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });  
+                  }
+                  if(jQuery("#trigger_enddate").length > 0){
+                    jQuery("#trigger_enddate").datepicker({ minDate: '-2m +0w',maxDate: '0m +0w', dateFormat: 'yy-mm-dd' });  
+                  }
                  });
                 </script>
                 <?php echo $sf_content ?>

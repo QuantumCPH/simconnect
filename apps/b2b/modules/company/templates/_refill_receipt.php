@@ -40,7 +40,7 @@ use_helper('Number');
 
 <table width="600px">
     <tr style="border:0px solid #fff">
-        <td colspan="4" align="right" style="text-align:right; border:0px solid #fff"><?php echo image_tag('logo.jpg'); ?></td>
+        <td colspan="4" align="right" style="text-align:right; border:0px solid #fff"><?php echo image_tag(sfConfig::get('app_web_url').'images/logo.jpg'); ?></td>
     </tr>
 </table>
 <table class="receipt" cellspacing="0" width="600px">
@@ -71,7 +71,7 @@ use_helper('Number');
             ?>
         </td>
         <td><?php echo "1"; ?></td>
-        <td><?php echo number_format($subtotal = $transaction->getExtraRefill(), 2)?><?php echo sfConfig::get('app_currency_code');?></td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($subtotal = $transaction->getExtraRefill(), 2)?></td>
     </tr>
     <tr>
         <td colspan="4" style="border-bottom: 2px solid #c0c0c0;">&nbsp;</td>
@@ -80,7 +80,7 @@ use_helper('Number');
         <td>&nbsp;</td>
         <td><?php echo __('Subtotal') ?></td>
         <td>&nbsp;</td>
-        <td><?php echo number_format($subtotal,2) ?><?php echo sfConfig::get('app_currency_code');?></td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($subtotal,2) ?></td>
     </tr>
     <tr class="footer">
         <td>&nbsp;</td>
@@ -92,7 +92,7 @@ use_helper('Number');
         <td>&nbsp;</td>
         <td><?php echo __('Total') ?></td>
         <td>&nbsp;</td>
-        <td><?php echo number_format($transaction->getAmount(), 2) ?><?php echo sfConfig::get('app_currency_code');?></td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($transaction->getAmount(), 2) ?></td>
     </tr>
     <tr>
         <td colspan="4" style="border-bottom: 2px solid #c0c0c0;">&nbsp;</td>

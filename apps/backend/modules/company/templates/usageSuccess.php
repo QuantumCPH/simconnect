@@ -90,8 +90,8 @@
                 <td><?php echo $xdr->country; ?></td>
                 <td><?php echo $xdr->description; ?></td>
 <!--                <td><?php echo number_format($xdr->charged_amount / 4, 2); ?></td>-->
-                <td align="right"><?php echo number_format($xdr->charged_amount, 2);
-            $amount_total+= $xdr->charged_amount; ?><?php echo sfConfig::get('app_currency_code');?></td>
+                <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdr->charged_amount, 2);
+            $amount_total+= $xdr->charged_amount; ?></td>
                 
 <!--            <td><?php
                 $typecall = substr($xdr->account_id, 0, 1);
@@ -162,7 +162,7 @@
                         <td><?php echo date("d-m-Y H:i:s", strtotime($xdr->bill_time)); ?></td>
                         <td><?php echo __($xdr->account_id); ?></td>
                         <td><?php echo __($xdr->CLD); ?></td>
-                        <td align="right"><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount; ?>&nbsp;<?php echo sfConfig::get('app_currency_code') ?></td>
+                        <td align="right"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount; ?></td>
                     </tr>
                 <?php
                 }
@@ -178,7 +178,7 @@
                       echo  date("Y-m-d H:i:s", strtotime($xdr->bill_time)); ?></td>
                         <td><?php //echo __($xdr->account_id); ?><?php echo $emp->getMobileNumber();?></td>
                         <td><?php echo __($xdr->CLD); ?></td>
-                        <td align="right"><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount;?><?php echo sfConfig::get('app_currency_code') ?></td>
+                        <td align="right"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount;?></td>
                     </tr>
                 <?php
                 }
@@ -189,7 +189,7 @@
                     
     <tr>
         <td colspan="3" align="right"><strong><?php echo __('Subtotal')?></strong></td>
-        <td align="right"><?php echo number_format($total_sub+$regfee,2);?><?php echo sfConfig::get('app_currency_code'); ?></td>
+        <td align="right"><?php echo sfConfig::get('app_currency_code'); ?><?php echo number_format($total_sub+$regfee,2);?></td>
     </tr>
     </table><br/><br/>
     <h1><?php echo __("Other events"); ?> </h1>
@@ -210,7 +210,7 @@
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", strtotime($xdr->bill_time)); ?><?php //echo $emp->getId();?></td>
                 <td><?php echo __($xdr->CLD); ?></td>
-                <td align="right"><?php echo number_format($xdr->charged_amount,2); $othertotal +=$xdr->charged_amount;?><?php echo sfConfig::get('app_currency_code')?></td>
+                <td align="right"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($xdr->charged_amount,2); $othertotal +=$xdr->charged_amount;?></td>
             </tr>
             <?php } }else {
              ?>
@@ -224,10 +224,10 @@
             }
       //  }  ?>
             <tr align="right">
-                <td colspan="2"><strong><?php echo __('Subtotal');?></strong></td><td><?php echo number_format($othertotal,2)?><?php echo sfConfig::get('app_currency_code')?></td>
+                <td colspan="2"><strong><?php echo __('Subtotal');?></strong></td><td><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($othertotal,2)?></td>
             </tr>         
             <tr align="right">
-            <td colspan="2"><strong><?php echo __('Total');?></strong></td><td><strong><?php echo number_format($amount_total+$total_sub+$othertotal,2)?><?php echo sfConfig::get('app_currency_code')?></strong></td>
+            <td colspan="2"><strong><?php echo __('Total');?></strong></td><td><strong><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($amount_total+$total_sub+$othertotal,2)?></strong></td>
         </tr> 
         </table><br/><br/>
         <h1><?php echo __("Payment History"); ?> </h1>
@@ -247,7 +247,7 @@
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", strtotime($xdr->bill_time)); ?></td>
                 <td><?php echo __($xdr->CLD); ?></td>
-                <td align="right"><?php echo number_format(-1 * $xdr->charged_amount,2); $paymenttotal +=$xdr->charged_amount;?>&nbsp;<?php echo sfConfig::get('app_currency_code')?></td>
+                <td align="right"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format(-1 * $xdr->charged_amount,2); $paymenttotal +=$xdr->charged_amount;?></td>
             </tr>
             <?php } 
             
@@ -263,7 +263,7 @@
             }
       ?>
         <tr align="right">
-                <td colspan="2"><strong><?php echo __('Total');?></strong></td><td><?php echo number_format(-1 * $paymenttotal,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                <td colspan="2"><strong><?php echo __('Total');?></strong></td><td><strong><?php echo sfConfig::get('app_currency_code')?><?php echo number_format(-1 * $paymenttotal,2);?></strong></td>
         </tr>
        
         </table><br/><br/>

@@ -27,7 +27,7 @@
         <tr>
         <td style="padding: 5px;"><?php echo __('Refill:') ?></td>
         <td style="padding: 5px;">
-            <input type="text" id="refill" name="refill" class="required digits" style="width:180px;"> <?php echo sfConfig::get('app_currency_code');?>
+             <?php echo sfConfig::get('app_currency_code');?><input type="text" id="refill" name="refill" class="required digits" style="width:180px;" />
 <!--            <select name="refill" id="refill" class="required"  style="width:190px;">
             <?php   $value= ProductPeer::getRefillHashChoices();
                     foreach($value as $key=>$values){  ?>

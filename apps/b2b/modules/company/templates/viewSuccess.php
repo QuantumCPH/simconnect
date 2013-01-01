@@ -21,15 +21,15 @@
                     <th>
                        <?php echo __('Balance view') ?>:
                     </th>
-                    <td><?php echo number_format($balance,2);
-                        echo sfConfig::get('app_currency_code'); ?></td>
+                    <td><?php echo sfConfig::get('app_currency_code');echo number_format($balance,2);
+                         ?></td>
                 </tr>
                   <tr class="headings">
                     <th>
                        <?php echo __('Credit Limit') ?>:
                     </th>
-                    <td><?php echo number_format($company->getCreditLimit(),2);
-                        echo sfConfig::get('app_currency_code'); ?></td>
+                    <td><?php echo sfConfig::get('app_currency_code');echo number_format($company->getCreditLimit(),2);
+                         ?></td>
                 </tr>
                 <tr class="headings">
                     <th>

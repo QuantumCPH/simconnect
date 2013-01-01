@@ -131,7 +131,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo format_number($transaction->getAmount()) ?><?php echo sfConfig::get('app_currency_code');?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code');?><?php echo format_number($transaction->getAmount()) ?></td>
   </tr>
 </table>
 <?php if($wrap_content): ?>

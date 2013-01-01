@@ -87,7 +87,7 @@
                 ?></td>
                 <td><?php echo $call->getCountry()->getName(); ?></td>
                 <td>&nbsp;<?php echo $call->getDescription(); ?></td>
-                <td><?php echo number_format($call->getChargedAmount(),2);echo sfConfig::get('app_currency_code');
+                <td><?php echo sfConfig::get('app_currency_code');echo number_format($call->getChargedAmount(),2);
             $amount_total += $call->getChargedAmount(); ?></td>
             <td><?php echo $call->getAccountId(); ?></td>
         </tr>
@@ -104,7 +104,7 @@
                 <tr>
                     <td colspan="6" align="right"><strong><?php echo __('Subtotal') ?></strong></td>
 
-                    <td><?php echo number_format($amount_total,2) ?><?php echo sfConfig::get('app_currency_code');?></td>
+                    <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total,2) ?></td>
                     <td>&nbsp;</td>
                 </tr>
 <?php } ?>
@@ -185,11 +185,11 @@
             <?php } ?>
                             </table><br />
                             <table cellpadding="3" cellspacing="0" class="tblNoborder" width="30%" style="text-align:right !important;float:right;">
-                                <tr><td><strong>Total:</strong></td><td><?php echo number_format($netTotal = $total + $amount_total, 2); ?><?php echo sfConfig::get('app_currency_code');?></td></tr>
-                                <tr><td><strong>Invoice Cost:</strong></td><td><?php echo $invoice_cost = $total_invoice_cost; ?><?php echo sfConfig::get('app_currency_code');?></td></tr>
-                                <tr><td><strong>Total inc. Invoice Cost:</strong></td><td><?php echo number_format($netTotal = $netTotal + $invoice_cost, 2); ?><?php echo sfConfig::get('app_currency_code');?></td></tr>
-                                <tr><td><strong>Vat:</strong></td><td><?php echo number_format($total_mom, 2); ?><?php echo sfConfig::get('app_currency_code');?></td></tr>
-                                <tr><td><strong>Total inc. Vat:</strong></td><td><?php echo number_format($netTotal + $total_mom, 2); ?><?php echo sfConfig::get('app_currency_code');?></td></tr>
+                                <tr><td><strong>Total:</strong></td><td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($netTotal = $total + $amount_total, 2); ?></td></tr>
+                                <tr><td><strong>Invoice Cost:</strong></td><td><?php echo sfConfig::get('app_currency_code');?><?php echo $invoice_cost = $total_invoice_cost; ?></td></tr>
+                                <tr><td><strong>Total inc. Invoice Cost:</strong></td><td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($netTotal = $netTotal + $invoice_cost, 2); ?></td></tr>
+                                <tr><td><strong>Vat:</strong></td><td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($total_mom, 2); ?></td></tr>
+                                <tr><td><strong>Total inc. Vat:</strong></td><td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($netTotal + $total_mom, 2); ?></td></tr>
         </table>
 
                             <?php } ?>

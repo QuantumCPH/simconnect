@@ -126,7 +126,7 @@ jQuery(function() {
 		</td>
 		<td><?php echo $customer->getMobileNumber()?></td>
 		<td style="text-align:right;padding-right: 25px;">
-			<?php echo number_format($refill->getAmount(),2);?><?php echo sfConfig::get('app_currency_code');?>
+			<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($refill->getAmount(),2);?>
 		</td>
 		<td>
 		<?php echo __($refill->getDescription()) ?>
@@ -172,7 +172,7 @@ jQuery(function() {
 		</td>
 		<td><?php echo $customer->getMobileNumber()?></td>
 		<td style="text-align:right;padding-right: 25px;">
-			<?php echo number_format($numberchange->getAmount(),2);?><?php echo sfConfig::get('app_currency_code');?>
+			<?php echo sfConfig::get('app_currency_code');?><?php echo number_format($numberchange->getAmount(),2);?>
 		</td>
 		<td>
 		<?php echo $numberchange->getDescription() ?>

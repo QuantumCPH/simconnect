@@ -323,22 +323,22 @@
          <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
             <td width="88%" align="right" class="padding" style="padding-right:10px"><strong>Total cost:</strong></td>
-            <td width="12%" align="right" style="padding-right:10px"><?php echo number_format($totalcost, 2);echo sfConfig::get('app_currency_code'); ?></td>
+            <td width="12%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($totalcost, 2);?></td>
            </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Invoice Fees:</strong></td>
-            <td align="right" style="padding-right:10px"><?php echo number_format($invoice_cost, 2);echo sfConfig::get('app_currency_code'); ?></td>
+            <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($invoice_cost, 2); ?></td>
             </tr>
             <tr>
             <td colspan="2" ><hr /></td>
             </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Total Inc. invoice cost:</strong></td>
-            <td align="right" style="padding-right:10px"><?php echo number_format($net_cost = $totalcost + $invoice_cost, 2);echo sfConfig::get('app_currency_code'); ?></td>
+            <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($net_cost = $totalcost + $invoice_cost, 2); ?></td>
             </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Vat:</strong></td>
-            <td align="right" style="padding-right:10px"><?php echo number_format($moms = $net_cost * sfConfig::get("app_vat_percentage"), 2);echo sfConfig::get('app_currency_code'); ?></td>
+            <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($moms = $net_cost * sfConfig::get("app_vat_percentage"), 2); ?></td>
             </tr>
             <tr>
             <td colspan="2" ><hr /></td>
@@ -346,7 +346,7 @@
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Total Inc. Vat:</strong></td>
             <td align="right" style="padding-right:10px">
-            <?php echo number_format($net_cost = $net_cost + $moms, 2);echo sfConfig::get('app_currency_code');
+            <?php echo sfConfig::get('app_currency_code');echo number_format($net_cost = $net_cost + $moms, 2);
                   util::saveTotalPayment($invoice_meta->getId(),$net_cost); ?>
             </td>
             </tr>
@@ -355,11 +355,11 @@
             </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Previous Balance:</strong></td>
-            <td align="right" style="padding-right:10px"><?php echo number_format($netbalance , 2);echo sfConfig::get('app_currency_code');  ?></td>
+            <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($netbalance , 2);  ?></td>
             </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Total Payable Balance:</strong></td>
-            <td align="right" style="padding-right:10px"><?php echo number_format($net_payment = $net_cost + $netbalance , 2);echo sfConfig::get('app_currency_code');  ?></td>
+            <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($net_payment = $net_cost + $netbalance , 2);  ?></td>
             </tr>
          </table>
       </td>
@@ -387,21 +387,21 @@
 				<tr>
                    <td><?php echo $payment->getConnectTime();?></td>
 				   <td><?php echo $payment->getDescription();?></td>
-				   <td align="right"><?php echo number_format($chargedAmount = $payment->getChargedAmount(),2);echo sfConfig::get('app_currency_code');
+				   <td align="right"><?php echo sfConfig::get('app_currency_code');echo number_format($chargedAmount = $payment->getChargedAmount(),2);
 				         $totalPayments += $chargedAmount;?>                   </td>
-				   <td align="right"><?php echo number_format($payment->getChargedVatValue(),2);
+				   <td align="right"><?php echo sfConfig::get('app_currency_code');echo number_format($payment->getChargedVatValue(),2);
                                    $vat_in += $payment->getChargedVatValue();
-                                   echo sfConfig::get('app_currency_code');?></td>
-				   <td align="right" style="padding-right:10px"><?php echo number_format($vatIncluded =$payment->getVatIncludedAmount(),2);
+                                   ?></td>
+				   <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($vatIncluded =$payment->getVatIncludedAmount(),2);
                                    $vatinc +=$vatIncluded ;
-                                   echo sfConfig::get('app_currency_code');?></td>
+                                   ?></td>
 				</tr>				
 				<?php }?>
                             <tr>
 				  <td colspan="2" align="right"><strong>Total:</strong></td>
-				  <td align="right"><strong><?php echo number_format($totalPayments,2);echo sfConfig::get('app_currency_code');?></strong></td>
-				  <td align="right"><strong><?php echo number_format($vat_in,2);echo sfConfig::get('app_currency_code');?></strong></td>
-				  <td align="right" style="padding-right:10px"><strong><?php echo number_format($vatinc,2);echo sfConfig::get('app_currency_code');?></strong></td>
+				  <td align="right"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($totalPayments,2);?></strong></td>
+				  <td align="right"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($vat_in,2);?></strong></td>
+				  <td align="right" style="padding-right:10px"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($vatinc,2);?></strong></td>
 			    </tr>
 			</table>
 	  </td>

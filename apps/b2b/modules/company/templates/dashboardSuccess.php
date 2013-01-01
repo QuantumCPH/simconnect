@@ -2,12 +2,12 @@
     <table>
 	<tr>
             <td><h2>Available Balance:</h2></td>
-            <td  align="right"> <h2><?php echo number_format($balance,2); ?><?php echo sfConfig::get('app_currency_code');?></h2></td>
+            <td  align="right"> <h2><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($balance,2); ?></h2></td>
 	</tr>
 	<tr><td colspan="2"><small>(excluding vat)</small></td></tr>
 	<tr>
             <td><h2>Credit Limit:</h2></td>
-            <td align="right"><h2><?php echo  number_format($company->getCreditLimit(),2);  ?><?php echo sfConfig::get('app_currency_code');?></h2></td>
+            <td align="right"><h2><?php echo sfConfig::get('app_currency_code');?><?php echo  number_format($company->getCreditLimit(),2);  ?></h2></td>
 	</tr> 
 	<tr><td colspan="2"><small>(excluding vat)</small></td></tr>
     </table>
@@ -41,8 +41,8 @@
             $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
             $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
-            echo number_format($accountInfo->account_info->balance,2);
-            echo sfConfig::get('app_currency_code');
+            echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
+            
             ?>
         </td>
         <td><?php echo  date("d-m-Y H:i:s",strtotime($employee->getCreatedAt())); ?></td>

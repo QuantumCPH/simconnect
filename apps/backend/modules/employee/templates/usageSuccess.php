@@ -32,8 +32,8 @@ foreach ($callHistory->xdr_list as $xdr) {
                 <td><?php echo number_format($xdr->charged_quantity / 60, 2); ?></td>
                 <td><?php echo $xdr->country; ?></td>
 <!--                <td><?php echo number_format($xdr->charged_amount / 4, 2); ?></td>-->
-                <td><?php echo number_format($xdr->charged_amount, 2);
-            $amount_total+= number_format($xdr->charged_amount, 2); ?> <?php echo sfConfig::get('app_currency_code');?></td>
+                <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdr->charged_amount, 2);
+            $amount_total+= number_format($xdr->charged_amount, 2); ?> </td>
                 <td><?php echo $xdr->account_id; ?></td>
 <!--                <td><?php
             $typecall = substr($xdr->account_id, 0, 1);
@@ -142,7 +142,7 @@ foreach ($callHistoryres->xdr_list as $xdrres) {
 <?php }else{ ?>
     <tr>
         <td colspan="4" align="right"><strong><?php echo __('Subtotal') ?></strong></td>
-        <td><?php echo number_format($amount_total, 2, ',', '') ?> <?php echo sfConfig::get('app_currency_code');?></td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total, 2, ',', '') ?> </td>
         <td>&nbsp;</td>
     </tr>
 <?php } ?>
@@ -185,7 +185,7 @@ foreach ($callHistoryres->xdr_list as $xdrres) {
         ?>
                     <tr>
                         <td colspan="3" align="right"><strong>Total</strong></td>
-                        <td align="right"><?php echo number_format($total_sub,2);?><?php echo sfConfig::get('app_currency_code'); ?></td>
+                        <td align="right"><?php echo sfConfig::get('app_currency_code'); ?><?php echo number_format($total_sub,2);?></td>
                     </tr>
     </table><br/><br/>
 </div>

@@ -83,7 +83,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td><?php echo __('Date') ?></td>
     <td><?php echo __('Description') ?></td>
     <td><?php echo __('Quantity') ?></td>
-    <td><?php echo __('Amount') ?>(<?php echo sfConfig::get('app_currency_code');?>)</td>
+    <td><?php echo __('Amount') ?>(<?php echo sfConfig::get('app_currency_symbol');?>)</td>
   </tr>
   <tr> 
     <td><?php echo $createddate ?></td>
