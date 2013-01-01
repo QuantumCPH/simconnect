@@ -65,14 +65,15 @@ class employeeActions extends sfActions {
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a'.$mobilenumber);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
-        $account_info = CompanyEmployeActivation::getAccountInfo($telintaAccount->getIAccount());
+        $ComtelintaObj = new CompanyEmployeActivation();
+        $account_info = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
         $balance = $account_info->account_info->balance;
 
         /*$cb = new Criteria();
         $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb'.$mobilenumber);
         $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-        $account_infocb = CompanyEmployeActivation::getAccountInfo($telintaAccountcb->getIAccount());
+        $account_infocb = $ComtelintaObj->getAccountInfo($telintaAccountcb->getIAccount());
         $balancecb = $account_infocb->account_info->balance;*/
 
         $getvoipInfo = new Criteria();
@@ -88,7 +89,7 @@ class employeeActions extends sfActions {
             $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $voipnumbers);
             $res->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
-            $account_infores = CompanyEmployeActivation::getAccountInfo($telintaAccountres->getIAccount());
+            $account_infores = $ComtelintaObj->getAccountInfo($telintaAccountres->getIAccount());
             $balanceres = $account_infores->account_info->balance;
         }
         $this->balance=$balance + $balancecb +$balanceres;
@@ -184,11 +185,18 @@ class employeeActions extends sfActions {
       $employee->setComments($request->getParameter('comments'));
     //  $employee->setStatusId(sfConfig::get('app_status_new'));   //// new status is 1 defined in backend/config/app.yml
       $employee->save();
-        
-        if(!CompanyEmployeActivation::telintaRegisterEmployeeCT($employee,$employee->getProductId())){
+      $ComtelintaObj = new CompanyEmployeActivation();  
+        if(!$ComtelintaObj->telintaRegisterEmployeeCT($employee,$employee->getProductId())){
             $employee->setStatusId(sfConfig::get('app_status_error')); //// error status is 5 defined in backend/config/app.yml
             $employee->save();
             $this->getUser()->setFlash('messageError', 'Employee  Call Through account is not registered on Telinta please check email');
+            $this->redirect('employee/add');
+            die;
+        }
+        if(!$ComtelintaObj->telintaRegisterEmployeeCB($employee,$employee->getProductId())){
+            $employee->setStatusId(sfConfig::get('app_status_error')); //// error status is 5 defined in backend/config/app.yml
+            $employee->save();
+            $this->getUser()->setFlash('messageError', 'Employee  Call Back account is not registered on Telinta please check email');
             $this->redirect('employee/add');
             die;
         }
@@ -206,7 +214,7 @@ class employeeActions extends sfActions {
        //$emplyeeProductFeeDescription="Registration Fee Including Vat";,$emplyeeProductFeeDescription
         if($chrageamount > 0){
             $description = "RegFee-".$employee->getMobileNumber();
-            CompanyEmployeActivation::charge($this->companys,$chrageamount,$description);
+            $ComtelintaObj->charge($this->companys,$chrageamount,$description);
         }
         $withvat = $chrageamount + $chrageamount * sfConfig::get('app_vat_percentage');
         $transaction = new CompanyTransaction();
@@ -223,7 +231,7 @@ class employeeActions extends sfActions {
       if($rtype==1){
       ////////////////////////////////////////////////
 
-        $this->getbalance = CompanyEmployeActivation::getBalance($this->companys);
+        $this->getbalance = $ComtelintaObj->getBalance($this->companys);
         $c = new Criteria();
                 $c->setLimit(1);
                 $c->add(SeVoipNumberPeer::IS_ASSIGNED, 0);
@@ -270,12 +278,12 @@ class employeeActions extends sfActions {
 
                     
 
-                    $telintaResenummerAccount=CompanyEmployeActivation::createReseNumberAccount($voipnumbers, $this->companys, $TelintaMobile);
+                    $telintaResenummerAccount=$ComtelintaObj->createReseNumberAccount($voipnumbers, $this->companys, $TelintaMobile);
                     if($telintaResenummerAccount){
                         $OpeningBalance=40;
                         $employee->setRegistrationType($request->getParameter('registration_type'));
                         //$resenummerCharge=file_get_contents('https://mybilling.telinta.com/htdocs/zapna/zapna.pl?type=account&action=manual_charge&name=' . $voipnumbers . '&amount=40&customer='.$companyCVR);
-                        CompanyEmployeActivation::charge($this->companys, $OpeningBalance,"Resenumber");
+                        $ComtelintaObj->charge($this->companys, $OpeningBalance,"Resenumber");
                         $transaction = new CompanyTransaction();
                         $transaction->setAmount(-40);
                         $transaction->setCompanyId($request->getParameter('company_id'));
@@ -312,7 +320,7 @@ class employeeActions extends sfActions {
 
       $employee = EmployeePeer::retrieveByPk($request->getParameter('id'));
        $contrymobilenumber=$employee->getCountryMobileNumber();
-
+      $ComtelintaObj = new CompanyEmployeActivation();
       $c = new Criteria();
       $c->addAnd(CompanyPeer::ID, $employee->getCompanyId());
       $this->companys = CompanyPeer::doSelectOne($c);
@@ -321,7 +329,7 @@ class employeeActions extends sfActions {
  
             if($rtype==1){
       ////////////////////////////////////////////////
-        $this->getbalance = CompanyEmployeActivation::getBalance($this->companys);
+        $this->getbalance = $ComtelintaObj->getBalance($this->companys);
         if($this->getbalance>40){
         $c = new Criteria();
                 $c->setLimit(1);
@@ -369,14 +377,14 @@ class employeeActions extends sfActions {
                       $TelintaMobile= $contrymobilenumber;
                     }
 
-                    $telintaResenummerAccount=CompanyEmployeActivation::createReseNumberAccount($voipnumbers, $this->companys, $TelintaMobile);
+                    $telintaResenummerAccount=$ComtelintaObj->createReseNumberAccount($voipnumbers, $this->companys, $TelintaMobile);
                     if($telintaResenummerAccount){
 
                         $OpeningBalance=40;
                         $employee->setRegistrationType($rtype);
                         //$resenummerCharge=file_get_contents('https://mybilling.telinta.com/htdocs/zapna/zapna.pl?type=account&action=manual_charge&name=' . $voipnumbers . '&amount=40&customer='.$companyCVR);
 
-                        CompanyEmployeActivation::charge($this->companys, $OpeningBalance);
+                        $ComtelintaObj->charge($this->companys, $OpeningBalance);
                         $transaction = new CompanyTransaction();
                         $transaction->setAmount(-40);
                         $transaction->setCompanyId($employee->getCompanyId());
@@ -447,11 +455,12 @@ class employeeActions extends sfActions {
         //$mobileNumber=$employees->getCountryMobileNumber();
         $companyid=$request->getParameter('company_id');
         $contrymobilenumber=$employees->getCountryMobileNumber();
+        $ComtelintaObj = new CompanyEmployeActivation();
         $ct = new Criteria();
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a' . $contrymobilenumber);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
-        if (!CompanyEmployeActivation::terminateAccount($telintaAccount)) {
+        if (!$ComtelintaObj->terminateAccount($telintaAccount)) {
             $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Callthrough Account');
             if (isset($companyid) && $companyid != "") {
                 $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
@@ -464,7 +473,7 @@ class employeeActions extends sfActions {
 //        $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
 //        $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
 //        $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-//        if (!CompanyEmployeActivation::terminateAccount($telintaAccountcb)) {
+//        if (!$ComtelintaObj->terminateAccount($telintaAccountcb)) {
 //            $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
 //            if (isset($companyid) && $companyid != "") {
 //                $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
@@ -489,7 +498,7 @@ class employeeActions extends sfActions {
                     $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $voipnumbers);
                     $res->addAnd(TelintaAccountsPeer::STATUS, 3);
                     $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
-                    if (!CompanyEmployeActivation::terminateAccount($telintaAccountres)) {
+                    if (!$ComtelintaObj->terminateAccount($telintaAccountres)) {
                         $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Resenummer Account');
                         if (isset($companyid) && $companyid != "") {
                             $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
@@ -529,12 +538,14 @@ class employeeActions extends sfActions {
         $this->fromdate = $fromdate;
         $this->todate = $todate;
         
+        $ComtelintaObj = new CompanyEmployeActivation();
+        
         $mobilenumber = $this->employee->getCountryMobileNumber();
         $ct = new Criteria();
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a'.$mobilenumber);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
-        $this->callHistory = CompanyEmployeActivation::getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
+        $this->callHistory = $ComtelintaObj->getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
         
         $ers = new Criteria();
         $ers->addAnd(RegistrationSubscriptionPeer::PARENT_TABLE, 'employee');
@@ -555,7 +566,7 @@ class employeeActions extends sfActions {
         $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb'.$mobilenumber);
         $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-        $this->callHistorycb = CompanyEmployeActivation::getAccountCallHistory($telintaAccountcb->getIAccount(), $fromdate, $todate);
+        $this->callHistorycb = $ComtelintaObj->getAccountCallHistory($telintaAccountcb->getIAccount(), $fromdate, $todate);
         
         $getvoipInfo = new Criteria();
         $getvoipInfo->add(SeVoipNumberPeer::CUSTOMER_ID, $contrymobilenumber);
@@ -569,7 +580,7 @@ class employeeActions extends sfActions {
             $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $voipnumbers);
             $res->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
-            $this->callHistoryres = CompanyEmployeActivation::getAccountCallHistory($telintaAccountres->getIAccount(), $fromdate, $todate);
+            $this->callHistoryres = $ComtelintaObj->getAccountCallHistory($telintaAccountres->getIAccount(), $fromdate, $todate);
         }*/
        
     }

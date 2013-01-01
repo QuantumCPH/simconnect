@@ -147,6 +147,7 @@
                 //var_dump($xml_obj);
                 // echo  $data = $xml_obj->calls->call[0]->cost;
                 // echo "<hr/>";
+                $telintaObj = new Telienta();
                 foreach ($xml_obj->calls->call as $calls) {
  ?>
                     <tr>
@@ -172,7 +173,7 @@
                                 <td class="title" aligin="right" style="text-align: right;"><?php echo __('Amount') ?></td>
                             </tr>
                         <?php
-                        $tilentaCallHistryResult = Telienta::callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59', false, 1);
+                        $tilentaCallHistryResult = $telintaObj->callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59', false, 1);
                         if(count($tilentaCallHistryResult)>0){
                         foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
                          ?>
@@ -198,7 +199,7 @@
                                 <td class="title"><?php echo __('Amount') ?></td>
                             </tr>
                         <?php
-                        $tilentaCallHistryResult = Telienta::callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59', false, 2);
+                        $tilentaCallHistryResult = $telintaObj->callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59', false, 2);
                         if(count($tilentaCallHistryResult)>0){
                         foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
                          ?>
@@ -228,7 +229,7 @@
 
 <?php
                             $amount_total = 0;
-                            $tilentaCallHistryResult = Telienta::callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59');
+                            $tilentaCallHistryResult = $telintaObj->callHistory($customer, $fromdate . ' 00:00:00', $todate . ' 23:59:59');
                           foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
 ?>
                                <tr>

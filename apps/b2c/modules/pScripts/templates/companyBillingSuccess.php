@@ -47,7 +47,7 @@ use_helper('Number');
         </style> </head> <body><table class='invoice' width="100%" style="page-break-inside: auto;">
             <tr>
                 <td align="right" colspan="2">
-                    <?php echo image_tag(sfConfig::get('app_web_url').'images/logo.png',array('width' => '170'));?>
+                    <?php echo image_tag(sfConfig::get('app_web_url').'images/logo.png');?>
                 </td>
             </tr>
             <tr>

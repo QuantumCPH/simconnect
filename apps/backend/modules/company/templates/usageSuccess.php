@@ -151,9 +151,10 @@
          
           echo    $fromdate;
           echo '<br />';
-          echo    $todate;   
+          echo    $todate;
+          $ComtelintaObj = new CompanyEmployeActivation();
          if(isset($empl)){
-           $tilentaSubResult = CompanyEmployeActivation::getSubscription($empl, $fromdate, $todate);
+           $tilentaSubResult = $ComtelintaObj->getSubscription($empl, $fromdate, $todate);
           // var_dump($tilentaSubResult);
             if (count($tilentaSubResult) > 0) {
                 foreach ($tilentaSubResult->xdr_list as $xdr) {
@@ -168,7 +169,7 @@
             } 
          }else{   
              foreach ($ems as $emp) {         
-            $tilentaSubResult = CompanyEmployeActivation::getSubscription($emp, $fromdate , $todate);
+            $tilentaSubResult = $ComtelintaObj->getSubscription($emp, $fromdate , $todate);
          //   var_dump($tilentaSubResult);
             if (count($tilentaSubResult) > 0) {
                 foreach ($tilentaSubResult->xdr_list as $xdr) {
@@ -202,7 +203,7 @@
         $othertotal = 0;
   
       //  foreach ($ems as $emp) {
-         $otherEvents = CompanyEmployeActivation::callHistory($company, $fromdate, $todate, false, 1);   
+         $otherEvents = $ComtelintaObj->callHistory($company, $fromdate, $todate, false, 1);   
         if(count($otherEvents)>0){
         foreach ($otherEvents->xdr_list as $xdr) {
          ?>
@@ -238,7 +239,7 @@
        </tr>
         <?php
         $paymenttotal = 0;
-        $otherEvent = CompanyEmployeActivation::callHistory($company, $fromdate, $todate , false, 2);
+        $otherEvent = $ComtelintaObj->callHistory($company, $fromdate, $todate , false, 2);
        // var_dump($otherEvents);
         if(count($otherEvent)>0){
         foreach ($otherEvent->xdr_list as $xdr) {

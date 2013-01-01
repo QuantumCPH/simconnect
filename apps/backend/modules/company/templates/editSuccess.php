@@ -1,6 +1,12 @@
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 <div id="sf_admin_container">
-
+<div id="sf_admin_container">
+       <?php if ($sf_user->hasFlash('message')): ?>
+        <div class="alert_bar">
+                <?php echo $sf_user->getFlash('message') ?>
+        </div>
+        <?php endif;?>
+</div>   <br />
 <h1>
 
 <?php

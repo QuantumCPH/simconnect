@@ -23,6 +23,7 @@
     </thead>
     <?php
         $incrment = 1;
+        $ComtelintaObj = new CompanyEmployeActivation();
         foreach ($employees as $employee) {
              if($incrment%2==0){
                 $class= 'class="even"';
@@ -39,7 +40,7 @@
             $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, "a".$employee->getCountryMobileNumber());
             $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
-            $accountInfo = CompanyEmployeActivation::getAccountInfo($telintaAccount->getIAccount());
+            $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
             echo number_format($accountInfo->account_info->balance,2);
             echo sfConfig::get('app_currency_code');
             ?>

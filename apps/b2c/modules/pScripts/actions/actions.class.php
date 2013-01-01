@@ -853,8 +853,8 @@ class pScriptsActions extends sfActions
 
 
 
-	$sender_email = sfConfig::get('app_email_sender_email', 'support-veranet@zapna.com');
-	$sender_name = sfConfig::get('app_email_sender_name', 'Veranet support');
+	$sender_email = sfConfig::get('app_email_sender_name_sup');
+        $sender_name = sfConfig::get('app_email_sender_email_sup');
 
         echo '<br/>';
         echo $sender_email ;
@@ -1446,9 +1446,9 @@ public function executeSmsRegistration(sfWebrequest $request) {
 
     $customer->setCustomerStatusId(3);
     $customer->save();
-
-    Telienta::ResgiterCustomer($this->customer, $order->getExtraRefill());
-    Telienta::createAAccount($calingcode.$this->customer->getMobileNumber(), $this->customer);
+    $telintaObj = new Telienta();
+    $telintaObj->ResgiterCustomer($this->customer, $order->getExtraRefill());
+    $telintaObj->createAAccount($calingcode.$this->customer->getMobileNumber(), $this->customer);
 
     emailLib::sendCustomerRegistrationViaAgentSMSEmail($this->customer, $order);
     return sfView::NONE;
@@ -2454,12 +2454,12 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $c->addAnd(CustomerPeer::CUSTOMER_STATUS_ID, 3);
         $c->addAnd(CustomerPeer::COUNTRY_ID, $countryId);
         $customers = CustomerPeer::doSelect($c);
-
+        $telintaObj = new Telienta();
         foreach ($customers as $customer) {
             $retries = 0;
             $maxRetries = 5;
             do {
-                $customer_balance = Telienta::getBalance($customer);
+                $customer_balance = $telintaObj->getBalance($customer);
                 $retries++;
                 echo $customer->getId().":".$customer_balance.":".$retries."<br/>";
             } while (!$customer_balance && $retries <= $maxRetries);
@@ -2725,7 +2725,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
              echo $unidc;
              echo "<br/>";
              $OpeningBalance = $order->getExtraRefill();
-            Telienta::recharge($this->customer, $OpeningBalance,'Refill');
+             $telintaObj = new Telienta();
+            $telintaObj->recharge($this->customer, $OpeningBalance,'Refill');
             
             $getvoipInfo = new Criteria();
             $getvoipInfo->add(SeVoipNumberPeer::CUSTOMER_ID, $this->customer->getMobileNumber());
@@ -2994,12 +2995,12 @@ if(($caltype!="IC") && ($caltype!="hc")){
                 $customerPassword = $this->customer->getPlainText();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //Section For Telinta Add Cusomter
-             
-                    Telienta::ResgiterCustomer($this->customer, $OpeningBalance);
+             $telintaObj = new Telienta();
+                    $telintaObj->ResgiterCustomer($this->customer, $OpeningBalance);
                       // For Telinta Add Account
                
-                   Telienta::createAAccount($TelintaMobile,$this->customer);
-                   Telienta::createCBAccount($TelintaMobile, $this->customer);
+                   $telintaObj->createAAccount($TelintaMobile,$this->customer);
+                   $telintaObj->createCBAccount($TelintaMobile, $this->customer);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //if the customer is invited, Give the invited customer a bonus of 10
                 $invite_c = new Criteria();
@@ -3046,8 +3047,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
                     $uniqueId = $this->customers->getUniqueid();
                     $OpeningBalance = $comsion;
                     //This is for Recharge the Customer
-                
-                         Telienta::recharge($this->customers, $OpeningBalance,"Tipsa en van " . $invite->getInviteNumber());
+                    
+                         $telintaObj->recharge($this->customers, $OpeningBalance,"Tipsa en van " . $invite->getInviteNumber());
 
                     //This is for Recharge the Account
                   
@@ -3180,7 +3181,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $this->fromdate = date("Y-m-d", $fromdate);
         $todate = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
         $this->todate = date("Y-m-d", $todate);
-       $tilentaCallHistryResult = Telienta::callHistory($customer, $this->fromdate . ' 00:00:00', $this->todate . ' 23:59:59');
+        $telintaObj = new Telienta();
+       $tilentaCallHistryResult = $telintaObj->callHistory($customer, $this->fromdate . ' 00:00:00', $this->todate . ' 23:59:59');
    //   var_dump($tilentaCallHistryResult);
   foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
 
@@ -3225,10 +3227,10 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $c->addGroupByColumn(CustomerPeer::ID);
         $c->addDescendingOrderByColumn (CustomerOrderPeer::CREATED_AT);
         $customers = CustomerPeer::doSelect($c);
-
+        $telintaObj = new Telienta();
         foreach($customers as $customer){
            // echo $customer->getId();
-           $balance =  Telienta::getBalance($customer);
+           $balance =  $telintaObj->getBalance($customer);
            if($balance>0){
                $transaction = new Transaction();
                $transaction->setAmount(-$balance);
@@ -3236,7 +3238,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
                $transaction->setTransactionStatusId(3);
                $transaction->setCustomerId($customer->getId());
                $transaction->save();
-               Telienta::charge($customer, $balance, "Balance Expired");
+               $telintaObj->charge($customer, $balance, "Balance Expired");
            }
         }
 
@@ -3249,7 +3251,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $c = new Criteria;
         $c->add(CompanyPeer::STATUS_ID,1);  // active
         $companies = CompanyPeer::doSelect($c);
-        
+        $ComtelintaObj = new CompanyEmployeActivation();
         $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
         $start_date = date('Y-m-1 00:00:00');
         $start_date = date('Y-m-d 21:00:00', strtotime("-1 day",strtotime($bill_start_date)));
@@ -3260,7 +3262,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
         echo "<hr/>";
         foreach($companies as $company){
            
-           $tilentaCallHistryResult = CompanyEmployeActivation::callHistory($company, $start_date, $end_date);
+           $tilentaCallHistryResult = $ComtelintaObj->callHistory($company, $start_date, $end_date);
 //     var_dump($tilentaCallHistryResult);
 //     die;
            if($tilentaCallHistryResult){
@@ -3341,14 +3343,14 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $c->add(CallHistoryCallsLogPeer::PARENT,'company');
         $c->add(CallHistoryCallsLogPeer::STATUS,1);
         $callLogs =CallHistoryCallsLogPeer::doSelect($c);
-
+        $ComtelintaObj = new CompanyEmployeActivation();
         foreach($callLogs as $callLog){
 
             $this->fromdate = $callLog->getFromdate();
 
             $this->todate = $callLog->getTodate();
             $company =  CompanyPeer::retrieveByPK($callLog->getCompanyId());
-            $tilentaCallHistryResult = CompanyEmployeActivation::callHistory($company, $this->fromdate . ' 00:00:00', $this->todate . ' 23:59:59');
+            $tilentaCallHistryResult = $ComtelintaObj->callHistory($company, $this->fromdate . ' 00:00:00', $this->todate . ' 23:59:59');
 //     var_dump($tilentaCallHistryResult);
 //     die;
            if($tilentaCallHistryResult){
@@ -3483,12 +3485,13 @@ if(($caltype!="IC") && ($caltype!="hc")){
         echo "<hr/>";
         $start_strtotime = strtotime($startdate);
         $end_strototime = strtotime($enddate);
-        
+        $ComtelintaObj = new CompanyEmployeActivation();
         $co = new Criteria();
         $companies = CompanyPeer::doSelect($co);
+        
         foreach($companies as $company){
             ///////// Fetch Other Events /////////////
-            $otherEvents = CompanyEmployeActivation::callHistory($company, $startdate, $enddate, false, 1);
+            $otherEvents = $ComtelintaObj->callHistory($company, $startdate, $enddate, false, 1);
             if(count($otherEvents)>0){
               foreach ($otherEvents->xdr_list as $odr) {
                     $other = new Odrs();
@@ -3517,7 +3520,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
                    $otherEventLog->save();
             }
             ///////// Payments /////////////
-            $payments = CompanyEmployeActivation::callHistory($company, $startdate, $enddate, false, 2);
+            $payments = $ComtelintaObj->callHistory($company, $startdate, $enddate, false, 2);
             if(count($payments)>0){
               foreach ($payments->xdr_list as $odrpay) {
                     $chargedAmount = -$odrpay->charged_amount;
@@ -3565,7 +3568,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
             $empProduct = ProductPeer::retrieveByPK($employee->getProductId());
             
                 
-            $tilentaSubscriptionResult = CompanyEmployeActivation::getSubscription($employee, $startdate, $enddate);
+            $tilentaSubscriptionResult = $ComtelintaObj->getSubscription($employee, $startdate, $enddate);
                if($tilentaSubscriptionResult){
                    foreach ($tilentaSubscriptionResult->xdr_list as $xdr) {
                        $empSub = new Odrs();

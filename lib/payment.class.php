@@ -8,7 +8,7 @@
  */
 class Payment {
     //put your code here
-    private static $PaypalEmail   = 'paypal@example.com'; //'namikkelsen@rocketmail.com';  //'paypal@example.com';
+    private static $PaypalEmail   = 'paypal@example.com'; //'';  //'paypal@example.com';
     private static $environment   = "sandbox";      //live             //sandbox
     public static function SendPayment($querystring){
          $querystring = "?business=".urlencode(self::$PaypalEmail)."&".$querystring;

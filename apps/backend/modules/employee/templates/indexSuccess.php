@@ -113,7 +113,9 @@
 
                             <?php  //}else{echo "No";} ?>
 <!--</td>-->
- <?php  if(isset($companyval) && $companyval!=""){  ?>
+ <?php 
+ $ComtelintaObj = new CompanyEmployeActivation();
+ if(isset($companyval) && $companyval!=""){  ?>
       <td> <?php  $mobileID= $employee->getCountryMobileNumber();
         $telintaGetBalance = 0;
         $telintaGetBalancecb = 0;
@@ -122,7 +124,7 @@
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a'.$mobileID);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
-        $accountInfo = CompanyEmployeActivation::getAccountInfo($telintaAccount->getIAccount());
+        $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
         $telintaGetBalance = $accountInfo->account_info->balance;
 //       
        
@@ -131,7 +133,7 @@
         $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
         if(TelintaAccountsPeer::doCount($cb)>0){
             $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-            $accountInfocb = CompanyEmployeActivation::getAccountInfo($telintaAccountcb->getIAccount());
+            $accountInfocb = $ComtelintaObj->getAccountInfo($telintaAccountcb->getIAccount());
             $telintaGetBalancecb = $accountInfocb->account_info->balance;
         }
 
@@ -153,7 +155,7 @@
             $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $resenummer);
             $res->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
-            $accountInfores = CompanyEmployeActivation::getAccountInfo($telintaAccountres->getIAccount());
+            $accountInfores = $ComtelintaObj->getAccountInfo($telintaAccountres->getIAccount());
             $telintaGetBalanceres = $accountInfores->account_info->balance;
 
             }

@@ -139,8 +139,9 @@ class companyActions extends sfActions {
 
     protected function saveCompany($company) {
         $companyData = $this->getRequestParameter('company');
+        $ComtelintaObj = new CompanyEmployeActivation();
         if ($company->isNew()) {
-            $res = CompanyEmployeActivation::telintaRegisterCompany($company);
+            $res = $ComtelintaObj->telintaRegisterCompany($company);
         }
         $company->isNew() . ":" . $res;
 
@@ -162,7 +163,7 @@ class companyActions extends sfActions {
         } elseif (!$company->isNew()) {
             $update_customer['i_customer']=$company->getICustomer();
             $update_customer['credit_limit']=($company->getCreditLimit()!='')?$company->getCreditLimit():'0';
-            $res = CompanyEmployeActivation::updateCustomer($update_customer);
+            $res = $ComtelintaObj->updateCustomer($update_customer);
             $company->save();
         } elseif (!$res) {
             throw new PropelException("You cannot save an object that has been deleted.");
@@ -391,7 +392,8 @@ class companyActions extends sfActions {
 
     public function executeView($request) {
         $this->company = CompanyPeer::retrieveByPK($request->getParameter('id'));
-        $this->balance = CompanyEmployeActivation::getBalance($this->company);
+        $ComtelintaObj = new CompanyEmployeActivation();
+        $this->balance = $ComtelintaObj->getBalance($this->company);
         
         $ces = new Criteria();
         $ces->add(EmployeePeer::COMPANY_ID,$this->company->getId());
@@ -417,6 +419,7 @@ class companyActions extends sfActions {
         $fromdate = $this->fromdate . " 21:00:00";
         $fromdate = date('Y-m-d 21:00:00',  strtotime('-1 day',strtotime($fromdate)));
         $todate = $this->todate. " 21:59:59" ;
+        $ComtelintaObj = new CompanyEmployeActivation();
         if (isset($this->iaccount) && $this->iaccount != '') {
             $ce = new Criteria();
             $ce->add(TelintaAccountsPeer::ID, $this->iaccount);
@@ -425,10 +428,10 @@ class companyActions extends sfActions {
 
             $this->iAccountTitle = $telintaAccount->getAccountTitle();
             $this->empl = EmployeePeer::retrieveByPK($telintaAccount->getParentId());
-            $this->callHistory = CompanyEmployeActivation::getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
+            $this->callHistory = $ComtelintaObj->getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
         } else {
 
-            $this->callHistory = CompanyEmployeActivation::callHistory($this->company, $fromdate, $todate);
+            $this->callHistory = $ComtelintaObj->callHistory($this->company, $fromdate, $todate);
             
         }
         
@@ -455,6 +458,7 @@ class companyActions extends sfActions {
 
         $c = new Criteria();
         $this->companys = CompanyPeer::doSelect($c);
+        $ComtelintaObj = new CompanyEmployeActivation();
         if ($request->isMethod('post')) {
 
             $company_id = $request->getParameter('company_id');
@@ -475,7 +479,7 @@ class companyActions extends sfActions {
             $transaction->save();
 
             if ($companyCVR != '') {
-                CompanyEmployeActivation::recharge($this->company, $refill_amount);
+                $ComtelintaObj->recharge($this->company, $refill_amount);
                 $transaction->setTransactionStatusId(3);
                 $transaction->save();
                 $this->getUser()->setFlash('message', 'B2B Company Refill Successfully');
@@ -538,7 +542,7 @@ class companyActions extends sfActions {
       $count=0;
       $count=count($request->getParameter('company_id'));
       $creditlimit=$request->getParameter('creditlimit');
-
+      $ComtelintaObj = new CompanyEmployeActivation();
         for($i=0; $i<$count; $i++){
             $id=$request->getParameter('company_id');
 
@@ -548,7 +552,7 @@ class companyActions extends sfActions {
             $company->save();
                $update_customer['i_customer']=$company->getICustomer();
             $update_customer['credit_limit']=($company->getCreditLimit()!='')?$company->getCreditLimit():'0';
-          if(!CompanyEmployeActivation::updateCustomer($update_customer)){
+          if(!$ComtelintaObj->updateCustomer($update_customer)){
                $company->setCreditLimit($oldcreditlimit);
             $company->save();
           }
@@ -562,6 +566,7 @@ class companyActions extends sfActions {
 
         $c = new Criteria();
         $this->companys = CompanyPeer::doSelect($c);
+        $ComtelintaObj = new CompanyEmployeActivation();
         $ctd = new Criteria();
         $ctd->add(TransactionDescriptionPeer::TRANSACTION_TYPE_ID,2);  ///// for Charge 
         $ctd->addAnd(TransactionDescriptionPeer::TRANSACTION_SECTION_ID,1); ///// for Admin
@@ -594,7 +599,7 @@ class companyActions extends sfActions {
             
             
             if ($companyCVR != '') {
-                CompanyEmployeActivation::charge($this->company, $charge_amount,$description->getTitle());
+                $ComtelintaObj->charge($this->company, $charge_amount,$description->getTitle());
                 $transaction->setTransactionStatusId(3);
                 $transaction->save();
                 $this->getUser()->setFlash('chargemessage', 'B2B Company Charged Successfully');
@@ -678,7 +683,7 @@ class companyActions extends sfActions {
 
          $c = new Criteria();
          $this->company = CompanyPeer::doSelect($c);
-
+         $ComtelintaObj = new CompanyEmployeActivation();
          if ($request->isMethod('post')) {
              $company_id=$request->getParameter('company_id');
              $invoice_id = $request->getParameter('invoice_id');
@@ -694,7 +699,7 @@ class companyActions extends sfActions {
              $ct->add(TransactionDescriptionPeer::ID, 10);
              $description = TransactionDescriptionPeer::doSelectOne($ct);
 
-             if(CompanyEmployeActivation::recharge($company, $recharge, $description->getTitle()."(Airtime)")){
+             if($ComtelintaObj->recharge($company, $recharge, $description->getTitle()."(Airtime)")){
                  /*if($invoice_id!=''){
                      $ci = new Criteria();
                      $ci->add(InvoicePeer::ID, $invoice_id);

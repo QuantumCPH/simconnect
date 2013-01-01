@@ -166,8 +166,8 @@ foreach ($callHistoryres->xdr_list as $xdrres) {
         </tr>
         <?php //var_dump($ems);
         $total_sub = 0;
-         
-            $tilentaSubResult = CompanyEmployeActivation::getSubscription($employee, $fromdate . ' 00:00:00', $todate . ' 23:59:59');
+        $ComtelintaObj = new CompanyEmployeActivation(); 
+            $tilentaSubResult = $ComtelintaObj->getSubscription($employee, $fromdate . ' 00:00:00', $todate . ' 23:59:59');
             if (count($tilentaSubResult) > 0) {
                 foreach ($tilentaSubResult->xdr_list as $xdr) {
                     ?> <tr>

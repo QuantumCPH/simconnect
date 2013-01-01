@@ -18,7 +18,8 @@ class companyActions extends sfActions {
     public function executeDashboard(sfWebRequest $request) {
         $this->forward404Unless($this->getUser()->getAttribute('companyname', '', 'companysession'));
         $this->company = CompanyPeer::retrieveByPK($this->getUser()->getAttribute('company_id', '', 'companysession'));
-        $this->balance = CompanyEmployeActivation::getBalance($this->company);
+        $ComtelintaObj = new CompanyEmployeActivation();
+        $this->balance = $ComtelintaObj->getBalance($this->company);
         
         $c = new Criteria();
         $c->add(EmployeePeer::COMPANY_ID, $this->company->getId());
@@ -85,7 +86,8 @@ class companyActions extends sfActions {
 
         $this->forward404Unless($this->getUser()->getAttribute('companyname', '', 'companysession'));
         $this->company = CompanyPeer::retrieveByPK($this->getUser()->getAttribute('company_id', '', 'companysession'));
-        $this->balance = CompanyEmployeActivation::getBalance($this->company);
+        $ComtelintaObj = new CompanyEmployeActivation();
+        $this->balance = $ComtelintaObj->getBalance($this->company);
         $c = new Criteria();
         $c->Add(EmployeePeer::COMPANY_ID, $this->company->getId());
         $this->employeesCount = EmployeePeer::doCount($c);
@@ -146,7 +148,7 @@ class companyActions extends sfActions {
         $fromdate = $this->fromdate . " 21:00:00";
         $fromdate = date('Y-m-d 21:00:00',  strtotime('-1 day',strtotime($fromdate)));
         $todate = $this->todate. " 21:59:59" ;
-        
+        $ComtelintaObj = new CompanyEmployeActivation();
         if (isset($this->iaccount) && $this->iaccount != '') {
             $ce = new Criteria();
             $ce->add(TelintaAccountsPeer::ID, $this->iaccount);
@@ -155,10 +157,10 @@ class companyActions extends sfActions {
 
             $this->iAccountTitle = $telintaAccount->getAccountTitle();
             $this->empl = EmployeePeer::retrieveByPK($telintaAccount->getParentId());
-            $this->callHistory = CompanyEmployeActivation::getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
+            $this->callHistory = $ComtelintaObj->getAccountCallHistory($telintaAccount->getIAccount(), $fromdate, $todate);
         } else {
 
-            $this->callHistory = CompanyEmployeActivation::callHistory($this->company, $fromdate, $todate);            
+            $this->callHistory = $ComtelintaObj->callHistory($this->company, $fromdate, $todate);            
         }
          
         $c = new Criteria();

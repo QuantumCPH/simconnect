@@ -3,9 +3,9 @@
 <?php include_partial('dashboard_header', array('customer'=> $customer, 'section'=>__('Refill') ) ) ?>
 <?php 
 		 //echo $res_cbf;
- if($customerBalance+$order->getExtraRefill() >= 250){   ?>
-    <?php echo "<div class='alert_bar'>".__("Sorry! You Cant do payment as your balance will excede from 250%1%",array("%1%"=>sfConfig::get("app_currency_code"))).'</div>'; ?>
- <?php } ?>
+// if($customerBalance+$order->getExtraRefill() >= 250){   ?>
+    <?php //echo "<div class='alert_bar'>".__("Sorry! You Cant do payment as your balance will excede from 250%1%",array("%1%"=>sfConfig::get("app_currency_code"))).'</div>'; ?>
+ <?php //} ?>
 <br />
 <div class="left-col">
 
@@ -72,11 +72,11 @@
 <!--                <input type="hidden" name="cancel_url" value="<?php echo $cancel_url;?>" />
                 <input type="hidden" name="return_url" value="<?php echo $return_url;?>" />
                 <input type="hidden" name="status_url" value="fu@zerocall.com" />-->
-                <?php if($customerBalance+$order->getExtraRefill() < 250){ ?>
+                <?php //if($customerBalance+$order->getExtraRefill() < 250){ ?>
                 <div style="margin-top:40px;">
                     <input type="submit" class="butonsigninsmall" name="button" style="width:101px;cursor: pointer;float: left; margin-left: 1px !important; margin-top: -5px;"  value="<?php echo __('Pay') ?>" />
                 </div>
-                <?php }?>
+                <?php //}?>
             </form>
         </div>
     </div>
