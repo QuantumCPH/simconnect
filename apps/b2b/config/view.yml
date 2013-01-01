@@ -3,7 +3,7 @@ default:
     content-type: text/html
 
   metas:
-    title:        Veranet - B2B Portal
+    title:        SIM Connect - B2B Portal
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en

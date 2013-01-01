@@ -3,7 +3,7 @@ default:
     content-type: text/html
 
   metas:
-    title:         Veranet
+    title:         SIM Connect 
 
     #description:  symfony project
     #keywords:     symfony, project
