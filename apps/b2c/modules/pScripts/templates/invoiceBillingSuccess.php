@@ -66,12 +66,12 @@
 			<fieldset>
 			<table width="100%">
 				<tr>
-					<td> <?php echo image_tag(sfConfig::get('app_web_url').'images/veranet-log.jpg',array('width' => '300'));?></td>
+					<td> <?php echo image_tag(sfConfig::get('app_web_url').'images/logo.jpg');?></td>
 					<td>
-						<b>DRUSTVO ZA TELEKOMUNIKACIJE Telecom "VERAT" D.O.O.</b><br />
-						Bulevar Vojvode Misica 37<br />
-						11000 Beograd<br />
-						Republika Srbija
+						<b>Kellbun Communications</b><br />
+						Mount Pleasant<br />
+						Maldon<br />
+						Essex CM9 6EQ
 					</td>
 					<td>
 						PIB: 100221009<br />
