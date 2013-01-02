@@ -8,7 +8,7 @@ class EmployeeCustomerCallhistoryPeer extends BaseEmployeeCustomerCallhistoryPee
           $con = Propel::getConnection(EmployeeCustomerCallhistoryPeer::DATABASE_NAME, Propel::CONNECTION_READ);
        }
        //var_dump($call);
-       $stmt = $con->prepare('SELECT sec_to_time(' . EmployeeCustomerCallhistoryPeer::CHARGED_QUANTITY . ') FROM ' . EmployeeCustomerCallhistoryPeer::TABLE_NAME . ' Where '. EmployeeCustomerCallhistoryPeer::PARENT_ID .'='.$employee->getId().' and '. EmployeeCustomerCallhistoryPeer::COUNTRY_ID .'='.$call.' and '. EmployeeCustomerCallhistoryPeer::PARENT_TABLE.'= "employee"');
+       $stmt = $con->prepare('SELECT sec_to_time(' . EmployeeCustomerCallhistoryPeer::CHARGED_QUANTITY . ') FROM ' . EmployeeCustomerCallhistoryPeer::TABLE_NAME . ' Where '. EmployeeCustomerCallhistoryPeer::PARENT_ID .'='.$employee->getId().' and '. EmployeeCustomerCallhistoryPeer::ID .'='.$call->getId().' and '. EmployeeCustomerCallhistoryPeer::PARENT_TABLE.'= "employee"');
        $stmt->execute();
        return $stmt->fetchColumn();
     }
