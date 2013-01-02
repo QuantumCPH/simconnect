@@ -85,7 +85,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
         
     </td>
     <td>1<?php //echo $agent_order->getQuantity() ?></td>
-    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($subtotal = $agent_order->getAmount(),2) //($order->getProduct()->getPrice() - $order->getProduct()->getPrice()*.2) * $order->getQuantity()) ?>&nbsp;</td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($subtotal = $agent_order->getAmount(),2) //($order->getProduct()->getPrice() - $order->getProduct()->getPrice()*.2) * $order->getQuantity()) ?></td>
   </tr>
   <tr>
   	<td colspan="4" style="border-bottom: 2px solid #c0c0c0;">&nbsp;</td>
@@ -94,19 +94,19 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Subtotal') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($subtotal,2) ?>&nbsp;</td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($subtotal,2) ?></td>
   </tr>
   <tr class="footer">
     <td>&nbsp;</td>
     <td><?php echo __('VAT') ?> (<?php echo '0%' ?>)</td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format(0,2) ?>&nbsp;</td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format(0,2) ?></td>
   </tr>
   <tr class="footer">
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($agent_order->getAmount(),2) ?>&nbsp;</td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($agent_order->getAmount(),2) ?></td>
   </tr>
 </table>
 <?php if($wrap_content): ?>

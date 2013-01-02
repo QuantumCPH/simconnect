@@ -81,7 +81,7 @@ function countChar(str)
 </center>
 <br/>
 <h3><?php echo __('Recommend %1% to your friends and earn extra airtime.',array('%1%'=>sfConfig::get('app_site_title')));?></h3>
-<p style="align:justified;"><?php echo __('%1% will add 10.00%2% of airtime to your account balance for each new customer you invite and who registers as a %1% customer.',array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code')));?></p>
+<p style="align:justified;"><?php echo __('%1% will add %2%10.00 of airtime to your account balance for each new customer you invite and who registers as a %1% customer.',array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code')));?></p>
 <br/>
 <h3><?php echo __('How?'); ?></h3>
 <p style="align:justified;"><?php //echo __('You can tell your friends about %1% in two simple ways:',array('%1%'=>sfConfig::get('app_site_title'))); ?><!--<br />-->
@@ -94,7 +94,7 @@ function countChar(str)
 </p>
 <br/>
 <h3><?php echo __("Your benefits.") ?></h3>
-<p style="align:justified;"><?php echo __("%1% will automatically add 10.00%2% of free airtime to your account balance, when your friend has registered as a %1% customer and paid for the Starter Package.",array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code'))); ?> </p>
+<p style="align:justified;"><?php echo __("%1% will automatically add %2%10.00 of free airtime to your account balance, when your friend has registered as a %1% customer and paid for the Starter Package.",array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code'))); ?> </p>
 </div>
 <div class="split-form">
       <div class="fl col">

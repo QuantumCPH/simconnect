@@ -197,11 +197,11 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
               
               
               <label class="fr ac">
-              	<span class="product_price_span"> <?php echo format_number($product_price) ?> </span><?php echo sfConfig::get('app_currency_code')?>
+              	<span class="product_price_span"> <?php echo sfConfig::get('app_currency_code')?><?php echo format_number($product_price) ?> </span>
               	<br />
-              	<span id="extra_refill_span">
+              	<?php echo sfConfig::get('app_currency_code')?><span id="extra_refill_span">
 					<?php echo format_number($extra_refill) ?>
-				</span> <?php echo sfConfig::get('app_currency_code')?>
+				</span> 
 			  </label>
 
             </li>
@@ -231,14 +231,14 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
               <?php echo __('Total amount') ?></label>
               <input type="hidden" id="vat" value="<?php $vat = sfConfig::get('app_vat_percentage') * ($product_price); echo $vat; ?>" />
               <label class="fr ac" >
-              	<span id="vat_span">
+              	<?php echo sfConfig::get('app_currency_code')?><span id="vat_span">
               	<?php echo format_number($vat) ?>
-              	</span> <?php echo sfConfig::get('app_currency_code')?>
+              	</span> 
               <br />
               	<?php $total = $product_price + $extra_refill + $vat ?>
-              	<span id="total_span">
+              	<?php echo sfConfig::get('app_currency_code')?><span id="total_span">
               	<?php echo format_number($total) ?>
-              	</span> <?php echo sfConfig::get('app_currency_code')?>
+              	</span> 
               </label>
             </li>
 			
@@ -288,12 +288,12 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
             </li>
             <li id="user_attr_3_field">
                 <label for="user_attr_3" style="margin-right: 50px;"><?php echo __('Auto refill minimum balance:') ?>&nbsp;</label>
-			  <?php echo $customer_form['auto_refill_min_balance']->render(array(
+			  <?php echo sfConfig::get('app_currency_code')?><?php echo $customer_form['auto_refill_min_balance']->render(array(
 			  										'name'=>'user_attr_3',
                                                                                                         'id'=>'user_attr_3',
 			  										'style'=>'width: 80px;'
 			  									)) 
-			  ?> <?php echo sfConfig::get('app_currency_code')?>       
+			  ?>        
             </li>
            <li id="user_attr_2_field">
               <label for="user_attr_2" style="margin-right: 50px;"><?php echo __('Auto refill amount:') ?></label>

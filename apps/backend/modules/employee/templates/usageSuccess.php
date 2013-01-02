@@ -174,7 +174,7 @@ foreach ($callHistoryres->xdr_list as $xdrres) {
                         <td><?php echo date("d-m-Y H:i:s", strtotime($xdr->bill_time)); ?></td>
                         <td><?php echo __($xdr->account_id); ?></td>
                         <td><?php echo __($xdr->CLD); ?></td>
-                        <td aligin="right" style="text-align: right;"><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount;?>&nbsp;<?php echo sfConfig::get('app_currency_code') ?></td>
+                        <td aligin="right" style="text-align: right;"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($xdr->charged_amount, 2); $total_sub += $xdr->charged_amount;?></td>
                     </tr>
                 <?php
                 }

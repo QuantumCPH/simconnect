@@ -17,9 +17,9 @@
 <p>
 <?php echo __("With Resenumber you can receive cheap calls on this number while travelling abroad.") ?>
 <br/><br/>
-<?php echo __("The price of the package is: 10%1% per. Month", array("%1%"=>sfConfig::get('app_currency_code'))) ?>
+<?php echo __("The price of the package is: %1%10 per. Month", array("%1%"=>sfConfig::get('app_currency_code'))) ?>
 <br/>
-<?php echo __("The activation price is: 30%1%",array("%1%"=>sfConfig::get('app_currency_code'))) ?>
+<?php echo __("The activation price is: %1%30",array("%1%"=>sfConfig::get('app_currency_code'))) ?>
 </p><br />
 	<script type="text/javascript">
 	    $(function() {

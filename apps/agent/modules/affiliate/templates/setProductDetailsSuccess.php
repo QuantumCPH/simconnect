@@ -124,10 +124,10 @@
                         </label>
 
 
-                        <label style="width:180px; padding-right: 0px"><?php echo number_format($order->getProduct()->getRegistrationFee(),2); ?> <?php echo sfConfig::get('app_currency_code')?>
+                        <label style="width:180px; padding-right: 0px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($order->getProduct()->getRegistrationFee(),2); ?> 
                             <br/>
                             <br/>
-                            <?php echo number_format(format_number($order->getProduct()->getPrice()),2); ?> <?php echo sfConfig::get('app_currency_code')?>
+                            <?php echo sfConfig::get('app_currency_code')?><?php echo number_format(format_number($order->getProduct()->getPrice()),2); ?> 
                         </label>
 
 
@@ -171,14 +171,14 @@
 <?php echo __('Total amount') ?></label>
 
                         <label class="fr ac" style="width:180px; padding-right: 0px" >
-                            <span id="vat_span">
+                            <?php echo sfConfig::get('app_currency_code')?><span id="vat_span">
 <?php echo number_format($product_price_vat,2); ?>
-                            </span> <?php echo sfConfig::get('app_currency_code')?>
+                            </span> 
                             <br />
 <?php $total = $product_price + $product_price_vat ?>
-                            <span id="total_span">
+                           <?php echo sfConfig::get('app_currency_code')?><span id="total_span">
 <?php echo number_format($total,2); ?>
-                            </span> <?php echo sfConfig::get('app_currency_code')?>
+                            </span> 
                         </label>
                     </li>
 <?php if ($sf_user->hasFlash('error_message')): ?>

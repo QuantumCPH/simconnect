@@ -150,7 +150,7 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
             </li>
             <li>
               <label> <?php echo __('Zapna Starter Package') ?> <br />
-				<?php //echo __('Product price') ?> </label><label class="fr ac"><span class="product_price_span"><?php echo  number_format($order->getProduct()->getRegistrationFee(),2);?></span><?php echo sfConfig::get('app_currency_code')?><br /><span id="extra_refill_span"><?php //echo  number_format($order->getProduct()->getPrice(),2); ?></span><?php //echo sfConfig::get('app_currency_code')?></label><!--<input type="hidden" id="product_price" value="<?php  $product_price_vat = ($order->getProduct()->getRegistrationFee()+$postalcharge)*sfConfig::get('app_vat_percentage');$product_price = ($order->getProduct()->getPrice()+$order->getProduct()->getRegistrationFee());echo $product_price;	?>" />-->
+				<?php //echo __('Product price') ?> </label><label class="fr ac"><span class="product_price_span"><?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($order->getProduct()->getRegistrationFee(),2);?></span><br /><span id="extra_refill_span"><?php //echo  number_format($order->getProduct()->getPrice(),2); ?></span><?php //echo sfConfig::get('app_currency_code')?></label><!--<input type="hidden" id="product_price" value="<?php  $product_price_vat = ($order->getProduct()->getRegistrationFee()+$postalcharge)*sfConfig::get('app_vat_percentage');$product_price = ($order->getProduct()->getPrice()+$order->getProduct()->getRegistrationFee());echo $product_price;	?>" />-->
               <input type="hidden" id="extra_refill" value="<?php $extra_refill = $order->getExtraRefill(); echo $extra_refill; ?>" />
             </li>
             <?php
@@ -184,8 +184,8 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
 
 
 
-              </label><input type="hidden" id="vat" value="<?php echo $product_price_vat; ?>" /><input type="hidden" id="postal" value="<?php  echo $postalcharge; ?>" /><label class="fr ac" > <?php echo  number_format($postalcharge,2);  ?><?php echo sfConfig::get('app_currency_code')?><br /><span id="vat_span">
-                    <?php echo  number_format($product_price_vat,2); ?></span><?php echo sfConfig::get('app_currency_code')?><br /><?php $total = $product_price + $postalcharge + $product_price_vat ?><span id="total_span"><?php echo  number_format($total,2) ?></span><?php echo sfConfig::get('app_currency_code')?></label>
+              </label><input type="hidden" id="vat" value="<?php echo $product_price_vat; ?>" /><input type="hidden" id="postal" value="<?php  echo $postalcharge; ?>" /><label class="fr ac" > <?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($postalcharge,2);  ?><br /><span id="vat_span">
+                    <?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($product_price_vat,2); ?></span><br /><?php $total = $product_price + $postalcharge + $product_price_vat ?><span id="total_span"><?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($total,2) ?></span></label>
             </li>
 	<li><input type="submit"  class="butonsigninsmall"  name="paybutan"  style="cursor: pointer;margin-left: 0px !important;" value="<?php echo __('Pay') ?>" /></li>  
           </ul>
@@ -235,12 +235,12 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
             </li>
             <li id="user_attr_3_field">
                 <label for="user_attr_3" style="margin-right: 90px;"><?php echo __('Auto refill minimum balance:') ?>&nbsp;</label>
-			  <?php echo $customer_form['auto_refill_min_balance']->render(array(
+			  <?php echo sfConfig::get('app_currency_code')?><?php echo $customer_form['auto_refill_min_balance']->render(array(
 			  										'name'=>'user_attr_3',
                                                                                                         'id'=>'user_attr_3',
 			  										'style'=>'width: 80px;'
 			  									)) 
-                                  ?><?php echo sfConfig::get('app_currency_code')?>
+                                  ?>
             </li>
            <li id="user_attr_2_field">
               <label for="user_attr_2" style="margin-right: 90px;"><?php echo __('Auto refill amount:') ?></label>
@@ -253,7 +253,7 @@ $customer_form->unsetAllExcept(array('auto_refill_amount', 'auto_refill_min_bala
      ?>
             </li>
             <li id="" style="border-style:solid;border-width:3px;width: 320px; padding-left: 10px;">
-                <br /><b align="justfy">  <?php  echo __("%1% recommends to activate this service so you <br /> do not have to manually refill when your account<br /> balance runs low. 100 or 200%2% each  when the <br /> balances reaches 25 or 50%2% this facility is <br /> added to your account in minutes.",array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code')))?></b>
+                <br /><b align="justfy">  <?php  echo __("%1% recommends to activate this service so you <br /> do not have to manually refill when your account<br /> balance runs low. %2%100 or %2%200 each  when the <br /> balances reaches %2%25 or %2%50 this facility is <br /> added to your account in minutes.",array('%1%'=>sfConfig::get('app_site_title'),'%2%'=>sfConfig::get('app_currency_code')))?></b>
 
 
 
