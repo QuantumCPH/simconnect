@@ -179,9 +179,9 @@
 							?>
 							<?php echo $call_duration ?>						</td>
 						<td align="right" style="padding-right:10px">
-							<?php echo  number_format($calculated_cost, 2) ;
+							<?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($calculated_cost, 2) ;
 							$temp_cost = $calculated_cost;
-							?><?php echo sfConfig::get('app_currency_code')?>						</td>
+							?>						</td>
 					</tr>				
 					<?php  $totalcost += $temp_cost;
 			}
