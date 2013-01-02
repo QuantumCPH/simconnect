@@ -1,4 +1,10 @@
 <?php use_helper('I18N') ?>
+<script>
+  jQuery(function(){
+      jQuery('#trigger_startdate').hide();
+      jQuery('#trigger_enddate').hide();
+  });
+</script>
 <div id="sf_admin_container">
     <?PHP
     $str = strlen($company->getId());
