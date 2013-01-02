@@ -318,7 +318,7 @@ echo  date('i:s',$callval);
                     <tr>
                         <td colspan="3" align="right"><strong><?php echo __('Subtotal') ?></strong></td>
                         <!--
-                        <td><?php echo format_number($amount_total - $amount_total * sfConfig::get('app_vat_percentage')) ?> <?php echo sfConfig::get('app_currency_code')?></td>
+                        <td><?php echo sfConfig::get('app_currency_code')?><?php echo format_number($amount_total - $amount_total * sfConfig::get('app_vat_percentage')) ?> </td>
                                         	 -->
                         <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total, 2) ?> </td>
                     <td>&nbsp;</td>

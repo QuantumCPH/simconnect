@@ -161,7 +161,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php if($postalcharge && $order->getIsFirstOrder()){ echo number_format($transaction->getAmount()+$postalcharge,2); }else{ echo number_format($transaction->getAmount(),2); } ?> <?php echo sfConfig::get('app_currency_code') ?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code') ?><?php if($postalcharge && $order->getIsFirstOrder()){ echo number_format($transaction->getAmount()+$postalcharge,2); }else{ echo number_format($transaction->getAmount(),2); } ?> </td>
 
   </tr>
   <tr>

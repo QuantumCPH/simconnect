@@ -66,18 +66,15 @@
 			<fieldset>
 			<table width="100%">
 				<tr>
-					<td> <?php echo image_tag(sfConfig::get('app_web_url').'images/veranet-log.jpg',array('width' => '300'));?></td>
+					<td> <?php echo image_tag(sfConfig::get('app_web_url').'images/logo.jpg');?></td>
 					<td>
-						<b>DRUSTVO ZA TELEKOMUNIKACIJE Telecom "VERAT" D.O.O.</b><br />
-						Bulevar Vojvode Misica 37<br />
-						11000 Beograd<br />
-						Republika Srbija
+						
 					</td>
-					<td>
-						PIB: 100221009<br />
-						Maticini broj: 06901093<br />
-						Registarski broj: SR135301811<br />
-						Sifra delatnosti: 6110
+					<td align="right" style="padding-right:10px;">
+						<b>Kellbun Communications</b><br />
+						Mount Pleasant<br />
+						Maldon<br />
+						Essex CM9 6EQ
 					</td>
 				</tr>
 			</table>
@@ -201,7 +198,7 @@
                      <table cellpadding="3" cellspacing="0" width="100%">
                          <tr>
                               <td width="87%" align="right"><strong>Subtotal :</strong></td>
-                           <td width="13%" align="right" style="padding-right:10px"><?php echo number_format($totalcost,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                           <td width="13%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($totalcost,2);?></td>
                        </tr>
                      </table>
                   </td>
@@ -242,7 +239,7 @@
                    <td><?php echo $subs->getConnectTime();?></td>
 				   <td><?php echo $emps->getMobileNumber();?></td>
 				   <td><?php echo $subs->getDescription();?></td>
-				   <td align="right" style="padding-right:10px"><?php echo number_format($subs->getChargedAmount(),2);$totalSubFee += $subs->getChargedAmount();?><?php echo sfConfig::get('app_currency_code')?></td>
+				   <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($subs->getChargedAmount(),2);$totalSubFee += $subs->getChargedAmount();?></td>
 				</tr>
 				<?php
 					}
@@ -259,7 +256,7 @@
                     <table cellpadding="3" cellspacing="0" width="100%">
                        <tr>
                          <td colspan="2" align="right"><strong>Subtotal :</strong></td>
-                          <td width="13%" align="right" style="padding-right:10px"><?php echo number_format($totalSubFee,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                          <td width="13%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($totalSubFee,2);?></td>
                       </tr>
                     </table>
                   </td>
@@ -272,7 +269,7 @@
 			</table>
 	  </td>
 	</tr>
-	<?php  if(isset ($otherevents) && $otherevents !=""){ 
+	<?php  if ($otherCount > 0) { 
             $invoiceFlag = true; ?>
 	<tr>
 		<td colspan="2">
@@ -287,8 +284,8 @@
 				<tr>
                     <td><?php echo $event->getConnectTime();?></td>
                     <td><?php echo $event->getDescription();?></td>
-                    <td align="right" style="padding-right:10px"><?php echo number_format($event->getChargedAmount(),2);$totalEventFee += $event->getChargedAmount();?>
-					<?php echo sfConfig::get('app_currency_code')?></td>
+                    <td align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($event->getChargedAmount(),2);$totalEventFee += $event->getChargedAmount();?>
+					</td>
                 </tr>
 				<?php }?>
                 <tr>
@@ -301,7 +298,7 @@
                     <table cellpadding="3" cellspacing="0" width="100%">
                       <tr>
                          <td width="88%" align="right"><strong>Subtotal :</strong></td>
-                        <td width="12%" align="right" style="padding-right:10px"><?php echo number_format($totalEventFee,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                        <td width="12%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($totalEventFee,2);?></td>
                       </tr>
                     </table>
                   </td>
@@ -323,7 +320,7 @@
          <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
             <td width="88%" align="right" class="padding" style="padding-right:10px"><strong>Total cost:</strong></td>
-            <td width="12%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($totalcost, 2);?></td>
+            <td width="12%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code');echo number_format($totalcost, 2); ?></td>
            </tr>
             <tr>
             <td class="padding" align="right" style="padding-right:10px"><strong>Invoice Fees:</strong></td>
@@ -367,7 +364,7 @@
 	<tr height="30px">
 		<td colspan="2" class="border borderleft borderright" style="background-color:#CCCCCC;">&nbsp;</td>
 	</tr>
-	<?php if(isset ($payments) && $payments !=""){ 
+	<?php if ($payCount > 0) {
 	$vat_in=0.00;
         $vatIncluded=0.00;
         $vatinc=0.00;
@@ -385,7 +382,7 @@
 				</tr>
 				<?php foreach($payments as $payment){?>
 				<tr>
-                   <td><?php echo $payment->getConnectTime();?></td>
+                                   <td><?php echo $payment->getConnectTime();?></td>
 				   <td><?php echo $payment->getDescription();?></td>
 				   <td align="right"><?php echo sfConfig::get('app_currency_code');echo number_format($chargedAmount = $payment->getChargedAmount(),2);
 				         $totalPayments += $chargedAmount;?>                   </td>
@@ -398,43 +395,46 @@
 				</tr>				
 				<?php }?>
                             <tr>
-				  <td colspan="2" align="right"><strong>Total:</strong></td>
-				  <td align="right"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($totalPayments,2);?></strong></td>
-				  <td align="right"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($vat_in,2);?></strong></td>
-				  <td align="right" style="padding-right:10px"><strong><?php echo sfConfig::get('app_currency_code');echo number_format($vatinc,2);?></strong></td>
-			    </tr>
+                                <td colspan="2" align="right"><strong>Total:</strong></td>
+                                <td align="right"><strong><?php echo sfConfig::get('app_currency_code'); ?><?php echo number_format($totalPayments, 2); ?>
+                                        &nbsp;</strong></td>
+                                <td align="right"><strong><?php echo sfConfig::get('app_currency_code'); ?><?php echo number_format($vat_in, 2); ?>
+                                        </strong></td>
+                                <td align="right" style="padding-right:10px"><strong><?php echo sfConfig::get('app_currency_code'); ?><?php echo number_format($vatinc, 2); ?>
+                                        </strong></td>
+                            </tr>
 			</table>
 	  </td>
 	</tr>
 	<?php } ?>
-	<?php if(isset ($preInvoices) && $preInvoices !=""){?>
-	<tr>
-		<td colspan="2">
-			<table width="100%" cellpadding="0" cellspacing="0" class="table" style="padding-bottom:30px">
-				<tr><td colspan="2" class="padbot"><h2>Previous Invoices</h2></td></tr>
-				<tr height="40px" class="trbg">
-					<td width="28%" class="border borderleft">Bill Duration</td>
-				  <td width="72%" class="border borderright">Invoice Total (<?php echo sfConfig::get('app_currency_code')?>)</td>
-			  </tr>
-                <?php foreach($preInvoices as $preInvoice){ ?>
-				<tr>
-				   <td><?php echo $preInvoice->getBillingStartingDate("M d");?> - <?php echo $preInvoice->getBillingEndingDate("M d");?></td>
-				   <td><?php echo number_format($preInvoice->getTotalPayment(),2);?></td>
+	         <?php if ($invoiceCount > 0) { ?>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="table" style="padding-bottom:30px">
+                            <tr><td colspan="2" class="padbot"><h2>Previous Invoices</h2></td></tr>
+                            <tr height="40px" class="trbg">
+                                <td width="28%" class="border borderleft">Bill Duration</td>
+                                <td width="72%" class="border borderright">Invoice Total (<?php echo sfConfig::get('app_currency_code') ?>)</td>
+                            </tr>
+                <?php foreach ($preInvoices as $preInvoice) { ?>
+                                <tr>
+                                    <td><?php echo $preInvoice->getBillingStartingDate("M d"); ?> - <?php echo $preInvoice->getBillingEndingDate("M d"); ?></td>
+                                    <td><?php echo number_format($preInvoice->getTotalPayment(), 2); ?></td>
+                                </tr>
+    <?php } ?>
+                        </table>
+                    </td>
                 </tr>
-                <?php  }?>
-			</table>
-		</td>
-	</tr>
-	 <?php }?>
+<?php } ?>
 	 <tr>
 		<td colspan="2"><br />
 			<fieldset>
 			<table width="100%">
 				<tr>
-					<td>Tel: XXXXXXXXXXXXXXXX</td>
+					<td>Tel: 01621 855134</td>
 					<td>Fax: XXXXXXXXXXXXXXX</td>
-					<td>Email: veranet@zerocall.com</td>
-					<td>Web: www.veranet.com</td>
+					<td>Email: info@kellbun.com</td>
+					<td>Web: www.simconnect.com</td>
 				</tr>
 			</table>
 			</fieldset>

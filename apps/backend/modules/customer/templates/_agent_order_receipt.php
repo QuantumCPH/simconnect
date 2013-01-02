@@ -117,7 +117,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td><?php echo format_number($subtotal) ?><?php echo sfConfig::get('app_currency_code') ?></td>
+    <td><?php echo sfConfig::get('app_currency_code') ?><?php echo format_number($subtotal) ?></td>
   </tr>
 </table>
 

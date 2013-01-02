@@ -96,7 +96,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
             }
     ?></td>
     <td>1</td>
-    <td align="right" style="padding-right: 65px;"><?php echo number_format($subtotal=$transaction,2) //($order->getProduct()->getPrice() - $order->getProduct()->getPrice()*.2) * $order->getQuantity()) ?><?php echo sfConfig::get('app_currency_code') ?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($subtotal=$transaction,2) //($order->getProduct()->getPrice() - $order->getProduct()->getPrice()*.2) * $order->getQuantity()) ?></td>
   </tr>
   <tr>
   	<td colspan="4" style="border-bottom: 2px solid #c0c0c0;">&nbsp;</td>
@@ -105,19 +105,19 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Subtotal') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo number_format($subtotal,2) ?><?php echo sfConfig::get('app_currency_code') ?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($subtotal,2) ?></td>
   </tr>
   <tr class="footer"> 
     <td>&nbsp;</td>
     <td><?php echo __('VAT') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo number_format($vat,2) ?><?php echo sfConfig::get('app_currency_code') ?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($vat,2) ?></td>
   </tr>
   <tr class="footer">
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo number_format($subtotal,2) ?><?php echo sfConfig::get('app_currency_code') ?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code') ?><?php echo number_format($subtotal,2) ?></td>
   </tr>
 </table>
 

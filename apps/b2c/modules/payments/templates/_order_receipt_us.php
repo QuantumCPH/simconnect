@@ -97,7 +97,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td><?php echo __('Date') ?></td>
     <td><?php echo __('Description') ?></td>
     <td><?php echo __('Quantity') ?></td>
-    <td><?php echo __('Amount') ?>(<?php echo sfConfig::get('app_currency_code')?>)</td>
+    <td><?php echo __('Amount') ?><!--(<?php echo sfConfig::get('app_currency_code')?>)--></td>
   </tr>
   <tr> 
     <td><?php echo $order->getCreatedAt('m-d-Y') ?></td>
@@ -139,7 +139,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('Total') ?></td>
     <td>&nbsp;</td>
-    <td><?php echo number_format($transaction->getAmount(),2) ?><?php echo sfConfig::get('app_currency_code')?></td>
+    <td><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($transaction->getAmount(),2) ?></td>
   </tr>
   <tr>
   	<td colspan="4" style="border-bottom: 2px solid #c0c0c0;">&nbsp;</td>

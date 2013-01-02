@@ -125,7 +125,7 @@ $wrap_content  = isset($wrap)?$wrap:false;
     <td>&nbsp;</td>
     <td><?php echo __('VAT') ?><!-- (<?php //echo $vat==0?'0%':sfConfig::get('app_vat') ?>)--></td>
     <td>&nbsp;</td>
-    <td align="right" style="padding-right: 65px;"><?php echo format_number($vat) ?><?php echo sfConfig::get('app_currency_code')?></td>
+    <td align="right" style="padding-right: 65px;"><?php echo sfConfig::get('app_currency_code')?><?php echo format_number($vat) ?></td>
   </tr>
   <tr class="footer">
     <td>&nbsp;</td>
