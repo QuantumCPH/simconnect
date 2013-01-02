@@ -330,7 +330,7 @@
 //                        }
                         ?>
 </li>-->
-                        <li>
+<!--                        <li>
                         <?php 
                         if($actionName=='list' && $modulName=="postal_charges"){
                           echo link_to(__('Postal charges'), 'postal_charges/index',array('class'=>'subSelect'));
@@ -338,9 +338,9 @@
                           echo link_to(__('Postal charges'), 'postal_charges/index'); 
                         }
                         ?>
-                       </li>
+                       </li>-->
                        <li>
-                        <a href="javascript:;" class="label"><b><?php echo __('General Setting') ?> </b></a>
+<!--                        <a href="javascript:;" class="label"><b><?php echo __('General Setting') ?> </b></a>-->
                         <?php 
                         if($actionName=='list' && $modulName=="product"){
                           echo link_to(__('Products'), 'product/index',array('class'=>'subSelect'));
@@ -358,7 +358,7 @@
                         }
                         ?>
                        </li>
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="province"){
                           echo link_to(__('Province List'), 'province/index',array('class'=>'subSelect'));
@@ -366,7 +366,7 @@
                           echo link_to(__('Province List'), 'province/index');
                         }
                         ?>
-                        </li>
+                        </li>-->
                        <li>
                         <?php 
                         if($actionName=='list' && $modulName=="city"){
@@ -376,7 +376,7 @@
                         }
                         ?>
                         </li>
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="preferredLanguages"){
                           echo link_to(__('Preferred Languages'), 'preferredLanguages/index',array('class'=>'subSelect'));
@@ -384,7 +384,7 @@
                           echo link_to(__('Preferred Languages'), 'preferredLanguages/index');
                         }
                         ?>
-                        </li>
+                        </li>-->
                        <li>
                         <?php 
                         if($actionName=='list' && $modulName=="simTypes"){
@@ -403,7 +403,7 @@
                         }
                         ?>
                         </li>-->
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="nationality"){
                           echo link_to(__('Nationality'), 'nationality/index',array('class'=>'subSelect'));
@@ -411,7 +411,7 @@
                           echo link_to(__('Nationality'), 'nationality/index');
                         }
                         ?>
-                        </li>
+                        </li>-->
 <!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="sms_text"){
