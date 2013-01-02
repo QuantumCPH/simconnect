@@ -215,7 +215,7 @@ if (isset($empl)) {
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", strtotime($xdr->bill_time)); ?></td>
                 <td><?php echo __($xdr->CLD); ?></td>
-                <td align="right"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($xdr->charged_amount,2); $othertotal +=$xdr->charged_amount;?>&nbsp;</td>
+                <td align="right"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($xdr->charged_amount,2); $othertotal +=$xdr->charged_amount;?></td>
             </tr>
             <?php } 
             

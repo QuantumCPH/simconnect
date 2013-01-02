@@ -30,9 +30,12 @@ h2{
     float:none;
     clear:both;
 }
+.menuarrange{
+    margin: 0 auto;
+    width: 50%;
+}
 #sddm
 {
-    margin: 0;
     padding: 0;
     z-index: 30;
 }
@@ -51,7 +54,7 @@ h2{
 }
 #sddm li.last
 {	
-    border-right:1px solid #B0232A;
+    border-right:1px solid #B0232A;    
 }    
 #sddm li a
 {	display: block;
@@ -62,39 +65,57 @@ h2{
 	text-decoration: none}
 
 #sddm li a:hover
-{	background: url("../images/b.png") repeat-x scroll left center transparent;
+{	background: #B0232A;
         color:#ffffff;
 }
 
-#sddm div
+#sddm .submenu
 {	position: absolute;
-	visibility: hidden;
+	display:none;
 	margin: 0;
 	padding: 0;
 	background: #B0232A;
 	border: 1px solid #B0232A;
 }
-
-#sddm div a
-{	position: relative;
-        display: block;
+#sddm .hover .submenu {
+        display:block !important;
+}
+#sddm .submenu li{
+        display: block !important;
+        float: none !important;
+        z-index: 25 !important;
+        border-left:0 !important;
+}
+#sddm .submenu li a
+{	
+        display: block !important;
         margin: 0;
         padding: 5px 10px;
         width: auto;
         white-space: nowrap;
         text-align: left;
         text-decoration: none;
-        background: url("../images/b.png") repeat-x scroll left center transparent;
+        background: #B0232A;
         color: #FFFFFF;
         font: 11px arial;
+        z-index: 30 !important;
 }
-#sddm div a:hover
-{	background: url('../images/li-bg.png') repeat-x top left;
+#sddm .submenu li a:hover
+{	background: #FFFFFF;
+        color: #B0232A;
+        display: block;
+}
+#sddm .submenu a.subSelect
+{	background: #FFFFFF;
         color: #B0232A;
 }
-#sddm div a.subSelect
-{	background: url('../images/li-bg.png') repeat-x top left;
-        color: #B0232A;
+#sf_admin_container{
+    margin:0 auto;
+    width:100%;
+}
+#sddm li a.current{
+    background: #B0232A !important;
+    color: #ffffff !important;
 }
 #sf_admin_container{
     margin:0 auto;

@@ -55,9 +55,9 @@
 //                        echo "M ".$modulName;
 //                        echo "<br />";
 //                        echo "A ".$actionName;
-                ?><div id="menu">
-                        <ul id="b2bsddm">
-                            <li>
+                ?><div class="menuarrange" id="sddm">           
+   <ul class="menu">
+      <li class="dropdown">
                         <?php
                         if ($actionName == 'dashboard' && $modulName == "company") {
                         ?>
@@ -70,7 +70,7 @@
                         }
                         ?>
                     </li>
-                    <li>
+                    <li class="dropdown">
                         <?php
                         if ($modulName == "company" && $actionName == 'paymentHistory') {
                         ?>
@@ -83,7 +83,7 @@
                         }
                         ?>
                     </li>
-                    <li><?php
+                    <li class="dropdown"><?php
                         if ($modulName == "company" && $actionName == 'callHisotry') {
                         ?>
                             <a href="<?php echo sfConfig::get('app_b2b_url');?>company/callHisotry" class="current"><?php echo  __('Call History');?></a>
@@ -95,7 +95,7 @@
                         }
                         ?>
                     </li>
-                    <li><?php
+                    <li class="dropdown"><?php
                         if ($modulName == "company" && $actionName == 'invoices') {
                         ?>
                             <a href="<?php echo sfConfig::get('app_b2b_url');?>company/invoices" class="current"><?php echo  __('Invoices');?></a>
@@ -107,7 +107,7 @@
                         }
                         ?>
                     </li>
-                    <li><?php
+                    <li class="dropdown"><?php
                         if ($modulName == "company" && $actionName == 'view') {
                         ?>
                             <a href="<?php echo sfConfig::get('app_b2b_url');?>company/view" class="current"><?php echo  __('Company Info');?></a>
@@ -119,7 +119,7 @@
                         }
                         ?>
                     </li>
-<!--                    <li><?php
+<!--                    <li class="dropdown"><?php
                         if ($modulName == "rates" && $actionName == 'company') {
                         ?>
                             <a href="<?php echo sfConfig::get('app_b2b_url');?>company/rates" class="current"><?php echo  __('Rates');?></a>
@@ -131,9 +131,10 @@
                         }
                         ?>
                     </li>-->
-                    <li class="last"><a href="<?php echo sfConfig::get('app_b2b_url');?>company/logout" ><?php echo  __('Logout');?></a></li>
+                    <li class="dropdown last"><a href="<?php echo sfConfig::get('app_b2b_url');?>company/logout" ><?php echo  __('Logout');?></a></li>
 
-                </ul><div class="clr"></div>
+                </ul>
+                    <div class="clr"></div>
                 </div>
                 <?php } ?>
                     
@@ -181,5 +182,96 @@
         </div>
 
 
+        <script type="text/javascript">
+    //<![CDATA[
+jQuery(window).load(function(){
+jQuery(function()
+{
+    var $dropdowns = jQuery('li.dropdown'); // Specifying the element is faster for older browsers
+
+    /**
+     * Mouse events
+     *
+     * @description Mimic hoverIntent plugin by waiting for the mouse to 'settle' within the target before triggering
+     */
+    $dropdowns
+        .on('mouseover', function() // Mouseenter (used with .hover()) does not trigger when user enters from outside document window
+        {
+            var $this = jQuery(this);
+
+            if ($this.prop('hoverTimeout'))
+            {
+                $this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
+            }
+
+            $this.prop('hoverIntent', setTimeout(function()
+            {
+                $this.addClass('hover');
+            }, 250));
+        })
+        .on('mouseleave', function()
+        {
+            var $this = jQuery(this);
+
+            if ($this.prop('hoverIntent'))
+            {
+                $this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
+            }
+
+            $this.prop('hoverTimeout', setTimeout(function()
+            {
+                $this.removeClass('hover');
+            }, 250));
+        });
+
+    /**
+     * Touch events
+     *
+     * @description Support click to open if we're dealing with a touchscreen
+     */
+    if ('ontouchstart' in document.documentElement)
+    {
+        $dropdowns.each(function()
+        {
+            var $this = $(this);
+
+            this.addEventListener('touchstart', function(e)
+            {
+                if (e.touches.length === 1)
+                {
+                    // Prevent touch events within dropdown bubbling down to document
+                    e.stopPropagation();
+
+                    // Toggle hover
+                    if (!$this.hasClass('hover'))
+                    {
+                        // Prevent link on first touch
+                        if (e.target === this || e.target.parentNode === this)
+                        {
+                            e.preventDefault();
+                        }
+
+                        // Hide other open dropdowns
+                        $dropdowns.removeClass('hover');
+                        $this.addClass('hover');
+
+                        // Hide dropdown on touch outside
+                        document.addEventListener('touchstart', closeDropdown = function(e)
+                        {
+                            e.stopPropagation();
+
+                            $this.removeClass('hover');
+                            document.removeEventListener('touchstart', closeDropdown);
+                        });
+                    }
+                }
+            }, false);
+        });
+    }
+
+});
+});//]]>
+    </script>
     </body>
 </html>
+
