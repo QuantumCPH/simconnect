@@ -97,7 +97,7 @@
                    </li>
                 </ul>
             </li>
-            <li class="dropdown">               
+            <li class="dropdown" style="display:none">               
                 <a href="#" <?php echo $modulName=='customer'? 'class = "current"':''?>>B2C<?php //echo __(sfConfig::get('app_site_title')) ?></a>
                  <ul class="submenu"> 
                     <li> 
@@ -146,7 +146,7 @@
                 </ul>
             </li>
 
-          <li class="dropdown">
+          <li class="dropdown" style="display:none">
                 <a href="#" <?php echo $modulName=="agent_user" || $modulName=="agent_company" || $modulName=="agent_commission" || $modulName=="agent_commission_package" ?'class="current"':''?>><?php echo __('Agents') ?></a>
                 <ul class="submenu">
                     <li>
@@ -210,7 +210,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li class="dropdown" style="display:none">
                 <a href="#" <?php echo $modulName=='newupdate' ||  $modulName=='faqs' || $modulName=='userguide'? 'class = "current"':''?>><?php echo __('Updates') ?></a>
                 <ul class="submenu">
 <!--                    <li> 
@@ -261,7 +261,7 @@
                     <li><?php echo link_to(__('product orders'), 'product_order/index') ?></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <li class="dropdown" style="display:none">
                 <a href="#" <?php echo $modulName=='invoice'? 'class = "current"':''?>><?php echo __('Reports') ?></a>
                 <ul class="submenu">
                     <li>
@@ -290,7 +290,7 @@
                 </ul>
             </li>
           
-           <li class="dropdown">
+           <li class="dropdown" style="display:none">
                 <a href="#" <?php echo $modulName=='client_documents'? 'class = "current"':''?>><?php echo __('Download') ?></a>
                 <ul class="submenu">
                     <li><?php
@@ -394,7 +394,7 @@
                         }
                         ?>
                         </li>
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="handsets"){
                           echo link_to(__('Handsets'), 'handsets/index',array('class'=>'subSelect'));
@@ -402,7 +402,7 @@
                           echo link_to(__('Handsets'), 'handsets/index');
                         }
                         ?>
-                        </li>
+                        </li>-->
                        <li>
                         <?php 
                         if($actionName=='list' && $modulName=="nationality"){
@@ -412,7 +412,7 @@
                         }
                         ?>
                         </li>
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="sms_text"){
                           echo link_to(__('SMS Text'), 'sms_text/index',array('class'=>'subSelect'));
@@ -420,8 +420,8 @@
                           echo link_to(__('SMS Text'), 'sms_text/index');
                         }
                         ?>
-                        </li>
-                       <li>
+                        </li>-->
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="usage_alert"){
                           echo link_to(__('Low Credit Alert'), 'usage_alert/index',array('class'=>'subSelect'));
@@ -429,8 +429,8 @@
                           echo link_to(__('Low Credit Alert'), 'usage_alert/index');
                         }
                         ?>
-                        </li>
-                       <li>
+                        </li>-->
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="usage_alert_sender"){
                           echo link_to(__('Low Credit Alert Sender'), 'usage_alert_sender/index',array('class'=>'subSelect'));
@@ -438,8 +438,8 @@
                           echo link_to(__('Low Credit Alert Sender'), 'usage_alert_sender/index');
                         }
                         ?>
-                        </li>
-                       <li>
+                        </li>-->
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="telecom_operator"){
                           echo link_to(__('Telecom Operator'), 'telecom_operator/index',array('class'=>'subSelect'));
@@ -447,8 +447,8 @@
                           echo link_to(__('Telecom Operator'), 'telecom_operator/index');
                         }
                         ?>
-                        </li>
-                       <li>
+                        </li>-->
+<!--                       <li>
                            <?php
                         if($actionName=='deActivateCustomer' && $modulName=="customer"){
                           echo link_to(__('DeActivat eCustomer'), 'customer/deActivateCustomer',array('class'=>'subSelect'));
@@ -456,8 +456,8 @@
                           echo link_to(__('DeActivat eCustomer'), 'customer/deActivateCustomer');
                         }
                         ?>
-                       </li>
-                       <li>
+                       </li>-->
+<!--                       <li>
                            <?php
                         if($actionName=='index' && $modulName=="transactionDescription"){
                           echo link_to(__('Transaction Description'), 'transactionDescription/index',array('class'=>'subSelect'));
@@ -465,7 +465,7 @@
                           echo link_to(__('Transaction Description'), 'transactionDescription/index');
                         }
                        ?>
-                       </li>
+                       </li>-->
                        <li>
                        <?php
                         if($actionName=='indexAll' && $modulName=="company"){
