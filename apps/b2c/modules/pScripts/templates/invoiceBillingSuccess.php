@@ -179,9 +179,9 @@
 							?>
 							<?php echo $call_duration ?>						</td>
 						<td align="right" style="padding-right:10px">
-							<?php echo  number_format($calculated_cost, 2) ;
+							<?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($calculated_cost, 2) ;
 							$temp_cost = $calculated_cost;
-							?><?php echo sfConfig::get('app_currency_code')?>						</td>
+							?></td>
 					</tr>				
 					<?php  $totalcost += $temp_cost;
 			}
@@ -256,7 +256,7 @@
                     <table cellpadding="3" cellspacing="0" width="100%">
                        <tr>
                          <td colspan="2" align="right"><strong>Subtotal :</strong></td>
-                          <td width="13%" align="right" style="padding-right:10px"><?php echo number_format($totalSubFee,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                          <td width="13%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($totalSubFee,2);?></td>
                       </tr>
                     </table>
                   </td>
@@ -298,7 +298,7 @@
                     <table cellpadding="3" cellspacing="0" width="100%">
                       <tr>
                          <td width="88%" align="right"><strong>Subtotal :</strong></td>
-                        <td width="12%" align="right" style="padding-right:10px"><?php echo number_format($totalEventFee,2);?><?php echo sfConfig::get('app_currency_code')?></td>
+                        <td width="12%" align="right" style="padding-right:10px"><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($totalEventFee,2);?></td>
                       </tr>
                     </table>
                   </td>
