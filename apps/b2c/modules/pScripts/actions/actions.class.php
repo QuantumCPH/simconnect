@@ -3253,14 +3253,22 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $c->add(CompanyPeer::STATUS_ID, 1);  // active
         $companies = CompanyPeer::doSelect($c);
 
-        $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
+        $bill_start_date = date('Y-m-1 00:00:00');
         $start_date = date('Y-m-1 00:00:00');
         echo $start_date = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
         echo "<hr/>";
+        echo $end_date = date('Y-m-t 21:59:59');
+        $bill_end_date = date('Y-m-t 23:59:59');
         
-        // echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
-        echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
-        $bill_end_date = date('Y-m-t 23:59:59', strtotime("last month"));
+//        $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
+//        $start_date = date('Y-m-1 00:00:00');
+//        echo $start_date = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
+//        echo "<hr/>";
+//        
+//        // echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
+//        echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
+//        $bill_end_date = date('Y-m-t 23:59:59', strtotime("last month"));
+        
         echo "<hr/>";
         foreach ($companies as $company) {
 
@@ -3534,18 +3542,19 @@ if(($caltype!="IC") && ($caltype!="hc")){
         
         ////////////////////////////////////////////////////////////
         $telintaObj = new CompanyEmployeActivation();
-        $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
+        $bill_start_date = date('Y-m-1 00:00:00');
         echo $startdate = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
         echo "<hr/>";
         // echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
-        echo $enddate = date('Y-m-t 21:59:59', strtotime("last month"));
-        $bill_end_date = date('Y-m-t 23:59:59', strtotime("last month"));
-//        $bill_start_date = date('Y-m-1 00:00:00');
+        echo $enddate = date('Y-m-t 21:59:59');
+        $bill_end_date = date('Y-m-t 23:59:59');
+
+//        $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
 //        echo $startdate = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
 //        echo "<hr/>";
 //        // echo $end_date = date('Y-m-t 21:59:59', strtotime("last month"));
-//        echo $enddate = date('Y-m-t 21:59:59');
-//        $bill_end_date = date('Y-m-t 23:59:59');
+//        echo $enddate = date('Y-m-t 21:59:59', strtotime("last month"));
+//        $bill_end_date = date('Y-m-t 23:59:59', strtotime("last month"));
         
         $start_strtotime = strtotime($startdate);
         $end_strototime = strtotime($enddate);
@@ -3817,9 +3826,11 @@ if(($caltype!="IC") && ($caltype!="hc")){
     
     public function executeCompanyNetBalance(sfWebRequest $request) {               
      
-        $start_date =  date('Y-m-1 00:00:00', strtotime("last month"));
-        $end_date = date('Y-m-t 23:59:59', strtotime("last month"));
+//        $start_date =  date('Y-m-1 00:00:00', strtotime("last month"));
+//        $end_date = date('Y-m-t 23:59:59', strtotime("last month"));
 
+        $start_date =  date('Y-m-1 00:00:00');
+        $end_date = date('Y-m-t 23:59:59');
 
         $cco = new Criteria();
         $companies = CompanyPeer::doSelect($cco);
