@@ -32,7 +32,7 @@
             </div>
       <?php if($sf_user->isAuthenticated()): 
           $sf_user->setCulture('en'); ?>
-     <div class="menuarrange" id="sddm">           
+     <div class="menuarrange" id="sddm" align="center">           
    <ul class="menu">
       <li class="dropdown"><a href="#"  <?php echo $modulName=='company'||$modulName=='employee'? 'class = "current"':''?>><?php echo __('B2B') ?></a>
                 <ul class="submenu"> 
