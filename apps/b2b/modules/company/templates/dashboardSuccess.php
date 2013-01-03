@@ -41,8 +41,21 @@
             $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
             $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
-            echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
+            echo "Call Through: ";echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
             
+            ?>
+            <br />
+            <?php
+            $ct = new Criteria();
+           // $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, sfConfig::get("app_telinta_emp") . $company->getId() . $employee->getId());
+            $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, "cb".$employee->getCountryMobileNumber());
+            $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
+            $cbAcc = TelintaAccountsPeer::doCount($ct);
+            if($cbAcc>0){
+                $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
+                $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
+                echo "Call Back: ";echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
+            }
             ?>
         </td>
         <td><?php echo  date("d-m-Y H:i:s",strtotime($employee->getCreatedAt())); ?></td>
