@@ -10,5 +10,5 @@ class CityPeer extends BaseCityPeer
         $c->addAscendingOrderByColumn(CityPeer::NAME);
         $rs = CityPeer::doSelect($c);
         return $rs;
-    }
+    }    
 }

@@ -9,10 +9,7 @@ generator:
       display:        [id,title]
       
     edit:
-      title:          Sim Type
-      actions:
-        _list: ~
-        _save: ~
-        _save_and_add: ~
+      title:          Sim Type    
+      
     create:
       title:          Add Sim Type 

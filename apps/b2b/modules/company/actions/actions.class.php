@@ -273,8 +273,10 @@ class companyActions extends sfActions {
 
             if ($company) {
                 //change the password to some thing uniuque and complex
-                $new_password = substr(base64_encode($company->getPassword()), 0, 8);
-
+                $chars = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+       
+           // $new_password = substr(base64_encode($customer->getPassword()), 0, 8);
+                $new_password =substr(str_shuffle($chars),0,6);
                 $company->setPassword($new_password);
                 $message_body = $this->getContext()->getI18N()->__('Hi') . ' ' . $company->getName() . '!';
                 $message_body .= '<br /><br />';
@@ -288,9 +290,6 @@ class companyActions extends sfActions {
 
 
                 $subject = $this->getContext()->getI18N()->__('Password Request');
-                $sender_email = sfConfig::get('app_email_sender_email', 'rs@zapna.com');
-                $sender_name = sfConfig::get('app_email_sender_name', 'support');
-
                 $message = $message_body;
 
 
@@ -318,7 +317,7 @@ class companyActions extends sfActions {
 
 
                 emailLib::sendB2BAgentForgetPasswordEmail($company, $message, $subject);
-                CARBORDFISH_SMS::Send($mobileNumber, $sms_txt, "Moiize");
+                CARBORDFISH_SMS::Send($mobileNumber, $sms_txt, "SIM Connect");
 
                 $this->getUser()->setFlash('send_password_message', $this->getContext()->getI18N()->__('Your account details have been sent to your email address and mobile number.'));
             } else {
