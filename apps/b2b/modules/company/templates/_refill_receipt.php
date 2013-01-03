@@ -86,7 +86,7 @@ use_helper('Number');
         <td>&nbsp;</td>
         <td><?php echo __('VAT') ?> <!--(<?php echo $vat == 0 ? '0%' : '25%' ?>)--></td>
         <td>&nbsp;</td>
-        <td><?php echo number_format($transaction->getAmount() - $transaction->getExtraRefill(), 2) ?></td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($transaction->getAmount() - $transaction->getExtraRefill(), 2) ?></td>
     </tr>
     <tr class="footer">
         <td>&nbsp;</td>
