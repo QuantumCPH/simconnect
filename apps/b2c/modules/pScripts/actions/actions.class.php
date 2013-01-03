@@ -839,7 +839,7 @@ class pScriptsActions extends sfActions
         echo '<br/>';
         echo sfConfig::get('app_email_smtp_password');
         echo '<br/>';
-        echo sfConfig::get('app_email_sender_email', 'support-veranet@zapna.com');
+        echo sfConfig::get('app_email_sender_email_sup');
         echo '<br/>';
         echo sfConfig::get('app_email_sender_name', 'Veranet support');
         
@@ -853,8 +853,8 @@ class pScriptsActions extends sfActions
 
 
 
-	$sender_email = sfConfig::get('app_email_sender_name_sup');
-        $sender_name = sfConfig::get('app_email_sender_email_sup');
+	$sender_email = sfConfig::get('app_email_sender_email_sup');
+        $sender_name = sfConfig::get('app_email_sender_name_sup');
 
         echo '<br/>';
         echo $sender_email ;
