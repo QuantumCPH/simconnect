@@ -15,6 +15,10 @@ generator:
               is_in_store: {name: Agent Module}
               is_reg_share_value_pc: {name: Is Reg. share value %}
               is_extra_payments_share_value_pc: {name: Is extra refill share value %}
+      actions:
+        _list: ~
+        _save: ~
+        _save_and_add: ~
     list:
       display: [name,  price, registration_fee, total_amount, description, initial_balance,  is_in_b2b, enablecountry, billing_products]
       fields:
@@ -24,7 +28,6 @@ generator:
       max_per_page: 100
       object_actions:
         _edit: ~
-        _delete: ~
 
     fields:
       name:     { name: Product Name }
