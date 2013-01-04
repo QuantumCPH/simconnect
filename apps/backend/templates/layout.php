@@ -66,17 +66,17 @@
                     <li>
                     <?php 
                       if($actionName=='paymenthistory' && $modulName=="company"){
-                         echo link_to(__('Receipts'), 'company/paymenthistory', array('class'=>'subSelect'));
+                         echo link_to(__('Refill Receipts'), 'company/paymenthistory', array('class'=>'subSelect'));
                       }else{
-                         echo link_to(__('Receipts'), 'company/paymenthistory');
+                         echo link_to(__('Refill Receipts'), 'company/paymenthistory');
                       }?>
                     </li>
                     <li>
                     <?php 
                       if($actionName=='refill'){
-                         echo link_to(__('Payment'), 'company/refill', array('class'=>'subSelect'));
+                         echo link_to(__('Refill'), 'company/refill', array('class'=>'subSelect'));
                       }else{
-                          echo link_to(__('Payment'), 'company/refill');
+                          echo link_to(__('Refill'), 'company/refill');
                       } ?>
                     </li>
                     <li>
