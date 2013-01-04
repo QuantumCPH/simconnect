@@ -3275,9 +3275,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
             $tilentaCallHistryResult = $telintaObj->callHistory($company, $start_date, $end_date);
 //     var_dump($tilentaCallHistryResult);
 //     die;
-            if ($tilentaCallHistryResult) {
-                var_dump($tilentaCallHistryResult->xdr_list);
-                die;
+            if ($tilentaCallHistryResult) {                
                 foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
 
 
@@ -3298,6 +3296,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
                     $emCalls->setPhoneNumber($xdr->CLD);
                     $emCalls->setCli($xdr->CLI);
                     $emCalls->setConnectTime($xdr->connect_time);
+                    var_dump($xdr->country);
+                    die;
                     $emCalls->setCountry($xdr->country);
                     $country = $xdr->country;
                     $cc = new Criteria();
