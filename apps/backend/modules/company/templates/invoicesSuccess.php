@@ -50,7 +50,7 @@
 <!--        <th>Paid Amount</th>
             <th>To be paid</th>
             <th>Status</th>-->
-            <th>View HTML</th>
+            <th style="text-align: center !important">Invoices</th>
 <!--            <th>Action</th>-->
         </tr>
 <?php
