@@ -459,6 +459,7 @@ class employeeActions extends sfActions {
         $ct = new Criteria();
         $ct->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'a' . $contrymobilenumber);
         $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
+        if(TelintaAccountsPeer::doCount($ct)>0){
         $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
         if (!$ComtelintaObj->terminateAccount($telintaAccount)) {
             $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Callthrough Account');
@@ -469,9 +470,11 @@ class employeeActions extends sfActions {
             }
             return false;
         }
+        }
         $cb = new Criteria();
         $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
         $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
+        if(TelintaAccountsPeer::doCount($cb)>0){
         $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
         if (!$ComtelintaObj->terminateAccount($telintaAccountcb)) {
             $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
@@ -482,7 +485,7 @@ class employeeActions extends sfActions {
             }
             return false;
         }
-        
+        }
         $this->forward404Unless($employee = EmployeePeer::retrieveByPk($request->getParameter('id')), sprintf('Object employee does not exist (%s).', $request->getParameter('id')));
 
 
