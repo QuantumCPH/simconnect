@@ -11,6 +11,6 @@ fields:
     required:
       msg:              The transaction type cannot be left blank.
    
-  transaction_description{transaction_section_id}:
-    required:
-      msg:              The transaction section cannot be left blank.      
+  #transaction_description{transaction_section_id}:
+    #required:
+      #msg:              The transaction section cannot be left blank.      

@@ -457,7 +457,7 @@
                         }
                         ?>
                        </li>-->
-<!--                       <li>
+                      <li>
                            <?php
                         if($actionName=='index' && $modulName=="transactionDescription"){
                           echo link_to(__('Transaction Description'), 'transactionDescription/index',array('class'=>'subSelect'));
@@ -465,7 +465,7 @@
                           echo link_to(__('Transaction Description'), 'transactionDescription/index');
                         }
                        ?>
-                       </li>-->
+                       </li>
                        <li>
                        <?php
                         if($actionName=='indexAll' && $modulName=="company"){

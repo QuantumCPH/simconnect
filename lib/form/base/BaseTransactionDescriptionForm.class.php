@@ -14,8 +14,8 @@ class BaseTransactionDescriptionForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'                     => new sfWidgetFormInputHidden(),
       'title'                  => new sfWidgetFormInput(),
-      'transaction_type_id'    => new sfWidgetFormPropelChoice(array('model' => 'TransactionType', 'add_empty' => true)),
-      'transaction_section_id' => new sfWidgetFormPropelChoice(array('model' => 'TransactionSection', 'add_empty' => true)),
+      'transaction_type_id'    => new sfWidgetFormPropelChoice(array('model' => 'TransactionType', 'add_empty' => false)),
+      'transaction_section_id' => new sfWidgetFormPropelChoice(array('model' => 'TransactionSection', 'add_empty' => false)),
       'b2c'                    => new sfWidgetFormInputCheckbox(),
       'b2b'                    => new sfWidgetFormInputCheckbox(),
     ));
@@ -23,8 +23,8 @@ class BaseTransactionDescriptionForm extends BaseFormPropel
     $this->setValidators(array(
       'id'                     => new sfValidatorPropelChoice(array('model' => 'TransactionDescription', 'column' => 'id', 'required' => false)),
       'title'                  => new sfValidatorString(array('max_length' => 255)),
-      'transaction_type_id'    => new sfValidatorPropelChoice(array('model' => 'TransactionType', 'column' => 'id', 'required' => false)),
-      'transaction_section_id' => new sfValidatorPropelChoice(array('model' => 'TransactionSection', 'column' => 'sectionId', 'required' => false)),
+      'transaction_type_id'    => new sfValidatorPropelChoice(array('model' => 'TransactionType', 'column' => 'id')),
+      'transaction_section_id' => new sfValidatorPropelChoice(array('model' => 'TransactionSection', 'column' => 'sectionId')),
       'b2c'                    => new sfValidatorBoolean(array('required' => false)),
       'b2b'                    => new sfValidatorBoolean(array('required' => false)),
     ));
