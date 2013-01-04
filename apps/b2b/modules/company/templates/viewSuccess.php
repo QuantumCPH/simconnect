@@ -33,7 +33,7 @@
                 </tr>
                 <tr class="headings">
                     <th>
-                       <?php echo __('Number of PCO Lines') ?>:
+                       <?php echo __('Number of Employees') ?>:
                     </th>
                     <td><?php echo $employeesCount; ?></td>
                 </tr>

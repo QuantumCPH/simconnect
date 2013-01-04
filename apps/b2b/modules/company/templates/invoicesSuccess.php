@@ -1,23 +1,15 @@
 <script>
      jQuery(document).ready(function(){
-        jQuery("#start_date").datepicker({dateFormat: 'yy-mm-dd'});
-	jQuery( "#end_date" ).datepicker({dateFormat: 'yy-mm-dd'});
+     //   jQuery("#start_date").datepicker({dateFormat: 'yy-mm-dd'});
+	//jQuery( "#end_date" ).datepicker({dateFormat: 'yy-mm-dd'});
       });
 </script>
 <div id="sf_admin_container">
 	<div id="sf_admin_content">
 		<div id="company-info">		   
                     <form name="frmCompanyInvlices" action="" method="post">
+                        <input type="hidden" name="companyid" value="<?php echo $company->getId();?>" />
 			<fieldset>
-				<div class="form-row">
-				  <label class="required">Company Name:</label>
-				  <div class="content">
-                                    <select name="companyid">  				    
-                                      <option value="<?php echo $company->getId();?>" ><?php echo $company->getName();?></option>
-                                   
-                                    </select>
-				  </div>
-				</div>  
                                 <div class="form-row">
 				  <label class="required">Billing Duration:</label>
 				  <div class="content">

@@ -32,7 +32,7 @@ if($incrment%2==0){
 $incrment++;
 ?>
 <tr  style="background-color:<?php //echo $colorvalue;?>" <?php echo $class;?>>
-    <td><?php echo  $transaction->getCreatedAt(); ?></td>    
+    <td><?php echo  $transaction->getCreatedAt("d-m-Y H:i:s"); ?></td>    
     <td><?php echo __($transaction->getDescription()) ?></td>
     <td align=""><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($transaction->getAmount(),2); $amount_total += $transaction->getAmount(); ?></td>
     <td><a href="<?php echo sfConfig::get('app_b2b_url')."company/ShowReceipt?tid=".$transaction->getId(); ?>" target="_blank"><img src="/sf/sf_admin/images/default_icon.png" title=<?php echo __("view")?> alt=<?php echo __("view")?>></a></td>

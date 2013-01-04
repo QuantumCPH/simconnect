@@ -28,8 +28,13 @@
                                     $cn = new Criteria();
                                     $cn->add(EmployeePeer::ID, $employeeid);
                                     $employees = EmployeePeer::doSelectOne($cn);
+                                    if($account->getAccountType()=="a"):
+                                      $account_type = "CT";
+                                    else:
+                                      $account_type = "CB";  
+                                    endif
                                     ?>
-                            <option value="<?PHP echo $account->getId(); ?>" <?PHP echo ($account->getId() == $iaccount) ? 'selected="selected"' : '' ?>><?php echo $employees->getFirstName() . " -- " . $employees->getMobileNumber(); ?></option>
+                            <option value="<?PHP echo $account->getId(); ?>" <?PHP echo ($account->getId() == $iaccount) ? 'selected="selected"' : '' ?>><?php echo $employees->getFirstName() . " -- ".$account_type." - ". $employees->getMobileNumber(); ?></option>
                                 <?php
                                 }
                             }
@@ -65,7 +70,7 @@ if (isset($empl)) {
         <tr class="headings">
             <th width="10%"   align="left"><?php echo __('Date & Time') ?></th>
             <th  width="10%"   align="left"><?php echo __('Emp Mobile') ?></th>
-            <th  width="10%"  align="left"><?php echo __('Phone Number') ?></th>
+            <th  width="10%"  align="left"><?php echo __('Destination Number') ?></th>
             <th width="10%"   align="left"><?php echo __('Duration') ?></th>
             <th  width="25%"  align="left"><?php echo __('Country') ?></th>
             <th  width="10%"  align="left"><?php echo __('Description') ?></th>
@@ -83,7 +88,7 @@ if (isset($empl)) {
 
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", strtotime($xdr->connect_time)); ?></td>
-                <td><?php echo substr($xdr->account_id,4); ?></td>
+                <td><?php echo substr($xdr->account_id,1); ?></td>
                 <td><?php echo $xdr->CLD; ?></td>
                 <td><?php
                 $callval = $xdr->charged_quantity;
