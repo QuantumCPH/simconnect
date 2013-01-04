@@ -3295,7 +3295,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
                     $emCalls->setChargedQuantity($xdr->charged_quantity);
                     $emCalls->setPhoneNumber($xdr->CLD);
                     $emCalls->setCli($xdr->CLI);
-                    $emCalls->setConnectTime($xdr->connect_time);
+                    $emCalls->setConnectTime($xdr->connect_time);                   
+                    //$emCalls->setCountry($xdr->country);
                     $country = $xdr->country;
                     $cc = new Criteria();
                     $cc->add(CountryPeer::NAME, $country, Criteria::LIKE);
@@ -3309,8 +3310,6 @@ if(($caltype!="IC") && ($caltype!="hc")){
                         $cin->save();
                         $countryid = $cin->getId();
                     }
-                    $emCalls->setCountry($countryid);
-                    
                     $emCalls->setParentTable('employee');
                     $emCalls->setCountryId($countryid);
                     $ce = new Criteria();
