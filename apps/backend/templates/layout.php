@@ -349,7 +349,7 @@
                         }
                         ?>
                        </li>
-                       <li> 
+<!--                       <li> 
                         <?php 
                         if($actionName=='list' && $modulName=="enable_country"){
                           echo link_to(__('Country List'), 'enable_country/index',array('class'=>'subSelect'));
@@ -357,7 +357,7 @@
                           echo link_to(__('Country List'), 'enable_country/index');
                         }
                         ?>
-                       </li>
+                       </li>-->
 <!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="province"){

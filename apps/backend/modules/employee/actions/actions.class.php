@@ -469,19 +469,19 @@ class employeeActions extends sfActions {
             }
             return false;
         }
-//        $cb = new Criteria();
-//        $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
-//        $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
-//        $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-//        if (!$ComtelintaObj->terminateAccount($telintaAccountcb)) {
-//            $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
-//            if (isset($companyid) && $companyid != "") {
-//                $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
-//            } else {
-//                $this->redirect('employee/index?message=edit');
-//            }
-//            return false;
-//        }
+        $cb = new Criteria();
+        $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb' . $contrymobilenumber);
+        $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
+        $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
+        if (!$ComtelintaObj->terminateAccount($telintaAccountcb)) {
+            $this->getUser()->setFlash('messageEdit', 'Employee has not been deleted Sucessfully Error in Call Back Account');
+            if (isset($companyid) && $companyid != "") {
+                $this->redirect('employee/index?company_id=' . $companyid . '&filter=filter');
+            } else {
+                $this->redirect('employee/index?message=edit');
+            }
+            return false;
+        }
         
         $this->forward404Unless($employee = EmployeePeer::retrieveByPk($request->getParameter('id')), sprintf('Object employee does not exist (%s).', $request->getParameter('id')));
 
