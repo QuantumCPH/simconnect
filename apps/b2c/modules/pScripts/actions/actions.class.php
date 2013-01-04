@@ -3255,9 +3255,9 @@ if(($caltype!="IC") && ($caltype!="hc")){
 
         $bill_start_date = date('Y-m-1 00:00:00');
         $start_date = date('Y-m-1 00:00:00');
-        echo $start_date = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
+        $start_date = date('Y-m-d 21:59:59', strtotime("-1 day", strtotime($bill_start_date)));
         echo "<hr/>";
-        echo $end_date = date('Y-m-t 21:59:59');
+        $end_date = date('Y-m-t 21:59:59');
         $bill_end_date = date('Y-m-t 23:59:59');
         
 //        $bill_start_date = date('Y-m-1 00:00:00', strtotime("last month"));
