@@ -55,6 +55,7 @@
 
   <?php $value = object_input_tag($company, 'getPassword', array (
   'size' => 80,
+  'minlength'=>6,
   'control_name' => 'company[password]',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
