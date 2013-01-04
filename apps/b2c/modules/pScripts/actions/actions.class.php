@@ -3276,6 +3276,8 @@ if(($caltype!="IC") && ($caltype!="hc")){
 //     var_dump($tilentaCallHistryResult);
 //     die;
             if ($tilentaCallHistryResult) {
+                var_dump($tilentaCallHistryResult->xdr_list);
+                die;
                 foreach ($tilentaCallHistryResult->xdr_list as $xdr) {
 
 
