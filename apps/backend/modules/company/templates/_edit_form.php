@@ -274,7 +274,7 @@
     </div>
 </div>-->
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[invoice_method_id]', __($labels['company{invoice_method_id}']), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('company{invoice_method_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{invoice_method_id}')): ?>
@@ -287,7 +287,7 @@
        'include_custom' => ' ',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <!--<div class="form-row">
   <?php echo label_for('company[agent_company_id]', __($labels['company{agent_company_id}']), '') ?>
