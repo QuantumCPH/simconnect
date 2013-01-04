@@ -88,7 +88,7 @@ if (isset($empl)) {
 
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", strtotime($xdr->connect_time)); ?></td>
-                <td><?php echo substr($xdr->account_id,1); ?></td>
+                <td><?php echo $xdr->account_id; ?></td>
                 <td><?php echo $xdr->CLD; ?></td>
                 <td><?php
                 $callval = $xdr->charged_quantity;
