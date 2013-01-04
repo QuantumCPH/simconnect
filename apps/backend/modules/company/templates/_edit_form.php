@@ -228,7 +228,7 @@
     </div>
 </div>
 <?php   // 'include_custom' => 'Select Status',   ?>
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[company_size_id]', __($labels['company{company_size_id}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{company_size_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{company_size_id}')): ?>
@@ -241,9 +241,9 @@
   'include_custom' => ' ',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[company_type_id]', __($labels['company{company_type_id}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{company_type_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{company_type_id}')): ?>
@@ -256,7 +256,7 @@
   'include_custom' => ' ',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <!--<div class="form-row">
   <?php echo label_for('company[customer_type_id]', __($labels['company{customer_type_id}']), '') ?>
@@ -288,7 +288,7 @@
     </div>
 </div>
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[agent_company_id]', __($labels['company{agent_company_id}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{agent_company_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{agent_company_id}')): ?>
@@ -301,8 +301,8 @@
    'include_custom' => ' ',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
-<div class="form-row">
+</div>-->
+<!--<div class="form-row">
   <?php echo label_for('company[registration_date]', __($labels['company{registration_date}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{registration_date}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{registration_date}')): ?>
@@ -317,7 +317,7 @@
   'readonly' => 'true',
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <!--<div class="form-row">
   <?php echo label_for('company[created_at]', __($labels['company{created_at}']), 'class="required" ') ?>
@@ -336,7 +336,7 @@
     </div>
 </div>-->
 
-<div class="form-row">
+<!--<div class="form-row">
   <?php echo label_for('company[file_path]', __($labels['company{file_path}']), '') ?>
   <div class="content<?php if ($sf_request->hasError('company{file_path}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('company{file_path}')): ?>
@@ -349,7 +349,7 @@
   'include_remove' => true,
 )); echo $value ? $value : '&nbsp;' ?>
     </div>
-</div>
+</div>-->
 
 <div class="form-row">
   <?php echo label_for('company[comments]', __($labels['company{comments}']), '') ?>
