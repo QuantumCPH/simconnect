@@ -94,7 +94,7 @@ class companyActions extends sfActions {
                 return $this->forward('company', 'list');
             }
 
-            $this->getUser()->setFlash('notice', 'Company has been saved');
+            $this->getUser()->setFlash('notice', 'Company has been Created Sucessfully');
 
             if ($this->getRequestParameter('save_and_add')) {
                 return $this->redirect('company/create');
