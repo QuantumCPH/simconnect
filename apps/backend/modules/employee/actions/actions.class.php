@@ -20,6 +20,7 @@ class employeeActions extends sfActions {
         }
         $c->addAnd(EmployeePeer::STATUS_ID,  3);
         $this->employees = EmployeePeer::doSelect($c);
+        $this->count = EmployeePeer::doCount($c);
     }
 
     public function executeEdit(sfWebRequest $request) {

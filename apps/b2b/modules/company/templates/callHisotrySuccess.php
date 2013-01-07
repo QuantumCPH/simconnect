@@ -179,7 +179,8 @@ if (isset($empl)) {
                 <?php
                 }
             } 
-         }else{   
+         }else{
+           if($cnt > 0){
             foreach ($ems as $emp) {
             $tilentaSubResult = $ComtelintaObj->getSubscription($emp, $fromdate , $todate);
             if (count($tilentaSubResult) > 0) {
@@ -197,6 +198,7 @@ if (isset($empl)) {
                 echo __('There are currently no call records to show.');
             }
            }
+           }  
          }  
         ?>
                     <tr>

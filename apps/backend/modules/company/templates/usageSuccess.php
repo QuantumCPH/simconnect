@@ -64,7 +64,7 @@
         <tr class="headings">
             <th width="20%"   align="left"><?php echo __('Date & Time') ?></th>
             <th  width="10%"   align="left"><?php echo __('Emp Mobile') ?></th>
-            <th  width="20%"  align="left"><?php echo __('Phone Number') ?></th>
+            <th  width="20%"  align="left"><?php echo __('Destination Number') ?></th>
             <th width="10%"   align="left"><?php echo __('Duration') ?></th>
             <th  width="10%"  align="left"><?php echo __('Country') ?></th>
 <!--            <th  width="10%"  align="left"><?php echo __('VAT') ?></th>-->
@@ -168,7 +168,8 @@
                 }
             } 
          }else{   
-             foreach ($ems as $emp) {         
+          if($cnt > 0){
+          foreach ($ems as $emp) {         
             $tilentaSubResult = $ComtelintaObj->getSubscription($emp, $fromdate , $todate);
          //   var_dump($tilentaSubResult);
             if (count($tilentaSubResult) > 0) {
@@ -184,6 +185,7 @@
                 }
             } 
          }
+       }
        }
         ?>
                     

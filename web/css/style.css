@@ -815,3 +815,7 @@ label.error{
     padding: 0px !important;
     margin: 0px !important;
 }
+.cpasswordlink,.cpasswordlink a{
+    color:#2C4073 !important;
+    font-weight: bold;
+}

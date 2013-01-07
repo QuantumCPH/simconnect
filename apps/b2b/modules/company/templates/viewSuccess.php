@@ -47,7 +47,7 @@
                     <th>
                       <?php echo __('Password') ?>:
                     </th>
-                    <td><?php echo $company->getPassword() ?>&nbsp;(<a href="<?php echo sfConfig::get('app_b2b_url');?>company/changePassword">Change</a>)</td>
+                    <td><?php echo $company->getPassword() ?>&nbsp;<span class="cpasswordlink">(<a href="<?php echo sfConfig::get('app_b2b_url');?>company/changePassword">Change</a>)</span></td>
                 </tr>
                 <tr class="headings">
                     <th>

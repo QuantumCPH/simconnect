@@ -1,15 +1,15 @@
 <div id="sf_admin_container" style="clear: both;">
     <table>
-	<tr>
-            <td><h2>Available Balance:</h2></td>
-            <td  align="right"> <h2><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($balance,2); ?></h2></td>
+	<tr id="slogan">
+            <td><h2>Available Balance:</h2><small>(excluding vat)</small></td>
+            <td  align="right" valign="top"> <h2><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($balance,2); ?></h2></td>
 	</tr>
-	<tr><td colspan="2"><small>(excluding vat)</small></td></tr>
-	<tr>
-            <td><h2>Credit Limit:</h2></td>
-            <td align="right"><h2><?php echo sfConfig::get('app_currency_code');?><?php echo  number_format($company->getCreditLimit(),2);  ?></h2></td>
+	<tr><td colspan="2"></td></tr>
+	<tr id="slogan">
+            <td><h2>Credit Limit:</h2><small>(excluding vat)</small></td>
+            <td align="right" valign="top"><h2><?php echo sfConfig::get('app_currency_code');?><?php echo  number_format($company->getCreditLimit(),2);  ?></h2></td>
 	</tr> 
-	<tr><td colspan="2"><small>(excluding vat)</small></td></tr>
+	<tr><td colspan="2"></td></tr>
     </table>
     <h1><?php echo __('Employees') ?></h1>
 </div>
@@ -17,7 +17,7 @@
     <thead>
         <tr class="headings">
             <th align="left"  id="sf_admin_list_th_name"><?php echo __('Name') ?></th>
-            <th align="left"  id="sf_admin_list_th_name"><?php echo __('Balance Consumed') ?></th>
+            <th align="left"  id="sf_admin_list_th_name"><?php echo __('Consumed Balance') ?></th>
             <th align="left"  id="sf_admin_list_th_name"><?php echo __('Created at') ?></th>
         </tr>
     </thead>

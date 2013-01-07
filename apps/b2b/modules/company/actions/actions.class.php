@@ -171,6 +171,7 @@ class companyActions extends sfActions {
         $ces = new Criteria();
         $ces->add(EmployeePeer::COMPANY_ID,$this->company->getId());
         $ces->addAnd(EmployeePeer::STATUS_ID,3);
+        $this->cnt = EmployeePeer::doCount($ces);
         if(EmployeePeer::doCount($ces)>0)  {
              $this->ems = EmployeePeer::doSelect($ces);
         }

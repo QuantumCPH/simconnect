@@ -632,6 +632,12 @@ class companyActions extends sfActions {
        }
        $companies = CompanyPeer::doSelect($cco);
        $this->companies = $companies;
+       
+       $ces = new Criteria();
+       $ces->add(EmployeePeer::COMPANY_ID,$company_id);
+       $ces->addAnd(EmployeePeer::STATUS_ID,3);
+       $this->count = EmployeePeer::doCount($ces);
+       
        $ic->addGroupByColumn(InvoicePeer::BILLING_STARTING_DATE);
        $ic->addDescendingOrderByColumn(InvoicePeer::BILLING_STARTING_DATE);
 

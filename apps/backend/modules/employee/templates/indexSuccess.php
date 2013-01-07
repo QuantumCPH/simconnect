@@ -1,4 +1,14 @@
-<?php use_helper('I18N') ?><?php use_helper('Number') ?><div  id="sf_admin_container">
+<?php use_helper('I18N') ?><?php use_helper('Number') ?>
+<?Php if($companyval!=''){?><div id="sf_admin_container">
+	<div id="sf_admin_content">
+            <a href="<?php echo url_for('employee/index').'?company_id='.$companyval."&filter=filter" ?>" class="external_link" target="_self"><?php echo __('Employees') ?> (<?php echo $count ?>)</a>
+            <a href="<?php echo url_for('company/usage').'?company_id='.$companyval; ?>" class="external_link" target="_self"><?php echo __('Usage') ?></a>
+            <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$companyval.'&filter=filter' ?>" class="external_link" target="_self"><?php echo __('Receipts') ?></a>
+            <a href="<?php echo url_for('company/invoices') . '?company_id=' . $companyval?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
+        </div>
+    </div>
+<?php } ?>
+<div  id="sf_admin_container">
 <h1><?php echo __('My employee List') ?></h1><br />
 <?php if(isset($_REQUEST['message']) && $_REQUEST['message']=="edit"){  ?>
 
@@ -184,6 +194,7 @@
   <div id="sf_admin_header">
 <a target="_self" class="external_link" href="<?php echo url_for('employee/add'); if(isset($companyval) && $companyval!=""){echo "?company_id=".$companyval;} ?>" style="text-decoration:none;">Create New</a>
 
+</div>
 </div>
 
 	

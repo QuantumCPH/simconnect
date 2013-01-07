@@ -1,9 +1,18 @@
 <script>
      jQuery(document).ready(function(){
-        jQuery("#start_date").datepicker({dateFormat: 'yy-mm-dd'});
-	jQuery( "#end_date" ).datepicker({dateFormat: 'yy-mm-dd'});
+//        jQuery("#start_date").datepicker({dateFormat: 'yy-mm-dd'});
+//	jQuery( "#end_date" ).datepicker({dateFormat: 'yy-mm-dd'});
       });
 </script>
+<?Php if($company_id!=''){?><div id="sf_admin_container">
+	<div id="sf_admin_content">
+            <a href="<?php echo url_for('employee/index').'?company_id='.$company_id."&filter=filter" ?>" class="external_link" target="_self"><?php echo __('Employees') ?> (<?php echo $count ?>)</a>
+            <a href="<?php echo url_for('company/usage').'?company_id='.$company_id; ?>" class="external_link" target="_self"><?php echo __('Usage') ?></a>
+            <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$company_id.'&filter=filter' ?>" class="external_link" target="_self"><?php echo __('Receipts') ?></a>
+            <a href="<?php echo url_for('company/invoices') . '?company_id=' . $company_id?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
+        </div>
+    </div>
+<?php } ?>
 <div id="sf_admin_container">
     <div class="sf_admin_filters">
         <h1>Company Invoices</h1>
