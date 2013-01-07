@@ -19,6 +19,13 @@
       });
     });
 </script>
+<div id="sf_admin_container">
+   <?php if ($sf_user->hasFlash('message')): ?>
+    <div class="save-ok">
+      <h2><?php echo __($sf_user->getFlash('message')) ?></h2>
+    </div>
+    <?php endif; ?>
+</div>  
 <div id="sf_admin_container"><h1>Refill</h1></div>
 
 <form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data" action="Refill">

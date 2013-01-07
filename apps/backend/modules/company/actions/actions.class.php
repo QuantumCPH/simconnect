@@ -744,7 +744,8 @@ class companyActions extends sfActions {
                     $this->getUser()->setFlash('message', 'Payment has not received.');
              }
                // emailLib::sendPaymentReceipt($transaction);
-                $this->redirect('company/paymenthistory?company_id='.$company_id);
+              //  $this->redirect('company/paymenthistory?company_id='.$company_id);
+                $this->redirect('company/refill');
          }
     }
 
