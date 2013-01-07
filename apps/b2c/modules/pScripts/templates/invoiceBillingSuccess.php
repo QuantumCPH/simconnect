@@ -102,7 +102,7 @@
 					<td><?php echo $invoice_meta->getDueDate('d M. Y') ?></td>
 				</tr>
 				<tr>
-					<td>Customer Number:</td>
+					<td>Company VAT:</td>
 					<td><?php echo $company_meta->getVatNo() ?></td>
 				</tr>
 

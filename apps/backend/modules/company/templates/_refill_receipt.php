@@ -40,7 +40,7 @@ use_helper('Number');
 
 <table width="600px">
     <tr style="border:0px solid #fff">
-        <td colspan="4" align="right" style="text-align:right; border:0px solid #fff"><img src="<?php echo sfConfig::get("app_web_url").'images/logo.jpg'; ?>" /></td>
+        <td colspan="4" align="left" style="text-align:left; border:0px solid #fff;padding-bottom: 10px;"><img src="<?php echo sfConfig::get("app_web_url").'images/logo.jpg'; ?>" /></td>
     </tr>
 </table>
 <table class="receipt" cellspacing="0" width="600px">
@@ -85,7 +85,7 @@ use_helper('Number');
     </tr>
     <tr class="footer">
         <td>&nbsp;</td>
-        <td><?php echo __('VAT') ?></td>
+        <td><?php echo __('VAT') ?> (<?php echo sfConfig::get('app_vat');?>)</td>
         <td>&nbsp;</td>
         <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($transaction->getAmount() - $transaction->getExtraRefill(), 2) ?></td>
     </tr>
