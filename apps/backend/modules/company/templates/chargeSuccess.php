@@ -30,7 +30,13 @@
 </div>
   
 <?php    }*/   ?>
-
+<div id="sf_admin_container">
+   <?php if ($sf_user->hasFlash('chargemessage')): ?>
+    <div class="save-ok">
+      <h2><?php echo __($sf_user->getFlash('chargemessage')) ?></h2>
+    </div>
+    <?php endif; ?>
+</div>  
 <div id="sf_admin_container"><h1><?php echo __('Charge') ?></h1></div>
 
 <form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data" action="Charge">
@@ -61,7 +67,7 @@
         <tr>
         <td style="padding: 5px;"><?php echo __('Charge:') ?></td>
         <td style="padding: 5px;">
-            <?php echo sfConfig::get('app_currency_code');?><input type="text" id="charge" name="charge" class="" style="width:180px;" /> 
+            <strong><?php echo sfConfig::get('app_currency_code');?></strong><input type="text" id="charge" name="charge" class="" style="width:180px;" /> 
             <label id="validation_result"></label>
         </td>
     </tr>

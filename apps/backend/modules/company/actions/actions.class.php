@@ -603,13 +603,15 @@ class companyActions extends sfActions {
                 $transaction->setTransactionStatusId(3);
                 $transaction->save();
                 $this->getUser()->setFlash('chargemessage', 'B2B Company Charged Successfully');
-                $this->redirect('company/index');
+                $this->redirect('company/charge');
             } else {
 
                 $this->getUser()->setFlash('message', 'Please Select B2B Company');
             }
             //$telintaAddAccount='success=OK&Amount=$amount{$cust_info->{iso_4217}}';
             //parse_str($telintaAddAccount, $success);print_r($success);echo $success['success'];
+            
+            
         }
     }
 
