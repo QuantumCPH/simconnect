@@ -26,26 +26,25 @@
 </div>
 <?php endif; ?>
 <?php  }   ?>
+<?php if ($sf_user->hasFlash('message')): ?>
+<div class="save-ok">
+ <h2><?php echo __($sf_user->getFlash('message')) ?></h2>
+</div>
+<?php endif; ?>
 
 
 <div id="sf_admin_header">
 <a target="_self" class="external_link" href="<?php echo url_for('employee/add'); if(isset($companyval) && $companyval!=""){echo "?company_id=".$companyval;} ?>" style="text-decoration:none;">Create New</a>
 </div>
 <br>
-<?php if ($sf_user->hasFlash('message')): ?>
-<div class="save-ok">
- <?php echo __($sf_user->getFlash('message')) ?>
-</div>
-<?php endif; ?>
 
-<br/>
 <table width="950"  style="border: 1px;" class="sf_admin_list" cellspacing="0">
   <thead>
       <tr class="thheading">
       
-      <th align="left"  id="sf_admin_list_th_name">Company</th>
+      
       <th align="left"  id="sf_admin_list_th_name">First name</th>
-     
+     <th align="left"  id="sf_admin_list_th_name">Company</th>
       <th align="left"  id="sf_admin_list_th_name">product</th>
     
       <th align="left" id="sf_admin_list_th_name">Mobile number</th>
@@ -79,7 +78,9 @@
                   ?>
     <tr <?php echo $class; ?>>
     
-      <td><?php  $comid=$employee->getCompanyId();
+      
+      <td><?php echo htmlspecialchars($employee->getFirstName()); ?></td>
+  <td><?php  $comid=$employee->getCompanyId();
       if(isset($comid) && $comid!=""){
                $c = new Criteria();
       $c->add(CompanyPeer::ID, $employee->getCompanyId());
@@ -88,8 +89,6 @@
               echo $companys->getName();
       }
               ?></td>
-      <td><?php echo htmlspecialchars($employee->getFirstName()); ?></td>
-  
       <td>
           <?php  $pid=$employee->getProductId();
       if(isset($pid) && $pid!=""){
@@ -182,7 +181,7 @@
     <!--  <td align="center">  <?php //$appval=$employee->getIsAppRegistered();  if(isset($appval) && $appval==1){   ?> <img alt="Tick" src="/sf/sf_admin/images/tick.png">  <?php //} ?></td>
        <td><?php //echo $employee->getAppCode() ?></td>
        <td><?php //echo $employee->getPassword() ?></td>-->
-       <td><a href="<?php echo url_for('employee/edit?id='.$employee->getId()) ?>"><img src="/sf/sf_admin/images/edit_icon.png" title="edit" alt="edit"></a><a href="employee/del?id=<?php echo $employee->getId(); if(isset($companyval) && $companyval!=""){echo "&company_id=".$companyval;} ?>" ><img src="/sf/sf_admin/images/delete_icon.png" title="delete" alt="delete"></a>
+       <td><a href="<?php echo url_for('employee/edit?id='.$employee->getId()) ?>"><img src="/sf/sf_admin/images/edit_icon.png" title="edit" alt="edit"></a><a href="javascript:void(0);" onclick="if(confirm('Are you sure to delete employee?')) window.location='employee/del?id=<?php echo $employee->getId(); if(isset($companyval) && $companyval!=""){echo "&company_id=".$companyval;} ?>';"><img src="/sf/sf_admin/images/delete_icon.png" title="delete" alt="delete"></a>
        <a href="<?php echo url_for('employee/view?id='.$employee->getId()) ?>"><img src="/sf/sf_admin/images/default_icon.png" title="view" alt="view"></a>
         <!--    <a href="<?php echo url_for('employee/view?id='.$employee->getId()) ?>"><img src="/sf/sf_admin/images/default_icon.png" title="view" alt="call history"></a>
      -->  </td>
