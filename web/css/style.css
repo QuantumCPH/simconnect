@@ -537,9 +537,15 @@ margin-bottom:10px;
     background:url('../images/login-button-hover.png') no-repeat !important;
 }
 a.forgotUrl {
+    float: right;
+    font-size: 11px;
+    padding-left: 44px;
+}
+a.forgotCancel {
     float: left;
     font-size: 11px;
     padding-left: 44px;
+    margin-top:10px;
 }
 #sf_admin_container h1{
   margin: 8px 0 0 0;

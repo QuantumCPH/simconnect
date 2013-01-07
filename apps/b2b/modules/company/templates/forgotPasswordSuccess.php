@@ -4,6 +4,9 @@
     <?php if ($sf_user->hasFlash('send_password_error_message')): ?>
 	<p style="color: red; margin:6px auto;text-align: center;border:0px !important;"><?php echo $sf_user->getFlash('send_password_error_message') ?></p>
     <?php endif;?>
+    <?php if ($sf_user->hasFlash('send_password_message')): ?>
+	<p style="color: red; margin:6px auto;text-align: center;border:0px !important;"><?php echo $sf_user->getFlash('send_password_message') ?></p>
+    <?php endif;?>
 <div class="bg-img" >
         <div class="left"></div>
         <div class="centerImg"> 
@@ -26,7 +29,7 @@
             </div>     
 
     <div class="clr"></div>
-    <a href="<?php echo sfConfig::get('app_b2b_url');?>company/login" class="forgotUrl">Cancel</a>
+    <a href="<?php echo sfConfig::get('app_b2b_url');?>company/login" class="forgotCancel">Cancel</a>
     </div>
             <div class="right"></div>  
     </div>

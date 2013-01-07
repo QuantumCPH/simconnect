@@ -321,10 +321,12 @@ class companyActions extends sfActions {
                 CARBORDFISH_SMS::Send($mobileNumber, $sms_txt, "SIM Connect");
 
                 $this->getUser()->setFlash('send_password_message', $this->getContext()->getI18N()->__('Your account details have been sent to your email address and mobile number.'));
+                return $this->redirect(sfConfig::get('app_b2b_url') . 'company/login');
             } else {
                 $this->getUser()->setFlash('send_password_error_message', $this->getContext()->getI18N()->__('No agent is registered with this vat number.'));
+                return $this->redirect(sfConfig::get('app_b2b_url') . 'company/forgotPassword');
             }
-            return $this->redirect(sfConfig::get('app_b2b_url') . 'company/login');
+            
         }
     }
 
