@@ -385,7 +385,7 @@
                         }
                         ?>
                         </li>-->
-                       <li>
+<!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="simTypes"){
                           echo link_to(__('Sim Types'), 'simTypes/index',array('class'=>'subSelect'));
@@ -393,7 +393,7 @@
                           echo link_to(__('Sim Types'), 'simTypes/index');
                         }
                         ?>
-                        </li>
+                        </li>-->
 <!--                       <li>
                         <?php 
                         if($actionName=='list' && $modulName=="handsets"){
