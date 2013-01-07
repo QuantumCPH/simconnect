@@ -99,7 +99,7 @@ class companyActions extends sfActions {
             if ($this->getRequestParameter('save_and_add')) {
                 return $this->redirect('company/create');
             } else if ($this->getRequestParameter('save_and_list')) {
-                return $this->redirect('company/list');
+                return $this->redirect('company/edit?id=' . $this->company->getId());
             } else {
                 return $this->redirect('company/edit?id=' . $this->company->getId());
             }
