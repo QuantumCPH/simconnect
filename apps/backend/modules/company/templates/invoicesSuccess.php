@@ -4,7 +4,9 @@
 //	jQuery( "#end_date" ).datepicker({dateFormat: 'yy-mm-dd'});
       });
 </script>
-<?Php if($company_id!=''){?><div id="sf_admin_container">
+<?php 
+
+if($company_id!=''){?><div id="sf_admin_container">
 	<div id="sf_admin_content">
             <a href="<?php echo url_for('employee/index').'?company_id='.$company_id."&filter=filter" ?>" class="external_link" target="_self"><?php echo __('Employees') ?> (<?php echo $count ?>)</a>
             <a href="<?php echo url_for('company/usage').'?company_id='.$company_id; ?>" class="external_link" target="_self"><?php echo __('Usage') ?></a>
@@ -12,6 +14,7 @@
             <a href="<?php echo url_for('company/invoices') . '?company_id=' . $company_id?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
         </div>
     </div>
+
 <?php } ?>
 <div id="sf_admin_container">
     <div class="sf_admin_filters">
@@ -44,7 +47,8 @@
                 </div>
             </fieldset>
             <ul class="sf_admin_actions">
-                <li><input type="submit" name="callhistoryfilter" value="Filter" class="user_external_link" /></li>
+                <li><?php echo button_to(__('reset'), 'company/invoices', 'class=sf_admin_action_reset_filter') ?></li>
+                <li><?php echo submit_tag(__('filter'), 'name=filter class=sf_admin_action_filter') ?></li>
             </ul>
         </form>
     </div>

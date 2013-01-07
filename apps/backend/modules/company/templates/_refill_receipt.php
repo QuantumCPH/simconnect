@@ -65,7 +65,7 @@ use_helper('Number');
         <td><?php echo __('Amount') ?></td>
     </tr>
     <tr>
-        <td><?php echo $transaction->getCreatedAt('m-d-Y') ?></td>
+        <td><?php echo $transaction->getCreatedAt('d-m-Y') ?></td>
         <td>
             <?php
             echo $transaction->getDescription()."(Airtime)";
