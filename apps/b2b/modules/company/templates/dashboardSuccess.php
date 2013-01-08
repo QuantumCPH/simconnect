@@ -41,7 +41,9 @@
             $ct->addAnd(TelintaAccountsPeer::STATUS, 3);
             $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
             $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
-            echo "<b>CT:</b> ";echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
+            echo "<b>CT:</b><span style='margin-left:10px;'>";
+            echo sfConfig::get('app_currency_code');
+            echo number_format($accountInfo->account_info->balance,2);echo "</span>";
             
             ?>
             <br />
@@ -54,7 +56,9 @@
             if($cbAcc>0){
                 $telintaAccount = TelintaAccountsPeer::doSelectOne($ct);
                 $accountInfo = $ComtelintaObj->getAccountInfo($telintaAccount->getIAccount());
-                echo "<b>CB:</b> ";echo sfConfig::get('app_currency_code');echo number_format($accountInfo->account_info->balance,2);
+                echo "<b>CB:</b><span style='margin-left:8px;'>";
+                echo sfConfig::get('app_currency_code');
+                echo number_format($accountInfo->account_info->balance,2);echo "</span>";
             }
             ?>
         </td>
