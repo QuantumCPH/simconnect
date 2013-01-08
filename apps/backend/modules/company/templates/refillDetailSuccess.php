@@ -5,7 +5,7 @@
     </div>
     <?php endif; ?>
 </div>  
-<div id="sf_admin_container"><h1>Refill</h1></div>
+<div id="sf_admin_container"><h1>Refill Detail</h1></div>
 
 <form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data">
     <div id="sf_admin_content">
