@@ -85,12 +85,12 @@
                   <td><?php echo $records;?></td><td><?php echo $invoice->getId();?></td>
                   <td><?php echo date('j M Y',strtotime($invoice->getBillingStartingDate()));?> - <?php echo date('j M Y',strtotime($invoice->getBillingEndingDate()));?></td>
                   <td><?php echo $invoice->getCompany()->getName();?></td>
-                  <td align="right"><?php
+                  <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php
                     echo number_format($invoice->getTotalPayment(),2);
                     $total += $invoice->getTotalPayment();
                 ?>
                     </td>
-                    <td align="right"><?php
+                    <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php
                             echo number_format($invoice->getTotalPayableBalance(),2);
                             $totalpayable += $invoice->getTotalPayableBalance();
                         ?>
