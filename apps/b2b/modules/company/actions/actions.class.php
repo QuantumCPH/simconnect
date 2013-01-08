@@ -281,7 +281,7 @@ class companyActions extends sfActions {
                 $company->setPassword($new_password);
                 $message_body = $this->getContext()->getI18N()->__('Hi') . ' ' . $company->getName() . '!';
                 $message_body .= '<br /><br />';
-                $message_body .= $this->getContext()->getI18N()->__('Your password has been changed. Please use the following information to login to your Moiize agent account.');
+                $message_body .= $this->getContext()->getI18N()->__('Your password has been changed. Please use the following information to login to your SIM Connect B2B account.');
                 $message_body .= '<br /><br />';
                 $message_body .= sprintf($this->getContext()->getI18N()->__('Vat Number: %s'), $company->getVatNo());
                 $message_body .= '<br />';
