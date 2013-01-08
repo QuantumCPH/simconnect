@@ -152,8 +152,7 @@ class employeeActions extends sfActions {
         
   //$contrymobilenumber = $request->getParameter('country_code') . $request->getParameter('mobile_number');
   //$employeMobileNumber=$contrymobilenumber;
-
-
+    
           if (substr($request->getParameter('mobile_number'),0, 1) == 0) {
                $mobileNo = substr($request->getParameter('mobile_number'), 1);
            }else{
@@ -312,8 +311,17 @@ class employeeActions extends sfActions {
                 }}
       
       }
-        $this->getUser()->setFlash('messageAdd', 'Employee has been Add Sucessfully '.(isset($msg)?"and ".$msg:''));
-        $this->redirect('employee/index?message=add');
+        
+        
+        $saveAndAdd = $request->getParameter('save_and_add');
+        if($saveAndAdd!=""){
+            $this->getUser()->setFlash('saveAdd', 'Employee has been Add Sucessfully ');
+            $this->redirect('employee/add');
+         }else{
+            $this->getUser()->setFlash('messageAdd', 'Employee has been Add Sucessfully '.(isset($msg)?"and ".$msg:'')); 
+            $this->redirect('employee/index?message=add'); 
+         }
+        
     }
 
     public function executeUpdateEmployee(sfWebRequest $request) {

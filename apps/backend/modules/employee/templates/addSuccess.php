@@ -1,5 +1,10 @@
 
 <div id="sf_admin_container">
+<?php if ($sf_user->hasFlash('saveAdd')): ?>
+<div class="save-ok">
+    <h2><?php echo __($sf_user->getFlash('saveAdd')) ?></h2>
+</div>
+<?php endif; ?>
 <?php if(isset($_REQUEST['message']) && $_REQUEST['message']!=""){     
     if($_REQUEST['message']=="error"){ ?> 
         <div class="save-ok">
@@ -15,8 +20,8 @@
 <?php if ($sf_user->hasFlash('messageError')): ?>
   <div>
    <span style="color:#FF0000"><?php echo __($sf_user->getFlash('messageError')) ?></span>
-  <div>
-<?php endif; ?><br />
+  </div><br />
+<?php endif; ?>
 <h1>New My employee</h1>
 <form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data" action="saveEmployee">
     <div id="sf_admin_content">
@@ -96,7 +101,7 @@
 
   <li>  <input class="sf_admin_action_list" value="list" type="button" onclick="document.location.href='../employee';" /></li>
   <li><input type="submit" name="save" value="save" class="sf_admin_action_save" /> </li>
-
+  <li><input type="submit" name="save_and_add" value="Save And Add" class="sf_admin_action_save" /> </li>
 </ul>
            
 
@@ -104,6 +109,7 @@
     </div>
 </form>
 </div>
+
 <script type="text/javascript">
     jQuery(function(){
 
