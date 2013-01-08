@@ -503,10 +503,11 @@ class companyActions extends sfActions {
         $companyid = $request->getParameter('company_id');
         $this->companyval = $companyid;
         $c->add(CompanyTransactionPeer::TRANSACTION_STATUS_ID, 3);
-        $c->add(CompanyTransactionPeer::PAYMENTTYPE,10);
+        //$c->add(CompanyTransactionPeer::PAYMENTTYPE,10);
         //$c->add(CompanyTransactionPeer::DESCRIPTION, '%'.$description->getTitle().'%', Criteria::LIKE);
         //$c->add(CompanyTransactionPeer::DESCRIPTION, '%Company Refill%', Criteria::LIKE);
-
+        $c->addJoin(CompanyTransactionPeer::PAYMENTTYPE, TransactionDescriptionPeer::ID, CRITERIA::LEFT_JOIN);
+        $c->addAnd(TransactionDescriptionPeer::TRANSACTION_TYPE_ID,1);
 
         if (isset($companyid) && $companyid != '') {
             $c->addAnd(CompanyTransactionPeer::COMPANY_ID, $companyid);
@@ -692,22 +693,33 @@ class companyActions extends sfActions {
          $c = new Criteria();
          $this->company = CompanyPeer::doSelect($c);
          $ComtelintaObj = new CompanyEmployeActivation();
+         
+         //// get transaction description for refill
+        $ctd = new Criteria();
+        $ctd->add(TransactionDescriptionPeer::TRANSACTION_TYPE_ID,1);  ///// for Refill 
+        $ctd->addAnd(TransactionDescriptionPeer::TRANSACTION_SECTION_ID,1); ///// for Admin
+        $ctd->addAnd(TransactionDescriptionPeer::B2B,1);
+        $this->descriptions = TransactionDescriptionPeer::doSelect($ctd);
+        $descriptions = $this->descriptions;
          if ($request->isMethod('post')) {
              $company_id=$request->getParameter('company_id');
              $invoice_id = $request->getParameter('invoice_id');
              $recharge = $request->getParameter('refill');
              $start_date= $request->getParameter('startdate');
              $refill=$recharge+($recharge* sfConfig::get('app_vat_percentage'));
-
+             $descid        = $request->getParameter('descid');
+            ///Get transaction description
+             $cd = new Criteria();
+             $cd->add(TransactionDescriptionPeer::ID,$descid);
+             $description = TransactionDescriptionPeer::doSelectOne($cd);
              //$recharge=($invoice_id!='')?$recharge:$refill;
-             $company = CompanyPeer::retrieveByPk($company_id);
+             $company = CompanyPeer::retrieveByPk($company_id);             
+//             $ct = new Criteria();
+//             //($invoice_id!='')?$ct->add(TransactionDescriptionPeer::ID, 9):$ct->add(TransactionDescriptionPeer::ID, 10);
+//             $ct->add(TransactionDescriptionPeer::ID, 10);
+//             $description = TransactionDescriptionPeer::doSelectOne($ct);
 
-             $ct = new Criteria();
-             //($invoice_id!='')?$ct->add(TransactionDescriptionPeer::ID, 9):$ct->add(TransactionDescriptionPeer::ID, 10);
-             $ct->add(TransactionDescriptionPeer::ID, 10);
-             $description = TransactionDescriptionPeer::doSelectOne($ct);
-
-             if($ComtelintaObj->recharge($company, $recharge, $description->getTitle()."(Airtime)")){
+             if($ComtelintaObj->recharge($company, $recharge, $description->getTitle())){
                  /*if($invoice_id!=''){
                      $ci = new Criteria();
                      $ci->add(InvoicePeer::ID, $invoice_id);

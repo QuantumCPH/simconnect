@@ -61,12 +61,24 @@
                 </td>
             </tr>-->
             <tr>
+                <td style="padding: 5px;"><?php echo __('Transaction Desc.:') ?></td>
+                <td style="padding: 5px;">
+                    <select name="descid" id="employee_company_id"    class="required"  style="width:190px;">
+
+                    <?php foreach($descriptions as $description){  ?>
+                    <option value="<?php echo $description->getId();   ?>"><?php echo $description->getTitle();   ?></option>
+                    <?php   }  ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td style="padding: 5px;">Payment Received:</td>
                 <td style="padding: 5px;">
                     <b><?php echo sfConfig::get('app_currency_code');?></b>&nbsp;<input type="text" id="refill" name="refill" class="" />
                      <label id="validation_result" class="" ></label>
                 </td>
             </tr>
+            
 <!--            <tr>
                 <td style="padding: 5px;">Payment Received on:</td>
                 <td style="padding: 5px;">

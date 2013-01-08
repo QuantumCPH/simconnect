@@ -217,14 +217,19 @@ class employeeActions extends sfActions {
             $description = "RegFee-".$employee->getMobileNumber();
             $ComtelintaObj->charge($this->companys,$chrageamount,$description);
         }
+        $ct = new Criteria();
+        $ct->add(TransactionDescriptionPeer::TRANSACTION_TYPE_ID,3); //// For registration
+        $ct->addDescendingOrderByColumn(TransactionDescriptionPeer::ID);
+        $transactionDesc = TransactionDescriptionPeer::doSelectOne($ct);
+        
         $withvat = $chrageamount + $chrageamount * sfConfig::get('app_vat_percentage');
         $transaction = new CompanyTransaction();
         $transaction->setAmount(-$withvat);
         $transaction->setCompanyId($request->getParameter('company_id'));
         $transaction->setExtraRefill(-$chrageamount);
         $transaction->setTransactionStatusId(3);
-        $transaction->setPaymenttype(4); //Product Registration Fee
-        $transaction->setDescription('Product Registration Fee');
+        $transaction->setPaymenttype($transactionDesc->getId()); //Product Registration Fee
+        $transaction->setDescription($transactionDesc->getTitle());
         $transaction->save();
 
 
