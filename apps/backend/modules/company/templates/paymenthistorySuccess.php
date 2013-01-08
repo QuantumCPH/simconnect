@@ -25,7 +25,7 @@
     <th><?php echo __('Date') ?></th>
     <th><?php echo __('Company & Name') ?></th>
     <th><?php echo __('Description') ?></th>
-    <th align="right"><?php echo __('Amount') ?> (<?php echo sfConfig::get('app_currency_symbol');?>)</th>
+    <th style="text-align: right;padding-right: 3px;"><?php echo __('Amount') ?></th>
     <th><?php echo __('Reciept') ?></th>
 </tr>
 <?php 
