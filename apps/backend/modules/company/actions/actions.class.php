@@ -692,7 +692,7 @@ class companyActions extends sfActions {
 
          $c = new Criteria();
          $this->company = CompanyPeer::doSelect($c);
-         $ComtelintaObj = new CompanyEmployeActivation();
+         
          
          //// get transaction description for refill
         $ctd = new Criteria();
@@ -701,24 +701,72 @@ class companyActions extends sfActions {
         $ctd->addAnd(TransactionDescriptionPeer::B2B,1);
         $this->descriptions = TransactionDescriptionPeer::doSelect($ctd);
         $descriptions = $this->descriptions;
-         if ($request->isMethod('post')) {
-             $company_id=$request->getParameter('company_id');
-             $invoice_id = $request->getParameter('invoice_id');
-             $recharge = $request->getParameter('refill');
-             $start_date= $request->getParameter('startdate');
-             $refill=$recharge+($recharge* sfConfig::get('app_vat_percentage'));
-             $descid        = $request->getParameter('descid');
-            ///Get transaction description
-             $cd = new Criteria();
-             $cd->add(TransactionDescriptionPeer::ID,$descid);
-             $description = TransactionDescriptionPeer::doSelectOne($cd);
-             //$recharge=($invoice_id!='')?$recharge:$refill;
-             $company = CompanyPeer::retrieveByPk($company_id);             
-//             $ct = new Criteria();
-//             //($invoice_id!='')?$ct->add(TransactionDescriptionPeer::ID, 9):$ct->add(TransactionDescriptionPeer::ID, 10);
-//             $ct->add(TransactionDescriptionPeer::ID, 10);
-//             $description = TransactionDescriptionPeer::doSelectOne($ct);
+         
+    }
 
+    public function executeInvoice($request){
+         $company_id = $request->getParameter('company_id');
+         $c = new Criteria();
+         $c->add(InvoicePeer::COMPANY_ID, $company_id);
+         $c->add(InvoicePeer::INVOICE_STATUS_ID, 2,  Criteria::NOT_EQUAL);
+         $c->addDescendingOrderByColumn(InvoicePeer::INVOICE_NUMBER);
+         $this->invoice = InvoicePeer::doSelect($c);
+
+    }
+
+    public function executeAmount($request){
+         $invoice_id = $request->getParameter('invoice_id');
+         $c = new Criteria();
+         $c->add(InvoicePeer::ID, $invoice_id);
+         $this->amount = InvoicePeer::doSelectOne($c);
+
+    }
+
+        public function executeShowReceipt (sfWebRequest $request) {
+        //call Culture Method For Get Current Set Culture - Against Feature# 6.1 --- 02/28/11
+        changeLanguageCulture::languageCulture($request, $this);
+        $transaction_id = $request->getParameter('tid');
+        $transaction = CompanyTransactionPeer::retrieveByPK($transaction_id);
+
+        $this->renderPartial('company/refill_receipt', array(
+            'company' => CompanyPeer::retrieveByPK($transaction->getCompanyId()),
+            'transaction' => $transaction,
+            'vat' => sfConfig::get('app_vat_percentage'),
+        ));
+
+        return sfView::NONE;
+    }
+    public function executeRefillDetail($request){
+        
+        $company_id   = $request->getParameter('company_id');
+        $invoice_id   = $request->getParameter('invoice_id');
+        $recharge     = $request->getParameter('refill');
+        $vat          = $recharge * sfConfig::get('app_vat_percentage');
+        $refill       = $recharge + $vat;
+        $descid       = $request->getParameter('descid');
+        
+        $cc = new Criteria();
+        $cc->add(CompanyPeer::ID,$company_id);
+        $company = CompanyPeer::doSelectOne($cc);
+        
+        $this->company      = $company;
+        $this->refillAmt    = $recharge;
+        $this->refill       = $refill;
+        
+        $cd = new Criteria();
+        $cd->add(TransactionDescriptionPeer::ID,$descid);
+        $description = TransactionDescriptionPeer::doSelectOne($cd);
+             
+        $this->description  = $description;
+        $this->vat          = $vat;
+        
+        
+        if ($request->isMethod('post') && $request->getParameter('refillsave') !="") { 
+             $ComtelintaObj = new CompanyEmployeActivation();
+             $company = CompanyPeer::retrieveByPk($company_id);   
+             $recharge     = $request->getParameter('refillAmt');
+             $vat          = $recharge * sfConfig::get('app_vat_percentage');
+             $refill       = $recharge + $vat;
              if($ComtelintaObj->recharge($company, $recharge, $description->getTitle())){
                  /*if($invoice_id!=''){
                      $ci = new Criteria();
@@ -762,38 +810,4 @@ class companyActions extends sfActions {
                 $this->redirect('company/refill');
          }
     }
-
-    public function executeInvoice($request){
-         $company_id = $request->getParameter('company_id');
-         $c = new Criteria();
-         $c->add(InvoicePeer::COMPANY_ID, $company_id);
-         $c->add(InvoicePeer::INVOICE_STATUS_ID, 2,  Criteria::NOT_EQUAL);
-         $c->addDescendingOrderByColumn(InvoicePeer::INVOICE_NUMBER);
-         $this->invoice = InvoicePeer::doSelect($c);
-
-    }
-
-    public function executeAmount($request){
-         $invoice_id = $request->getParameter('invoice_id');
-         $c = new Criteria();
-         $c->add(InvoicePeer::ID, $invoice_id);
-         $this->amount = InvoicePeer::doSelectOne($c);
-
-    }
-
-        public function executeShowReceipt (sfWebRequest $request) {
-        //call Culture Method For Get Current Set Culture - Against Feature# 6.1 --- 02/28/11
-        changeLanguageCulture::languageCulture($request, $this);
-        $transaction_id = $request->getParameter('tid');
-        $transaction = CompanyTransactionPeer::retrieveByPK($transaction_id);
-
-        $this->renderPartial('company/refill_receipt', array(
-            'company' => CompanyPeer::retrieveByPK($transaction->getCompanyId()),
-            'transaction' => $transaction,
-            'vat' => sfConfig::get('app_vat_percentage'),
-        ));
-
-        return sfView::NONE;
-    }
-
 }

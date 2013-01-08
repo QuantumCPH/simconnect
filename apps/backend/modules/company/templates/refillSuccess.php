@@ -28,7 +28,7 @@
 </div>  
 <div id="sf_admin_container"><h1>Refill</h1></div>
 
-<form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data" action="Refill">
+<form id="sf_admin_form" name="sf_admin_edit_form" method="post" enctype="multipart/form-data" action="refillDetail">
     <div id="sf_admin_content">
         <table style="padding: 0px;"  id="sf_admin_container" class="tblAlign" cellspacing="0" cellpadding="2" >
             <tr>
@@ -88,7 +88,7 @@
         </table>
         <div id="sf_admin_container">
             <ul class="sf_admin_actions">
-                <li><input type="submit" name="save" value="save" class="sf_admin_action_save" /></li>
+                <li><input type="submit" name="save" value="Next" class="sf_admin_action_save" /></li>
             </ul>
         </div>
     </div>
