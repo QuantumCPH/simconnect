@@ -708,13 +708,20 @@ jQuery(function(){
 			});
                         jQuery('#error').val("error");
                 }else{
-                    if(val.length >7){
+                    if(val.length >8){
 
                     if(val.substr(0, 1)==0){
-                jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+                        jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('Please enter a valid mobile number not starting with 0') ?>').addClass('messageboxerror').fadeTo(900,1);
+			});
+                        jQuery('#error').val("error");
+                }else if(val.length >14){
+                       jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+			{
+			  //add message and change the class of the box and start fading
+			  jQuery(this).html('<?php echo __('Please enter a valid 8 to 14 mobile number') ?>').addClass('messageboxerror').fadeTo(900,1);
 			});
                         jQuery('#error').val("error");
                 }else{
