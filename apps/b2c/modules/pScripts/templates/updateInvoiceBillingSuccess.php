@@ -127,10 +127,10 @@
 			<table width="100%" cellpadding="0" cellspacing="0" class="table">
 				<tr><td colspan="3" class="padbot"><h2>Voice Calls</h2></td></tr>
 				<tr height="40px" class="trbg" bgcolor="#CCCCCC" style="background:#CCCCCC">
-                  <td width="21%" class="border borderleft">Date &amp; Time</td>
-				  <td width="21%" class="border ">Calls</td>
+                  <td width="21%" class="border borderleft">Date &amp; Time</td>				  
 				  <td width="21%" class="border">Destination</td>
 				  <td width="16%" class="border">Duration</td>
+                  <td width="21%" class="border ">Country</td>
 				  <td width="21%" class="border borderright" align="right" style="padding-right:10px">Charged Amount</td>
 			  </tr>
 			<?php
@@ -169,8 +169,7 @@
 				$billings = EmployeeCustomerCallhistoryPeer::doSelect($bc);
 				foreach ($billings as $billing) {?>
 				<tr>
-                    <td><?php echo $billing->getConnectTime();?></td>
-					<td><?php echo $billing->getCountry()->getName()//.'-'.$billing->getCountryId(); ?></td>
+                    <td><?php echo $billing->getConnectTime();?></td>					
 					<td><?php echo $billing->getPhoneNumber(); ?></td>
 						<td>
 							<?php
@@ -178,6 +177,7 @@
 								$call_duration = EmployeeCustomerCallhistoryPeer::getTotalCallDuration($employee, $billing);
 							?>
 							<?php echo $call_duration ?>						</td>
+                    <td><?php echo $billing->getCountry()->getName()//.'-'.$billing->getCountryId(); ?></td>
 						<td align="right" style="padding-right:10px">
 							<?php echo sfConfig::get('app_currency_code')?><?php echo  number_format($calculated_cost, 2) ;
 							$temp_cost = $calculated_cost;
