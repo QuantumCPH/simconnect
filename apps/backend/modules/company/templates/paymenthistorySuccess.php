@@ -7,6 +7,7 @@
             <a href="<?php echo url_for('company/usage').'?company_id='.$companyval; ?>" class="external_link" target="_self"><?php echo __('Usage') ?></a>
             <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$companyval.'&filter=filter' ?>" class="external_link" target="_self"><?php echo __('Receipts') ?></a>
             <a href="<?php echo url_for('company/invoices') . '?company_id=' . $companyval?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
+            <a href="<?php echo url_for('company/view') . '?id=' . $companyval?>" class="external_link" target="_self"><?php echo __('Company Info') ?></a>
         </div>
     </div>
 <?php } ?>

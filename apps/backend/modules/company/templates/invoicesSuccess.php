@@ -12,6 +12,7 @@ if($company_id!=''){?><div id="sf_admin_container">
             <a href="<?php echo url_for('company/usage').'?company_id='.$company_id; ?>" class="external_link" target="_self"><?php echo __('Usage') ?></a>
             <a href="<?php echo url_for('company/paymenthistory').'?company_id='.$company_id.'&filter=filter' ?>" class="external_link" target="_self"><?php echo __('Receipts') ?></a>
             <a href="<?php echo url_for('company/invoices') . '?company_id=' . $company_id?>" class="external_link" target="_self"><?php echo __('Invoices') ?></a>
+            <a href="<?php echo url_for('company/view') . '?id=' . $company_id?>" class="external_link" target="_self"><?php echo __('Company Info') ?></a>
         </div>
     </div>
 
