@@ -101,7 +101,8 @@ class companyActions extends sfActions {
             } else if ($this->getRequestParameter('save_and_list')) {
                 return $this->redirect('company/list');
             } else {
-                return $this->redirect('company/edit?id=' . $this->company->getId());
+                //return $this->redirect('company/edit?id=' . $this->company->getId());
+                return $this->redirect('company/list');
             }
         } else {
             $this->labels = $this->getLabels();
