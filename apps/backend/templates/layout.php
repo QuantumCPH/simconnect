@@ -696,12 +696,12 @@ jQuery(function(){
 
         	jQuery('#employee_mobile_number').blur(function(){
 		//remove all the class add the messagebox classes and start fading
-		jQuery("#msgbox").removeClass().addClass('messagebox').text('<?php echo __('Checking...') ?>').fadeIn("slow");
+		jQuery("#msgboxmn").removeClass().addClass('messagebox').text('<?php echo __('Checking...') ?>').fadeIn("slow");
 		//check the username exists or not from ajax
                 var val=jQuery(this).val();
 
                 if(val==''){
-                    jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+                    jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('Enter Mobile Number') ?>').addClass('messageboxerror').fadeTo(900,1);
@@ -711,14 +711,14 @@ jQuery(function(){
                     if(val.length >8){
 
                     if(val.substr(0, 1)==0){
-                        jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+                        jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('Please enter a valid mobile number not starting with 0') ?>').addClass('messageboxerror').fadeTo(900,1);
 			});
                         jQuery('#error').val("error");
                 }else if(val.length >14){
-                       jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+                       jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('Please enter a valid 8 to 14 mobile number') ?>').addClass('messageboxerror').fadeTo(900,1);
@@ -728,9 +728,9 @@ jQuery(function(){
 
 		jQuery.post("<?php echo sfConfig::get('app_admin_url');?>employee/mobile",{ mobile_no: val} ,function(data)
         {
-		  if(data=='no') //if username not avaiable
+		  if(data=='yes') //if username not avaiable
 		  {
-		  	jQuery("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+		  	jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('This Mobile No Already exists') ?>').addClass('messageboxerror').fadeTo(900,1);
@@ -738,7 +738,7 @@ jQuery(function(){
           }
 		  else
 		  {
-		  	jQuery("#msgbox").fadeTo(200,0.1,function()  //start fading the messagebox
+		  	jQuery("#msgboxmn").fadeTo(200,0.1,function()  //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
 			  jQuery(this).html('<?php echo __('Mobile No is available') ?>').addClass('messageboxok').fadeTo(900,1);

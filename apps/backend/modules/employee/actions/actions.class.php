@@ -606,15 +606,17 @@ class employeeActions extends sfActions {
 	{
 
         $c = new Criteria();
-        $mobile_no=$_POST['mobile_no'];
+        $mobile_no=@$_POST['mobile_no'];
         $c->add(EmployeePeer::MOBILE_NUMBER,  $mobile_no);
         $c->add(EmployeePeer::STATUS_ID,3);
-            if(EmployeePeer::doSelectOne($c)){
+        $cntemp =  EmployeePeer::doCount($c);
+            if($cntemp > 0){
 
-                echo "no";
+                echo "yes";
             }else{
-               echo "yes";
+               echo "no";
             }
+            return sfView::NONE;
         }
    
    public function executeGetUniqueIds(sfWebRequest $request) {
