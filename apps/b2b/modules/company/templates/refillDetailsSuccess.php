@@ -45,3 +45,4 @@
     <input type="hidden" name="payer_email" value="<?php echo $company->getEmail();?>"  />
     <input type="hidden" name="rm" value="2" />        
 </form>
+
