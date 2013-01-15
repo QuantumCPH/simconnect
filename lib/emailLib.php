@@ -1822,6 +1822,70 @@ Uniuqe Id " . $uniqueid . " has issue while assigning on " . $customer->getMobil
         endif;
         //-----------------------------------------
     }
+    
+    public static function sendB2bRefill(CompanyTransactionPeer $transaction) {
+         
+        
+         $company = CompanyPeer::retrieveByPK($transaction->getComapnyId());
+        
+         sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
+         $message_body = get_partial('company/company_refill_receipt', array(
+                    'company' => $company,
+                    'transaction' => $transaction
+                    ));
+
+         $company = CompanyPeer::retrieveByPK($transaction->getComapnyId());
+         $subject = __('Comapny Refill');
+         $recepient_email = trim($company->getEmail());
+         $recepient_name = sprintf('%s', $company->getName());
+         $company_id = trim($company->getId());         
+        
+        //Support Information
+        $sender_email_ok  = sfConfig::get('app_email_sender_email_ok');
+        $sender_name_ok   = sfConfig::get('app_email_sender_name_ok');
+        $sender_email_cdu = sfConfig::get('app_email_sender_email_cdu');
+        $sender_name_cdu  = sfConfig::get('app_email_sender_name_cdu');
+        $sender_email_rs  = sfConfig::get('app_email_sender_email_rs');
+        $sender_name_rs   = sfConfig::get('app_email_sender_name_rs');      
+        
+        //-----------------------------------------
+        //--------------Sent The Email To Support
+        if(trim($sender_email_rs)!=""):
+            $email4 = new EmailQueue();
+            $email4->setSubject($subject);
+            $email4->setReceipientName($sender_name_rs);
+            $email4->setReceipientEmail($sender_email_rs);
+            $email4->setCutomerId($company_id);
+            $email4->setEmailType('Company Refill');
+            $email4->setMessage($message_body);
+            $email4->save();
+        endif;
+        //-----------------------------------------
+        //--------------Sent The Email To Support
+        if(trim($sender_email_ok)!=""):
+            $email4 = new EmailQueue();
+            $email4->setSubject($subject);
+            $email4->setReceipientName($sender_name_ok);
+            $email4->setReceipientEmail($sender_email_ok);
+            $email4->setCutomerId($company_id);
+            $email4->setEmailType('Company Refill');
+            $email4->setMessage($message_body);
+            $email4->save();
+        endif;
+        //-----------------------------------------
+        //--------------Sent The Email To Support
+        if(trim($sender_email_cdu)!=""):
+            $email4 = new EmailQueue();
+            $email4->setSubject($subject);
+            $email4->setReceipientName($sender_name_cdu);
+            $email4->setReceipientEmail($sender_email_cdu);
+            $email4->setCutomerId($company_id);
+            $email4->setEmailType('Company Refill');
+            $email4->setMessage($message_body);
+            $email4->save();
+        endif;
+        //-----------------------------------------
+    }
 }
 
 ?>

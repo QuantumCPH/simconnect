@@ -409,4 +409,75 @@ class companyActions extends sfActions {
        $this->invoiceHtml = $invoice->getInvoiceHtml();
        $this->setLayout(false);
    }
+   
+   public function executeRefill(sfRequest $request){
+       
+   }
+   public function executeRefillDetails(sfRequest $request){
+       $refillamount = $request->getParameter('refillamount');
+       $vat          = $refillamount * sfConfig::get('app_vat_percentage');
+       $refill       = $refillamount + $vat;
+       
+       $this->refillamount = $refillamount;
+       $this->vat          = $vat;
+       $this->refilltotal  = $refill;
+   }
+   
+   public function executeRefillTransaction(sfRequest $request){
+       $refillamount = $request->getParameter('refillamount');
+       $vat          = $request->getParameter('vat');
+       $refilltotal  = $request->getParameter('refilltotal');
+       $company      = CompanyPeer::retrieveByPK($this->getUser()->getAttribute('company_id', '', 'companysession'));
+       
+       //// Get transaction description 
+        $cd = new Criteria();
+        $cd->add(TransactionDescriptionPeer::ID,10);  /// Company Refill
+        $description = TransactionDescriptionPeer::doSelectOne($cd);
+        
+       //// Generate company transaction 
+        $cc = new CompanyTransaction();
+        $cc->setCompanyId($company->getId());
+        $cc->setAmount($refilltotal);
+        $cc->setExtraRefill($refillamount);
+        $cc->setPaymentType($description->getId());//Refill Transaction Description id
+        $cc->setDescription($description->getTitle());
+        $cc->setTransactionStatusId(2);
+        $cc->save();
+        $order_id     = $cc->getId();
+        $amount       = $refilltotal;
+        
+        $callbackparameters = $order_id . '-' . $amount . '-' . $vat . '-' . $company->getId();   ///// transaction id, amount(without vat), vat, companyid
+        $notify_url = sfConfig::get('app_customer_url') . 'pScripts/b2bcalbackrefill?p=' . $callbackparameters;
+        $cancel_url = sfConfig::get('app_b2b_url') . 'company/cancelpayment';
+        $return_url = sfConfig::get('app_b2b_url') . 'company/thanks';
+        $email2 = new DibsCall();
+        $email2->setCallurl("On submit: ".$notify_url);
+        $email2->save();  
+        $querystring = "";
+        if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {            
+            $item_name = "Refill";
+            //loop for posted values and append to querystring
+            foreach ($_POST as $key => $value) {
+                $value = urlencode(stripslashes($value));
+                $querystring .= "$key=$value&";
+            }
+
+            $querystring .= "item_name=" . urlencode($item_name) . "&";
+            $querystring .= "return=" . urldecode($return_url) . "&";
+            $querystring .= "cancel_return=" . urldecode($cancel_url) . "&";
+            $querystring .= "notify_url=" . urldecode($notify_url);
+            
+            $payment = new Payment();
+            $payment->SendPayment($querystring);
+            
+        }
+   }
+   public function executeCancelpayment(sfRequest $request){
+       
+   }
+   
+   public function executeThanks(sfRequest $request){
+       
+   }
+   
 }

@@ -8,17 +8,21 @@
  */
 class Payment {
     //put your code here
-    private static $PaypalEmail   = 'paypal@example.com'; //'';  //'paypal@example.com';
-    private static $environment   = "sandbox";      //live             //sandbox
+    
+    
     public static function SendPayment($querystring){
-         $querystring = "?business=".urlencode(self::$PaypalEmail)."&".$querystring;
-            if(self::$environment=='live'){
-            $paypalUrl = 'https://www.paypal.com/cgi-bin/webscr';
-        }else{
-            $paypalUrl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-        }
+        $environment = sfConfig::get("app_environment");
+        $paypalEmail = sfConfig::get("app_paypal_email");
+        $paypalEmail = "paypal@example.com";
+        $querystring = "?business=".urlencode($paypalEmail)."&".$querystring;
         
-        //die($paypalUrl.$querystring);
+        if($environment=='live'){
+            $paypalUrl = 'https://www.paypal.com/cgi-bin/webscr';
+         }else{
+            $paypalUrl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+         }
+        
+       // die($paypalUrl.$querystring);
         header("Location:".$paypalUrl.$querystring);
         exit();
     }

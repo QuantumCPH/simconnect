@@ -4051,4 +4051,36 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $this->setLayout(false);
     }
     
+    public function executeB2bcalbackrefill(sfWebRequest $request)
+    {
+        $Parameters = $request->getURI();
+        
+        $email2 = new DibsCall();
+        $email2->setCallurl($Parameters);
+        $email2->save();
+        
+        $callbackparameters = $request->getParameter("p");
+        $params = explode("-",$callbackparameters);
+        
+        $order_id  = $params[0];
+        $amount    = $params[1];
+        $vat       = $params[2];
+        $companyid = $params[3];
+                
+        $cct = new Criteria();
+        $cct->add(CompanyTransactionPeer::ID,$order_id);
+        $cct->addAnd(CompanyTransactionPeer::TRANSACTION_STATUS_ID,2);
+        $transaction = CompanyTransactionPeer::doSelectOne($cct);
+        
+        $company = CompanyPeer::retrieveByPK($companyid);
+        $description = $transaction->getDescription();
+        
+        $ComtelintaObj = new CompanyEmployeActivation();
+        
+        if($ComtelintaObj->recharge($company, $amount, $description)){
+            $transaction->setTransactionStatusId(3);
+            $transaction->save();
+            emailLib::sendB2bRefill($transaction);
+        }
+    }
 }
