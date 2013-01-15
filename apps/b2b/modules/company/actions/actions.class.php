@@ -418,6 +418,8 @@ class companyActions extends sfActions {
        $vat          = $refillamount * sfConfig::get('app_vat_percentage');
        $refill       = $refillamount + $vat;
        
+       $company      = CompanyPeer::retrieveByPK($this->getUser()->getAttribute('company_id', '', 'companysession'));
+       $this->company = $company;
        $this->refillamount = $refillamount;
        $this->vat          = $vat;
        $this->refilltotal  = $refill;
@@ -461,7 +463,8 @@ class companyActions extends sfActions {
                 $value = urlencode(stripslashes($value));
                 $querystring .= "$key=$value&";
             }
-
+            $querystring .= "cmd=_xclick&no_note=1&lc=UK¤cy_code=GBP&";
+            $querystring .= "item_number=". $order_id . "&";
             $querystring .= "item_name=" . urlencode($item_name) . "&";
             $querystring .= "return=" . urldecode($return_url) . "&";
             $querystring .= "cancel_return=" . urldecode($cancel_url) . "&";

@@ -10,7 +10,7 @@
     <table width="100%" cellspacing="0" cellpadding="2" class="tblAlign">     
        <tr>
            <td class="tdcss">
-               <p>Payment canceled.</p>
+               <p>Account refilled.</p>
            </td>           
        </tr>       
     </table>

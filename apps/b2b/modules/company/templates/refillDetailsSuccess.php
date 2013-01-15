@@ -34,4 +34,14 @@
                     <input type="submit" name="submit" value="Refill" />
                 </div></td></tr>
     </table>
+    <input type="hidden" name="amount" id="total" value="<?php echo number_format($refilltotal,2);?>" />
+    <input type="hidden" name="cmd" value="_xclick" /> 
+    <input type="hidden" name="no_note" value="1" />
+    <input type="hidden" name="lc" value="UK" />
+    <input type="hidden" name="currency_code" value="<?php echo sfConfig::get('app_currency_symbol')?>" />
+    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+    <input type="hidden" name="firstName" value="<?php //echo $company->getCustomer()->getFirstName();?>"  />
+    <input type="hidden" name="lastName" value="<?php //echo $order->getCustomer()->getLastName();?>"  />
+    <input type="hidden" name="payer_email" value="<?php echo $company->getEmail();?>"  />
+    <input type="hidden" name="rm" value="2" />        
 </form>
