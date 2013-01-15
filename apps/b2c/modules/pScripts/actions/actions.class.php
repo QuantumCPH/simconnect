@@ -4080,7 +4080,9 @@ if(($caltype!="IC") && ($caltype!="hc")){
         if($ComtelintaObj->recharge($company, $amount, $description)){
             $transaction->setTransactionStatusId(3);
             $transaction->save();
+            
             emailLib::sendB2bRefill($transaction);
         }
+        $this->setLayout(false);
     }
 }

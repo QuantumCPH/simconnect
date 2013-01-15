@@ -1823,18 +1823,17 @@ Uniuqe Id " . $uniqueid . " has issue while assigning on " . $customer->getMobil
         //-----------------------------------------
     }
     
-    public static function sendB2bRefill(CompanyTransactionPeer $transaction) {
+    public static function sendB2bRefill(CompanyTransaction $transaction) {
          
         
-         $company = CompanyPeer::retrieveByPK($transaction->getComapnyId());
+         $company = CompanyPeer::retrieveByPK($transaction->getCompanyId());
         
          sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
          $message_body = get_partial('pScripts/company_refill_receipt', array(
                     'company' => $company,
                     'transaction' => $transaction
                     ));
-
-         $company = CompanyPeer::retrieveByPK($transaction->getComapnyId());
+         
          $subject = __('Comapny Refill');
          $recepient_email = trim($company->getEmail());
          $recepient_name = sprintf('%s', $company->getName());
