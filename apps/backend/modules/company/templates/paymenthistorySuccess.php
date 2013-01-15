@@ -24,7 +24,7 @@
 <table width="75%" cellspacing="0" cellpadding="2" class="tblAlign">
 <tr class="headings">
     <th><?php echo __('Date') ?></th>
-    <th><?php echo __('Company & Name') ?></th>
+    <th><?php echo __('Company Name') ?></th>
     <th><?php echo __('Description') ?></th>
     <th style="text-align: right;padding-right: 3px;"><?php echo __('Amount') ?></th>
     <th><?php echo __('Reciept') ?></th>
