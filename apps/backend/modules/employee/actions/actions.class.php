@@ -611,8 +611,7 @@ class employeeActions extends sfActions {
         $c->add(EmployeePeer::STATUS_ID,3);
         $cntemp =  EmployeePeer::doCount($c);
             if($cntemp > 0){
-
-                echo "yes";
+               echo "yes";
             }else{
                echo "no";
             }
