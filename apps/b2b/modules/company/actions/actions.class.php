@@ -475,7 +475,7 @@ class companyActions extends sfActions {
             
         }
    }
-   public function executeCancelpayment(sfRequest $request){
+   public function executeCancelPayment(sfRequest $request){
        
    }
    
