@@ -1829,7 +1829,7 @@ Uniuqe Id " . $uniqueid . " has issue while assigning on " . $customer->getMobil
          $company = CompanyPeer::retrieveByPK($transaction->getComapnyId());
         
          sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
-         $message_body = get_partial('company_refill_receipt', array(
+         $message_body = get_partial('pScripts/company_refill_receipt', array(
                     'company' => $company,
                     'transaction' => $transaction
                     ));
