@@ -83,7 +83,7 @@
                         }
                         ?>
                     </li>
-                    <li class="dropdown">
+<!--                    <li class="dropdown">
                         <?php
                         if ($modulName == "company" && $actionName == 'refill') {
                         ?>
@@ -95,7 +95,7 @@
                         <?php  
                         }
                         ?>
-                    </li>
+                    </li>-->
                     <li class="dropdown"><?php
                         if ($modulName == "company" && $actionName == 'callHisotry') {
                         ?>
