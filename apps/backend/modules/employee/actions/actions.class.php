@@ -609,8 +609,8 @@ class employeeActions extends sfActions {
         $mobile_no=@$_POST['mobile_no'];
         $c->add(EmployeePeer::MOBILE_NUMBER,  $mobile_no);
         $c->add(EmployeePeer::STATUS_ID,3);
-      echo  $cntemp =  EmployeePeer::doCount($c);
-            if($cntemp > 0){
+        //$cntemp =  EmployeePeer::doCount($c);
+            if(EmployeePeer::doSelectOne($c)){
                echo "yes";
             }else{
                echo "no";
