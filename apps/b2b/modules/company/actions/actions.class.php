@@ -450,7 +450,7 @@ class companyActions extends sfActions {
         
         $callbackparameters = $order_id . '-' . $amount . '-' . $vat . '-' . $company->getId();   ///// transaction id, amount(without vat), vat, companyid
         $notify_url = sfConfig::get('app_customer_url') . 'pScripts/b2bcalbackrefill?p=' . $callbackparameters;
-        $cancel_url = sfConfig::get('app_b2b_url') . 'company/cancelpayment';
+        $cancel_url = sfConfig::get('app_b2b_url') . 'company/cancelPayment';
         $return_url = sfConfig::get('app_b2b_url') . 'company/thanks';
         $email2 = new DibsCall();
         $email2->setCallurl("On submit: ".$notify_url);
