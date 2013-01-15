@@ -1848,6 +1848,18 @@ Uniuqe Id " . $uniqueid . " has issue while assigning on " . $customer->getMobil
         $sender_name_rs   = sfConfig::get('app_email_sender_name_rs');      
         
         //-----------------------------------------
+        //--------------Sent The Email To Company
+        if(trim($recepient_email)!=""):
+            $email4 = new EmailQueue();
+            $email4->setSubject($subject);
+            $email4->setReceipientName($recepient_name);
+            $email4->setReceipientEmail($recepient_email);
+            $email4->setCutomerId($company_id);
+            $email4->setEmailType('Company Refill');
+            $email4->setMessage($message_body);
+            $email4->save();
+        endif;
+        //-----------------------------------------
         //--------------Sent The Email To Support
         if(trim($sender_email_rs)!=""):
             $email4 = new EmailQueue();
