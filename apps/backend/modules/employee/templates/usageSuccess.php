@@ -31,7 +31,7 @@ foreach ($callHistory->xdr_list as $xdr) {
                 <td><?php echo $xdr->CLD; ?></td>
                 <td><?php  echo  date('i:s',$xdr->charged_quantity); ?></td>
                 <td><?php echo $xdr->country; ?></td>
-                <td><?php echo $xdr->description; ?></td>
+<!--                <td><?php echo $xdr->description; ?></td>-->
 <!--                <td><?php echo number_format($xdr->charged_amount / 4, 2); ?></td>-->
                 <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdr->charged_amount, 2);
             $amount_total+= $xdr->charged_amount; ?> </td>
@@ -66,7 +66,7 @@ foreach ($callHistory->xdr_list as $xdr) {
                 <td><?php echo $xdrcb->CLD; ?></td>
                 <td><?php  echo  date('i:s',$xdrcb->charged_quantity); ?></td>
                 <td><?php echo $xdrcb->country; ?></td>
-                <td><?php echo $xdrcb->description; ?></td>
+<!--                <td><?php echo $xdrcb->description; ?></td>-->
                 <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdrcb->charged_amount, 2);
             $amount_total+= $xdrcb->charged_amount; ?></td>
                 <td><?php echo $xdrcb->account_id; ?></td>
