@@ -50,7 +50,7 @@ use_helper('Number');
     </tr>
     <tr> 
         <td colspan="4" class="payer_summary">
-            <?php echo __('Vat Number') ?>:   <?php echo $company->getVatNo(); ?><br/>
+            <?php echo __('VAT Number') ?>:   <?php echo $company->getVatNo(); ?><br/>
 <!--            <?php echo __('Invoice Number') ?>   <?php echo $transaction->getInvoiceNo(); ?><br/>-->
             <?php echo sprintf("%s", $company->getName()) ?><br/>
             <?php echo $company->getAddress() ?><br/>
