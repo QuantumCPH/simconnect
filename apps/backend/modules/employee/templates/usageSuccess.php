@@ -29,11 +29,12 @@ foreach ($callHistory->xdr_list as $xdr) {
             <tr>
                 <td><?php echo $xdr->connect_time; ?></td>
                 <td><?php echo $xdr->CLD; ?></td>
-                <td><?php echo number_format($xdr->charged_quantity / 60, 2); ?></td>
+                <td><?php  echo  date('i:s',$xdr->charged_quantity); ?></td>
                 <td><?php echo $xdr->country; ?></td>
+                <td><?php echo $xdr->description; ?></td>
 <!--                <td><?php echo number_format($xdr->charged_amount / 4, 2); ?></td>-->
                 <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdr->charged_amount, 2);
-            $amount_total+= number_format($xdr->charged_amount, 2); ?> </td>
+            $amount_total+= $xdr->charged_amount; ?> </td>
                 <td><?php echo $xdr->account_id; ?></td>
 <!--                <td><?php
             $typecall = substr($xdr->account_id, 0, 1);
@@ -63,10 +64,11 @@ foreach ($callHistory->xdr_list as $xdr) {
             <tr>
                 <td><?php echo $xdrcb->connect_time; ?></td>
                 <td><?php echo $xdrcb->CLD; ?></td>
-                <td><?php echo number_format($xdrcb->charged_quantity / 60, 2); ?></td>
+                <td><?php  echo  date('i:s',$xdrcb->charged_quantity); ?></td>
                 <td><?php echo $xdrcb->country; ?></td>
-                <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdrcb->charged_amount, 2);
-            $amount_total+= number_format($xdrcb->charged_amount, 2); ?> </td>
+                <td><?php echo $xdrcb->description; ?></td>
+                <td align="right"><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdrcb->charged_amount, 2);
+            $amount_total+= $xdrcb->charged_amount; ?></td>
                 <td><?php echo $xdrcb->account_id; ?></td>
 <!--                <td><?php
             $typecall = substr($xdrcb->account_id, 0, 1);
