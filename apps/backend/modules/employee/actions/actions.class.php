@@ -579,26 +579,28 @@ class employeeActions extends sfActions {
             }
         }
         
-       /*$cb = new Criteria();
+        $cb = new Criteria();
         $cb->add(TelintaAccountsPeer::ACCOUNT_TITLE, 'cb'.$mobilenumber);
         $cb->addAnd(TelintaAccountsPeer::STATUS, 3);
         $telintaAccountcb = TelintaAccountsPeer::doSelectOne($cb);
-        $this->callHistorycb = $ComtelintaObj->getAccountCallHistory($telintaAccountcb->getIAccount(), $fromdate, $todate);
-        
-        $getvoipInfo = new Criteria();
-        $getvoipInfo->add(SeVoipNumberPeer::CUSTOMER_ID, $contrymobilenumber);
-        $getvoipInfo->addAnd(SeVoipNumberPeer::IS_ASSIGNED, 1);
-        $getvoipInfos = SeVoipNumberPeer::doSelectOne($getvoipInfo); //->getId();
-        if (isset($getvoipInfos)) {
-            $voipnumbers = $getvoipInfos->getNumber();
-            $voipnumbers = substr($voipnumbers, 2);
-
-            $res = new Criteria();
-            $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $voipnumbers);
-            $res->addAnd(TelintaAccountsPeer::STATUS, 3);
-            $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
-            $this->callHistoryres = $ComtelintaObj->getAccountCallHistory($telintaAccountres->getIAccount(), $fromdate, $todate);
-        }*/
+        $this->cntcb = TelintaAccountsPeer::doSelectOne($cb);
+        if($this->cntcb > 0):
+           $this->callHistorycb = $ComtelintaObj->getAccountCallHistory($telintaAccountcb->getIAccount(), $fromdate, $todate);
+        endif;
+//        $getvoipInfo = new Criteria();
+//        $getvoipInfo->add(SeVoipNumberPeer::CUSTOMER_ID, $contrymobilenumber);
+//        $getvoipInfo->addAnd(SeVoipNumberPeer::IS_ASSIGNED, 1);
+//        $getvoipInfos = SeVoipNumberPeer::doSelectOne($getvoipInfo); //->getId();
+//        if (isset($getvoipInfos)) {
+//            $voipnumbers = $getvoipInfos->getNumber();
+//            $voipnumbers = substr($voipnumbers, 2);
+//
+//            $res = new Criteria();
+//            $res->add(TelintaAccountsPeer::ACCOUNT_TITLE, $voipnumbers);
+//            $res->addAnd(TelintaAccountsPeer::STATUS, 3);
+//            $telintaAccountres = TelintaAccountsPeer::doSelectOne($res);
+//            $this->callHistoryres = $ComtelintaObj->getAccountCallHistory($telintaAccountres->getIAccount(), $fromdate, $todate);
+//        }
        
     }
 
