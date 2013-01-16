@@ -55,7 +55,7 @@ foreach ($callHistory->xdr_list as $xdr) {
 <?php
             $callRecords = 1;
         }
-
+      if($cntcb > 0):
         foreach ($callHistorycb->xdr_list as $xdrcb) {
         ?>
 
@@ -87,6 +87,7 @@ foreach ($callHistory->xdr_list as $xdr) {
 <?php
             $callRecordscb = 1;
         }
+      endif;  
 
 /*
 $regtype=$employee->getRegistrationType();
