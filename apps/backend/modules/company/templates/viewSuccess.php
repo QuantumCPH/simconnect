@@ -33,7 +33,7 @@
                                 <div class="form-row">
 				  <label class="required"><?php echo  __('Credit Limit:') ?><br /><small>(excluding vat)</small></label>
 				  <div class="content">
-				  	<?php echo number_format($company->getCreditLimit(),2); ?>
+				  	<?php echo sfConfig::get('app_currency_code');echo number_format($company->getCreditLimit(),2); ?>
                                       
 				  </div>
 				</div>
