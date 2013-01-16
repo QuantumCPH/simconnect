@@ -694,7 +694,7 @@ jQuery(function(){
                 }
 	});
 
-        	jQuery('#employee_mobile_number').blur(function(){
+        	jQuery('#employee_mobile_number').focusout(function(){
 		//remove all the class add the messagebox classes and start fading
 		jQuery("#msgboxmn").removeClass().addClass('messagebox').text('<?php echo __('Checking...') ?>').fadeIn("slow");
 		//check the username exists or not from ajax
