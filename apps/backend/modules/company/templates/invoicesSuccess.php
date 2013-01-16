@@ -22,6 +22,7 @@ if($company_id!=''){?><div id="sf_admin_container">
         <h1>Company Invoices</h1>
         <form name="frmCompanyInvlices" action="" method="post">
             <fieldset>
+              <?php if($company_id==""):?>
                 <div class="form-row">
                     <label>Company Name:</label>
                     <div class="content">
@@ -33,6 +34,7 @@ if($company_id!=''){?><div id="sf_admin_container">
                         </select>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="form-row">
                     <label>Billing Duration:</label>
                     <div class="content">
