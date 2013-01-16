@@ -4074,7 +4074,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
         
         $company = CompanyPeer::retrieveByPK($companyid);
         $description = $transaction->getDescription();
-        
+        $amount      = $transaction->getExtraRefill();
         $ComtelintaObj = new CompanyEmployeActivation();
         
         if($ComtelintaObj->recharge($company, $amount, $description)){
