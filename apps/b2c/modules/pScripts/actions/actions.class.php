@@ -3992,7 +3992,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
 
         $ec = new Criteria();
         $ec->add(EmployeePeer::COMPANY_ID, $company->getId());
-        $ec->add(EmployeePeer::STATUS_ID, 3);
+       // $ec->add(EmployeePeer::STATUS_ID, 3);
         $this->employees = EmployeePeer::doSelect($ec);
 
         $billing_details = array();
