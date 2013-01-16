@@ -47,7 +47,7 @@ foreach ($companies as $company):
         <td><input type="checkbox" name="company_id[]" class="case"  value="<?PHP echo $company->getId();?>" checked="checked"></td>
         <td><?php echo $company->getName(); ?></td>
         <td><?php echo $company->getVatNo(); ?></td>
-          <td><?php echo $company->getCreditLimit(); ?></td>
+          <td><?php echo sfConfig::get('app_currency_code')?><?php echo number_format($company->getCreditLimit(),2); ?></td>
         <td><?php echo $company->getContactName();?></td>
         <td><?php echo $company->getHeadPhoneNumber(); ?></td>
     </tr>
