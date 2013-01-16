@@ -64,10 +64,10 @@ foreach ($callHistory->xdr_list as $xdr) {
                 <td><?php echo $xdrcb->connect_time; ?></td>
                 <td><?php echo $xdrcb->CLD; ?></td>
                 <td><?php echo number_format($xdrcb->charged_quantity / 60, 2); ?></td>
-                <td><?php echo $xdr->country; ?></td>
+                <td><?php echo $xdrcb->country; ?></td>
                 <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($xdrcb->charged_amount, 2);
             $amount_total+= number_format($xdrcb->charged_amount, 2); ?> </td>
-                <td><?php echo $xdr->account_id; ?></td>
+                <td><?php echo $xdrcb->account_id; ?></td>
 <!--                <td><?php
             $typecall = substr($xdrcb->account_id, 0, 1);
             if ($typecall == 'a') {
