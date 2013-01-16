@@ -7,7 +7,7 @@ generator:
 
     edit:
       title: Create/Edit Product
-      display: [name, price, description, initial_balance , registration_fee, is_in_b2b, country_id,billing_product_id]
+      display: [name, description, initial_balance , is_in_b2b, billing_product_id]
  
       fields:
               enablecountry: {name: Country}
@@ -15,16 +15,18 @@ generator:
               is_in_store: {name: Agent Module}
               is_reg_share_value_pc: {name: Is Reg. share value %}
               is_extra_payments_share_value_pc: {name: Is extra refill share value %}
+              initial_balance: {name: Charges}
       actions:
         _list: ~
         _save: ~
         _save_and_add: ~
     list:
-      display: [name,  price, registration_fee, total_amount, description, initial_balance,  is_in_b2b, enablecountry, billing_products]
+      display: [name,  description, initial_balance, is_in_b2b, billing_products]
       fields:
               enablecountry: {name: Country}
               include_in_zerocall: {name: Customer Module}
               is_in_store: {name: Agent Module}
+              initial_balance: {name: Charges}
       max_per_page: 100
       object_actions:
         _edit: ~
