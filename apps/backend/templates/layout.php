@@ -696,7 +696,7 @@ jQuery(function(){
 
         	jQuery('#employee_mobile_number').focusout(function(){
 		//remove all the class add the messagebox classes and start fading
-		jQuery("#msgboxmn").removeClass().addClass('messagebox').text('<?php echo __('Checking...') ?>').fadeIn("slow");
+		//jQuery("#msgboxmn").removeClass().addClass('messagebox').text('<?php echo __('Checking...') ?>').fadeIn("slow");
 		//check the username exists or not from ajax
                 var val=jQuery(this).val();
 
@@ -726,26 +726,26 @@ jQuery(function(){
                         jQuery('#error').val("error");
                 }else{
 
-		jQuery.post("<?php echo sfConfig::get('app_admin_url');?>employee/mobile",{ mobile_no: val} ,function(data)
-        {    //alert(data);
-		  if(data=='yes') //if username not avaiable
-		  {
-		  	jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
-			{
-			  //add message and change the class of the box and start fading
-			  jQuery(this).html('<?php echo __('This Mobile No Already exists') ?>').addClass('messageboxerror').fadeTo(900,1);
-			});jQuery('#error').val("error");
-          }
-		  else
-		  {
-		  	jQuery("#msgboxmn").fadeTo(200,0.1,function()  //start fading the messagebox
-			{
-			  //add message and change the class of the box and start fading
-			  jQuery(this).html('<?php echo __('Mobile No is available') ?>').addClass('messageboxok').fadeTo(900,1);
-			});jQuery('#error').val("");
-		  }
-
-        });
+//		jQuery.post("<?php echo sfConfig::get('app_admin_url');?>employee/mobile",{ mobile_no: val} ,function(data)
+//        {    //alert(data);
+//		  if(data=='yes') //if username not avaiable
+//		  {
+//		  	jQuery("#msgboxmn").fadeTo(200,0.1,function() //start fading the messagebox
+//			{
+//			  //add message and change the class of the box and start fading
+//			  jQuery(this).html('<?php echo __('This Mobile No Already exists') ?>').addClass('messageboxerror').fadeTo(900,1);
+//			});jQuery('#error').val("error");
+//          }
+//		  else
+//		  {
+//		  	jQuery("#msgboxmn").fadeTo(200,0.1,function()  //start fading the messagebox
+//			{
+//			  //add message and change the class of the box and start fading
+//			  jQuery(this).html('<?php echo __('Mobile No is available') ?>').addClass('messageboxok').fadeTo(900,1);
+//			});jQuery('#error').val("");
+//		  }
+//
+//        });
                 }}}
 	});
 
