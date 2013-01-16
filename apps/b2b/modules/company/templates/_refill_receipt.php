@@ -53,7 +53,7 @@ use_helper('Number');
             <?php echo __('VAT Number') ?>:   <?php echo $company->getVatNo(); ?><br/>
             <?php echo sprintf("%s", $company->getName()) ?><br/>
             <?php echo $company->getAddress() ?><br/>
-            <?php echo sprintf('%s %s', $company->getCity(), $company->getPostCode()) ?><br/>
+            <?php echo sprintf('%s %s', $company->getPostCode(), $company->getCity()) ?><br/>
             <br /><br />
         </td>
     </tr>
