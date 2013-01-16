@@ -10,7 +10,7 @@
 <form id="refillform" name="refillform" method="post" enctype="multipart/form-data" action="refillTransaction">
     <table width="100%" cellspacing="0" cellpadding="2" class="tblAlign">     
        <tr>
-           <td style="padding: 11px 0 0 5px;font-weight:bold;" width="100" valign="top">Amount:</td>
+           <td style="padding: 11px 0 0 5px;font-weight:bold;" width="100" valign="top">Amount:<br /><small>(Airtime)</small></td>
            <td class="tdcss">
                <b><?php echo sfConfig::get('app_currency_code');?></b><?php echo number_format($refillamount,2);?>
                <input type="hidden" name="refillamount" value="<?php echo number_format($refillamount,2);?>" />

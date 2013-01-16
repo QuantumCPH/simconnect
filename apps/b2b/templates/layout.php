@@ -87,11 +87,11 @@
                         <?php
                         if ($modulName == "company" && $actionName == 'refill') {
                         ?>
-                            <a href="<?php echo sfConfig::get('app_b2b_url');?>company/refill" class="current"><?php echo  __('Refill');?></a>
+                            <a href="<?php echo sfConfig::get('app_b2b_url');?>company/refill" class="current"><?php echo  __('Refill Receipts');?></a>
                         <?php     
                         } else {
                         ?>
-                            <a href="<?php echo sfConfig::get('app_b2b_url');?>company/refill"><?php echo  __('Refill');?></a>
+                            <a href="<?php echo sfConfig::get('app_b2b_url');?>company/refill"><?php echo  __('Refill Receipts');?></a>
                         <?php  
                         }
                         ?>

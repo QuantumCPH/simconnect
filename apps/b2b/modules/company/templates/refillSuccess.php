@@ -32,7 +32,7 @@
 <form id="refillform" name="refillform" method="post" enctype="multipart/form-data" action="refillDetails">
     <table width="100%" cellspacing="0" cellpadding="2" class="tblAlign">     
        <tr>
-           <td style="padding: 11px 0 0 5px;font-weight:bold;" width="100" valign="top">Amount:</td>
+           <td style="padding: 11px 0 0 5px;font-weight:bold;" width="100" valign="top">Amount:<br /><small>(Airtime)</small></td>
            <td class="tdcss">
                <div>
                    <b><?php echo sfConfig::get('app_currency_code');?></b><input type="text" name="refillamount" id="refillamount" value="" class="textfld" /><br />
