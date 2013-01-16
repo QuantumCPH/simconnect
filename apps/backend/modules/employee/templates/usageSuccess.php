@@ -144,7 +144,7 @@ foreach ($callHistoryres->xdr_list as $xdrres) {
 <?php }else{ ?>
     <tr>
         <td colspan="4" align="right"><strong><?php echo __('Subtotal') ?></strong></td>
-        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total, 2, ',', '') ?> </td>
+        <td><?php echo sfConfig::get('app_currency_code');?><?php echo number_format($amount_total, 2) ?> </td>
         <td>&nbsp;</td>
     </tr>
 <?php } ?>
