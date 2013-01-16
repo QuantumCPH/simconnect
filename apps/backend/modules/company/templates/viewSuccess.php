@@ -115,7 +115,7 @@
 				  </div>
 				</div>
 
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Company Size') ?></label>
 				  <div class="content">
 				  	<?php echo $company->getCompanySize()?$company->getCompanySize():'N/A' ?>
@@ -127,14 +127,14 @@
 				  <div class="content">
 				  	<?php echo $company->getCompanyType()?$company->getCompanyType():'N/A' ?>
 				  </div>
-				</div>
+				</div>-->
 							
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Invoice Method:') ?></label>
 				  <div class="content">
 				  	<?php echo $company->getInvoiceMethod()?$company->getInvoiceMethod():'N/A' ?>
 				  </div>
-				</div>
+				</div>-->
 
 <!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Customer Type:') ?></label>
@@ -150,12 +150,12 @@
 				  </div>
 				</div>-->
 				
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Agent Company:') ?></label>
 				  <div class="content">
 				  	<?php echo $company->getAgentCompany()?$company->getAgentCompany():'N/A' ?>
 				  </div>
-				</div>
+				</div>-->
 				
 				<div class="form-row">
 				  <label class="required"><?php echo  __('Status:') ?></label>
@@ -164,12 +164,12 @@
 				  </div>
 				</div>
 
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Registered at:') ?></label>
 				  <div class="content">
 				  	<?php echo $company->getRegistrationDate()?$company->getRegistrationDate():'N/A' ?>
 				  </div>
-				</div>
+				</div>-->
 
 			 		
 				
@@ -190,7 +190,7 @@
 				</div>		-->
 
                             
-				<div class="form-row">
+<!--				<div class="form-row">
 				  <label class="required"><?php echo  __('Registration Doc:') ?></label>
 				  <div class="content">
 					<?php if($company->getFilePath()): ?>
@@ -199,7 +199,7 @@
 				<?php		echo __('None');   ?>
 					<?php endif; ?>
 				  </div>
-				</div>
+				</div>-->
                                   <div class="form-row">
 				  <label class="required">Comments:</label>
 				  <div class="content">
