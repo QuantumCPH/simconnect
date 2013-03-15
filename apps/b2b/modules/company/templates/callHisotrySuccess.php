@@ -28,13 +28,13 @@
                                     $cn = new Criteria();
                                     $cn->add(EmployeePeer::ID, $employeeid);
                                     $employees = EmployeePeer::doSelectOne($cn);
-                                    if($account->getAccountType()=="a"):
-                                      $account_type = "CT";
-                                    else:
-                                      $account_type = "CB";  
-                                    endif
+//                                    if($account->getAccountType()=="a"):
+//                                      $account_type = "CT";
+//                                    else:
+//                                      $account_type = "CB";  
+//                                    endif
                                     ?>
-                            <option value="<?PHP echo $account->getId(); ?>" <?PHP echo ($account->getId() == $iaccount) ? 'selected="selected"' : '' ?>><?php echo $employees->getFirstName() . " -- ".$account_type." - ". $employees->getMobileNumber(); ?></option>
+                            <option value="<?PHP echo $account->getId(); ?>" <?PHP echo ($account->getId() == $iaccount) ? 'selected="selected"' : '' ?>><?php echo $employees->getFirstName() . " -- " . $employees->getMobileNumber(); ?></option>
                                 <?php
                                 }
                             }

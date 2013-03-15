@@ -193,13 +193,13 @@ class employeeActions extends sfActions {
             $this->redirect('employee/add');
             die;
         }
-        if(!$ComtelintaObj->telintaRegisterEmployeeCB($employee,$employee->getProductId())){
-            $employee->setStatusId(sfConfig::get('app_status_error')); //// error status is 5 defined in backend/config/app.yml
-            $employee->save();
-            $this->getUser()->setFlash('messageError', 'Employee  Call Back account is not registered on Telinta please check email');
-            $this->redirect('employee/add');
-            die;
-        }
+//        if(!$ComtelintaObj->telintaRegisterEmployeeCB($employee,$employee->getProductId())){
+//            $employee->setStatusId(sfConfig::get('app_status_error')); //// error status is 5 defined in backend/config/app.yml
+//            $employee->save();
+//            $this->getUser()->setFlash('messageError', 'Employee  Call Back account is not registered on Telinta please check email');
+//            $this->redirect('employee/add');
+//            die;
+//        }
        $employee->setStatusId(sfConfig::get('app_status_completed')); //// completed status is 3 defined in backend/config/app.yml
        $employee->save();
         $c = new Criteria();
