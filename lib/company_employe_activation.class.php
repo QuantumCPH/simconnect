@@ -39,7 +39,7 @@ class CompanyEmployeActivation {
 
         $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
         
-        $vatNumber = "SCB2B" . $company->getVatNo();
+        $vatNumber = "SB2B" . $company->getVatNo();
        // $credit_limit=($company->getCreditLimit()!='')?$company->getCreditLimit():'0';
 
         while (!$tCustomer && $retry_count < $max_retries) {
@@ -300,7 +300,7 @@ class CompanyEmployeActivation {
         $max_retries = 10;
         $retry_count = 0;
         $company = CompanyPeer::retrieveByPK($employee->getCompanyId());
-        $batch_name = "SCB2B".$company->getVatNo();
+        $batch_name = "SB2B".$company->getVatNo();
        // var_dump($company->getVatNo());die;
         $mobileNumber = $employee->getCountryMobileNumber();
         
