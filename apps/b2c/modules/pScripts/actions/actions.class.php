@@ -4083,6 +4083,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
             
             emailLib::sendB2bRefill($transaction);
         }
-        $this->setLayout(false);
+        return sfView::NONE;
+        //$this->setLayout(false);
     }
 }
