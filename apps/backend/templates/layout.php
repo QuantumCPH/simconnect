@@ -686,7 +686,7 @@ jQuery(function(){
 		  	jQuery("#msgbox").fadeTo(200,0.1,function()  //start fading the messagebox
 			{
 			  //add message and change the class of the box and start fading
-			  jQuery(this).html('<?php echo __('Vat No is available') ?>').addClass('messageboxok').fadeTo(900,1);
+			  jQuery(this).html('<?php echo __('Vat No is available') ?>').addClass('messageboxok').fadeTo(900,1).fadeOut(5000);
 			});jQuery('#error').val("");
 		  }
 
