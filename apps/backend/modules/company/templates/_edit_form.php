@@ -23,7 +23,7 @@
 
 <div class="form-row">
   <?php echo label_for('company[vat_no]', __($labels['company{vat_no}']), 'class="required" ') ?>
-  <div class="content<?php if ($sf_request->hasError('company{vat_no}')): ?> form-error<?php endif; ?>">
+  <div class="content<?php if ($sf_request->hasError('company{vat_no}')): ?> form-error<?php endif; ?> vatno">
   <?php if ($sf_request->hasError('company{vat_no}')): ?>
     <?php echo form_error('company{vat_no}', array('class' => 'form-error-msg')) ?>
   <?php endif; ?>

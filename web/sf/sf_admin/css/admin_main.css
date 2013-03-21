@@ -464,3 +464,6 @@ label#validation_result{
     float:right;
     margin-right: 350px;
 }
+div.vatno{
+    position:relative;
+}
