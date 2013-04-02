@@ -13,13 +13,13 @@ class BaseCityForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'country_id' => new sfWidgetFormPropelChoice(array('model' => 'Country', 'add_empty' => true)),
+      'country_id' => new sfWidgetFormPropelChoice(array('model' => 'Country', 'add_empty' => false)),
       'name'       => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorPropelChoice(array('model' => 'City', 'column' => 'id', 'required' => false)),
-      'country_id' => new sfValidatorPropelChoice(array('model' => 'Country', 'column' => 'id', 'required' => false)),
+      'country_id' => new sfValidatorPropelChoice(array('model' => 'Country', 'column' => 'id')),
       'name'       => new sfValidatorString(array('max_length' => 255)),
     ));
 
