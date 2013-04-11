@@ -518,24 +518,19 @@ class CompanyEmployeActivation {
 
     }
     
-    public function getSubscription(Employee $employee, $fromDate, $toDate) {
+    public function getSubscription(Employee $employee,$i_account, $fromDate, $toDate) {
         $xdrList = false;
         $max_retries = 10;
         $retry_count = 0;
      //   var_dump($employee);
-        $cta = new Criteria();
-        $cta->add(TelintaAccountsPeer::PARENT_TABLE,'employee');
-        $cta->addAnd(TelintaAccountsPeer::PARENT_ID,$employee->getId());
-        $cta->addAnd(TelintaAccountsPeer::STATUS,3);
-        $count_ta = TelintaAccountsPeer::doCount($cta);
-        if($count_ta > 0){
+        
         $telinta_account = TelintaAccountsPeer::doSelectOne($cta);    
        // var_dump($telinta_account);die;
         $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
      //   var_dump($pb);
         while (!$xdrList && $retry_count < $max_retries) {
             try {
-                $xdrList = $pb->get_xdr_list(array('i_account' => $telinta_account->getIAccount(), 'from_date' => $fromDate, 'to_date' => $toDate,'i_service'=>4));
+                $xdrList = $pb->get_xdr_list(array('i_account' => $i_account, 'from_date' => $fromDate, 'to_date' => $toDate,'i_service'=>4));
             } catch (SoapFault $e) {
                 if ($e->faultstring != 'Could not connect to host' && $e->faultstring != 'Internal Server Error') {
                     emailLib::sendErrorInTelinta("Employee Subscription: " . $employee->getId() . " Error!", "We have faced an issue with Employee while Fetching Subscription  this is the error for employee with  Employee ID: " . $employee->getId() . " error is " . $e->faultstring . "  <br/> Please Investigate.");
@@ -551,7 +546,7 @@ class CompanyEmployeActivation {
         }
         //var_dump($xdrList);
         return $xdrList;
-        }  
+        
     }
 }
 
