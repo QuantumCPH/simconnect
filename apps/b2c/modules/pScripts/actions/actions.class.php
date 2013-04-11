@@ -3852,7 +3852,6 @@ if(($caltype!="IC") && ($caltype!="hc")){
             $sum_camount = OdrsPeer::doSelectStmt($co);
             $rs = $sum_camount->fetch(PDO::FETCH_OBJ);
             $total_charged_amount = $rs->total_charged_amount;
-
             echo 'companyid-' . $company->getId() . ' - ' . $total_payment . ' - ' . $total_charged_amount;
             echo '<br />';
             echo $net_balance = $total_payment - $total_charged_amount;
@@ -3862,6 +3861,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
             $cnb->setCompanyId($company->getId());
             $cnb->setNetBalance($net_balance);
             $cnb->save();
+            
         }
         return sfView::NONE;
     }     
@@ -3876,7 +3876,6 @@ if(($caltype!="IC") && ($caltype!="hc")){
         if (!($company = CompanyPeer::retrieveByPK($company_id))) {
             $this->forward404();
         }
-
         $billings = array();
         $ratings = array();
         $bilcharge = 00.00;
