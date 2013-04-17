@@ -533,7 +533,7 @@ class employeeActions extends sfActions {
 
                 
         //$employee->delete();
-        $employee->setStatusId('app_status_delete'); //// delete status is 6 defined in backend/config/app.yml
+        $employee->setStatusId(sfConfig::get('app_status_delete')); //// delete status is 6 defined in backend/config/app.yml
         $employee->save();
         $this->getUser()->setFlash('message', 'Employee has been deleted Sucessfully');
         if(isset($companyid) && $companyid!=""){$this->redirect('employee/index?company_id='.$companyid.'&filter=filter');}
