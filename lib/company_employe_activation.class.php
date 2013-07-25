@@ -124,7 +124,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{  
                           emailLib::sendErrorInTelinta("Account update_account_followme: " . $telintaAccount->getIAccount() . " Error!", "We have faced an issue in Customer Account update_account_followme on telinta. this is the error for cusotmer with  id: " . $company->getId() . " error is " . $e->faultstring . "  <br/> Please Investigate.");
@@ -216,7 +216,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{  
                           
@@ -258,7 +258,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{  
                            
@@ -304,7 +304,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{         emailLib::sendErrorInTelinta("Employee Account info Fetching:  Error!", "We have faced an issue in Employee Account Info Fetch on telinta. this is the error for cusotmer with  account: " . $iAccount . " error is " . $e->faultstring . "  <br/> Please Investigate.");
 
@@ -410,7 +410,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{   
                       
@@ -634,7 +634,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{   
                         emailLib::sendErrorInTelinta("Account Update: " . $accountTitle . " Error!", "We have faced an issue in Company Account updation on telinta. this is the error for cusotmer with id: " . $employee->getCompanyId() . " and on Account" . $accountTitle . " error is " . $e->faultstring . " <br/> Please Investigate.");
@@ -682,7 +682,7 @@ class CompanyEmployeActivation {
                        emailLib::sendErrorInTelinta("Authentification failed","Authentification failed on telinta");
                        $this->startNewSession();
                        ///// after starting new session, new object must initialize for PortaBillingSoapCient
-                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Customer');
+                       $pb = new PortaBillingSoapClient($this->telintaSOAPUrl, 'Admin', 'Account');
                        continue;
                     }else{   
                       emailLib::sendErrorInTelinta("Employee Subscription: " . $employee->getId() . " Error!", "We have faced an issue with Employee while Fetching Subscription  this is the error for employee with  Employee ID: " . $employee->getId() . " error is " . $e->faultstring . "  <br/> Please Investigate.");
