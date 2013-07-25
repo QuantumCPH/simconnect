@@ -29,7 +29,8 @@ class CompanyEmployeActivation {
          $this->a_iProduct = sfConfig::get("app_telinta_a_product");
          $this->CBProduct = sfConfig::get("app_telinta_cb_product");
          $this->VoipProduct = sfConfig::get("app_telinta_voip_product");
- 
+                 $this->telinta_soap_user = sfConfig::get("app_telinta_soap_user");
+        $this->telinta_soap_password = sfConfig::get("app_telinta_soap_password");
     }
 
     public function telintaRegisterCompany(Company $company) {

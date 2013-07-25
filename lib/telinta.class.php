@@ -29,6 +29,8 @@ class Telienta {
          $this->a_iProduct = sfConfig::get("app_telinta_a_product");
          $this->cb_iProduct = sfConfig::get("app_telinta_cb_product");
          $this->voip_iProduct = sfConfig::get("app_telinta_voip_product");
+         $this->telinta_soap_user = sfConfig::get("app_telinta_soap_user");
+        $this->telinta_soap_password = sfConfig::get("app_telinta_soap_password");
  
     }
     public function ResgiterCustomer(Customer $customer, $OpeningBalance, $creditLimit=0) {
