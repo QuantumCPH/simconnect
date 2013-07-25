@@ -684,7 +684,6 @@ class companyActions extends sfActions {
    }
    public function executeRefill($request){
          //$id = $request->getParameter('id');
-
          /*if($id!=''){
              $invoice = new Criteria();
              $invoice->add(InvoicePeer::ID, $id);
@@ -693,8 +692,7 @@ class companyActions extends sfActions {
 
          $c = new Criteria();
          $this->company = CompanyPeer::doSelect($c);
-         
-         
+               
          //// get transaction description for refill
         $ctd = new Criteria();
         $ctd->add(TransactionDescriptionPeer::TRANSACTION_TYPE_ID,1);  ///// for Refill 
@@ -789,7 +787,6 @@ class companyActions extends sfActions {
                      $invoices->setPaidDatetime($start_date);
                      $invoices->save();
                  }*/
-
                     //$invoice_no=($invoice_no!='')?$invoice_no:'';
                     $cc = new CompanyTransaction();
                     $cc->setCompanyId($company_id);

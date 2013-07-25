@@ -94,5 +94,22 @@ class telinta_configActions extends sfActions {
         $telintaSOAPPassword = sfConfig::get("app_telinta_soap_password");
         return $telintaSOAPPassword;
     }
-
+ public function executeExpireSession(){
+        //$session = $request->getParameter('session');
+        $ctc = new Criteria();
+        $tcCount = TelintaConfigPeer::doCount($ctc);
+        if($tcCount > 0){
+            $telintaConfig = TelintaConfigPeer::doSelectOne($ctc);
+            $pb = new PortaBillingSoapClient($this->getTelintaSoapUri(), 'Admin', 'Customer');
+            try {
+                $pb->_logout($telintaConfig->getSession());
+                echo "Session expired: ".$telintaConfig->getSession();
+            }catch (SoapFault $e){
+                echo $e->faultstring;
+            }
+        }else{
+            echo "session not found";
+        }
+       return sfView::NONE;
+    }
 }

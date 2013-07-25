@@ -12,8 +12,8 @@ require_once(sfConfig::get('sf_lib_dir') . '/zerocall_out_sms.php');
  *
  * @package    Zapna
  * @subpackage scripts
- * @author     Baran Khursheed Khan
- * @version    actions.class.php,v 1.5 2012-01-16 22:20:12 BK Exp $
+ * @author     khan muhammad
+ * @version    actions.class.php,v 1.5 2012-01-16 22:20:12
  */
 class pScriptsActions extends sfActions
 {
@@ -3798,28 +3798,21 @@ if(($caltype!="IC") && ($caltype!="hc")){
         $invoiceId = $request->getParameter('invoiceid');
         $invoice = InvoicePeer::retrieveByPK($invoiceId);
         $company = $invoice->getCompany();
-
         $this->billing_start_date = $invoice->getBillingStartingDate();
         $this->billing_end_date = $invoice->getBillingEndingDate();
-
         $billings = array();
         $ratings = array();
         $bilcharge = 00.00;
-
         $ec = new Criteria();
         $ec->add(EmployeePeer::COMPANY_ID, $company->getId());
         $ec->add(EmployeePeer::STATUS_ID,3);
         $this->employees = EmployeePeer::doSelect($ec);
-
         $billing_details = array();
         $this->details = $billing_details;
-
         $this->invoice_cost = $invoice->getInvoiceCost();
         $this->invoice_meta = $invoice;
         $this->company_meta = $company;
-
         $this->setLayout(false);
-
 
         ////////////////////////////////////////////////////////////////////
     }
@@ -3960,8 +3953,7 @@ if(($caltype!="IC") && ($caltype!="hc")){
             $preInvoices = InvoicePeer::doSelect($cip);
             $this->preInvoices = $preInvoices;
         }
-        
-        $this->setLayout(false);
+                $this->setLayout(false);
     }
     public function executeUpdateInvoiceBilling(sfWebRequest $request)
     {
